@@ -1,0 +1,92 @@
+@import "theme";
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; }
+.progress {
+  width: 100%;
+  position: absolute !important;
+  top: 0;
+  left: 0;
+}
+.bold {
+  font-weight: bold;
+}
+.margin {
+  margin: 10px;
+}
+.margin-left {
+  margin-left: 10px;
+}
+.margin-right {
+  margin-right: 10px;
+}
+.margin-top {
+  margin-top: 10px !important;
+}
+.margin-bottom {
+  margin-bottom: 10px;
+}
+.padding {
+  padding: 10px;
+}
+.padding-left {
+  padding-left: 10px;
+}
+.padding-right {
+  padding-right: 10px;
+}
+.padding-top {
+  padding-top: 10px;
+}
+.padding-bottom {
+  padding-bottom: 10px;
+}
+.no-margin {
+  margin: 0 !important;
+}
+.no-padding {
+  padding: 0 !important;
+}
+.muted {
+  color: #808080;
+}
+.common-form {
+  background: #ffffff;
+  .mat-tab-body-content {
+    padding: 30px 30px;
+    height: auto;
+  }
+  &.padding {
+    padding: 30px;
+  }
+}
+.common-form-max {
+  width: 100%;
+  max-width: 550px;
+}
+mat-icon.small {
+  font-size: 14px;
+}
+.pointer {
+  cursor: pointer;
+}
+.width100 {
+  width: 100%;
+}
+.actions {
+  width: 200px;
+  text-align: center;
+}
+.mat-form-field-infix {
+  border-top: 2px !important;
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+  line-height: 32px;
+}
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1200px;
+  width: 100%;
+}

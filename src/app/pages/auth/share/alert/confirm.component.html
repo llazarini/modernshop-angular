@@ -1,0 +1,9 @@
+<div class="container">
+    <h1>{{ data?.title }}</h1>
+    <div class="message" [innerHtml]="data?.message"></div>
+    <div fxLayout="row" fxLayoutAlign="end center">
+        <button mat-stroked-button class="margin-horizontal" color="primary"
+            (click)="confirm(false)">{{data.no}}</button>
+        <button mat-raised-button color="primary" (click)="confirm(true)">{{data.yes}}</button>
+    </div>
+</div>

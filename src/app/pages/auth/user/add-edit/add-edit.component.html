@@ -1,0 +1,24 @@
+<mat-progress-bar class="progress" *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+<div fxLayout="row" fxLayoutAlign="space-between start">
+    <h1>{{ id ? 'Editar' : 'Adicionar' }} Colaborador</h1>
+</div>
+<form class="common-form padding" [formGroup]="formGroup" (submit)="submit()">
+  <div fxLayout="column" class="common-form-max">
+    <mat-form-field appearance="outline">
+      <mat-label>Nome do Colaborador</mat-label>
+      <input matInput required formControlName="name" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>E-mail</mat-label>
+      <input matInput required formControlName="email" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Valor-hora do Colaborador</mat-label>
+      <input matInput required currencyMask formControlName="hourly_rate" [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }">
+    </mat-form-field>
+  </div>
+
+  <button color="primary" mat-flat-button>Salvar</button>
+</form>

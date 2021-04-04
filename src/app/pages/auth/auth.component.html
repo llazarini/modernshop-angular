@@ -1,0 +1,26 @@
+<mat-toolbar fxLayoutAlign="space-between center">
+    <div fxLayoutAlign="start center">
+        <img src="assets/images/logo.png" height="40px">
+        <button mat-icon-button (click)="toggleMenu()" class="margin-left">
+          <mat-icon>menu</mat-icon>
+        </button>
+    </div>
+
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+        <mat-icon style="font-size: 40px; color: #a0a0a0">account_circle</mat-icon>
+    </button>
+</mat-toolbar>
+<mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="logout()">
+        <mat-icon>login</mat-icon>
+        <span>Sair</span>
+    </button>
+</mat-menu>
+<mat-sidenav-container class="main-container">
+    <mat-sidenav mode="side" [opened]="sidenavOpened" opened>
+        <app-menu></app-menu>
+    </mat-sidenav>
+    <mat-sidenav-content class="content">
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

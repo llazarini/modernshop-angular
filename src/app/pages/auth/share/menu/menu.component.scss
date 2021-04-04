@@ -1,0 +1,22 @@
+.menu {
+  width: 220px;
+  a {
+    color: #434343;
+  }
+
+  .header {
+    font-size: 10px;
+    margin-left: 15px;
+    margin-right: 15px;
+    font-weight: bold;
+    border-bottom: 1px solid #ffffff69;
+
+    .line {
+      width: 100%;
+      height: 1px;
+      background: #ededed;
+      margin-top: -12px;
+    }
+  }
+}
+

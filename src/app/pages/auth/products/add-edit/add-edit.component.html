@@ -1,0 +1,72 @@
+<mat-progress-bar class="progress" *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+
+<div fxLayout="row" fxLayoutAlign="space-between start">
+    <h1>{{ id ? 'Editar' : 'Adicionar' }} Produto</h1>
+    <button (click)="submit()" color="primary" mat-flat-button>
+        <i class="mdi mdi-plus"></i>
+        {{ id ? 'Salvar edição' : 'Adicionar' }}
+    </button>
+</div>
+
+<form class="common-form" [formGroup]="formGroup" (submit)="submit()">
+  <mat-tab-group class="vertical">
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <i class="mdi mdi-pencil margin-right"></i>Dados Básicos
+      </ng-template>
+      <div class="common-form-max" fxLayout="column">
+        <mat-form-field appearance="outline">
+          <mat-label>Nome do Produto</mat-label>
+          <input matInput required formControlName="name"/>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Código do Produto (SKU)</mat-label>
+          <input matInput required formControlName="sku"/>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Descrição do Produto</mat-label>
+          <textarea matInput required formControlName="description"></textarea>
+        </mat-form-field>
+        <div fxLayout="row">
+          <mat-form-field fxFlex appearance="outline" class="margin-right">
+            <mat-label>Preço de Custo</mat-label>
+            <input matInput required formControlName="price_cost">
+          </mat-form-field>
+          <mat-form-field fxFlex appearance="outline">
+            <mat-label>Preço de Venda</mat-label>
+            <input matInput required formControlName="price">
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <i class="mdi mdi-phone margin-right"></i>
+        Imagens
+      </ng-template>
+      <div class="common-form-max" fxLayout="row">
+        <app-file-upload type="product" [id]="this.id"></app-file-upload>
+      </div>
+    </mat-tab>
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <i class="mdi mdi-phone margin-right"></i>
+        Meta tags
+      </ng-template>
+      <div class="common-form-max" fxLayout="column">
+        <mat-form-field appearance="outline">
+          <mat-label>Meta Nome</mat-label>
+          <input matInput required formControlName="meta_name">
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Meta Descrição</mat-label>
+          <textarea matInput required formControlName="meta_description"></textarea>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Meta Keys</mat-label>
+          <textarea matInput required formControlName="meta_keys"></textarea>
+        </mat-form-field>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</form>

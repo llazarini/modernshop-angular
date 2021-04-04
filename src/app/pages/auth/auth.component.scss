@@ -1,0 +1,19 @@
+@import "../../../variables";
+
+.mat-toolbar {
+  background: #fff;
+  border-bottom: 2px solid #ededed;
+}
+
+.main-container {
+  height: calc(100% - 70px);
+  .content {
+    padding: 15px;
+  }
+}
+
+.mat-sidenav {
+  background: #ffffff;
+  color: #343434;
+  border-right: 0px;
+}

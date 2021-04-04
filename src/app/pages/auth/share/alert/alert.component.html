@@ -1,0 +1,7 @@
+<div class="container">
+	<h1>{{ data?.title }}</h1>
+	<div class="message" [innerHtml]="data?.message | sanitize"></div>
+	<div fxLayout="row" fxLayoutAlign="center center">
+		<button mat-raised-button color="primary" (click)="done()">OK</button>
+	</div>
+</div>
