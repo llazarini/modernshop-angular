@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # Modern Commerce - Angular
+=======
+# Modern Shop - Angular
+>>>>>>> 703436bd084388f5ee227e9e34c2e8e229769b73
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.6.
 
