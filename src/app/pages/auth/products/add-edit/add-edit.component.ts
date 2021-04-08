@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {FormArray, FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AlertService} from '../../../../services/alert/alert.service';
 import {ProductService} from '../../../../services/product/product.service';
-import {ICategory} from '../../../../interfaces/IProduct';
+import {ICategory} from '../../../../interfaces/ICategory';
+import {TokenHelper} from '../../../../helpers/TokenHelper';
+import {IFileClassType} from '../../../../interfaces/IFile';
 
 @Component({
   selector: 'app-add-edit',
@@ -16,6 +18,8 @@ export class AddEditComponent implements OnInit {
     public error: string;
     public id: number = null;
     public categories: Array<ICategory>;
+    public fileType = IFileClassType.product;
+    public token: string = TokenHelper.generate();
 
     constructor(
       private formBuilder: FormBuilder = null,
@@ -25,6 +29,7 @@ export class AddEditComponent implements OnInit {
       private productService: ProductService
     ) {
         this.formGroup = this.formBuilder.group({
+            request_token: [this.token],
             id: [null],
             sku: [null],
             name: [null, [Validators.required, Validators.maxLength(255)]],
@@ -34,15 +39,18 @@ export class AddEditComponent implements OnInit {
             meta_name: [null],
             meta_description: [null],
             meta_keys: [null],
+            categories: formBuilder.array([])
         });
+        this.categories = []
     }
 
     ngOnInit(): void {
         this.id = this.activatedRoute.snapshot.params.id;
         if (this.id) {
             this.get();
+        } else {
+            this.dataprovider();
         }
-        this.dataprovider();
     }
 
     private dataprovider() {
@@ -50,6 +58,9 @@ export class AddEditComponent implements OnInit {
         this.productService
             .dataprovider()
             .subscribe((response) => {
+                this.categories.forEach(category => category.selected = true);
+                this.categories = this.categories
+                    .concat(response.categories.filter(responseCategory => !this.categories.some(cat => cat.id === responseCategory.id)));
             })
             .add(() => this.loading = false);
     }
@@ -77,6 +88,7 @@ export class AddEditComponent implements OnInit {
             })
             .add(() => this.loading = false);
     }
+
     private update() {
         this.loading = true;
         this.productService
@@ -96,7 +108,24 @@ export class AddEditComponent implements OnInit {
             .get(this.id)
             .subscribe((response) => {
                 this.formGroup.patchValue(response);
+                this.categories = response.categories;
+                this.dataprovider();
             })
             .add(() => this.loading = false);
+    }
+
+	public selectCategory(category: ICategory) {
+        category.selected = !category.selected;
+        this.formGroup.value.categories = this.categories
+            .filter(category => category.selected)
+            .map(category => category.id);
+	}
+
+    public nonSelectedCategories() {
+        return this.categories?.filter(category => !category.selected)
+    }
+
+    public selectedCategories() {
+        return this.categories?.filter(category => category.selected)
     }
 }

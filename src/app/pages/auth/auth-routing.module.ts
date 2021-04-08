@@ -15,6 +15,13 @@ const routes: Routes = [
 			redirectTo: 'dashboard',
 		},
 		{
+			path: 'banners',
+			loadChildren: () =>
+				import('./banners/banners.module').then(
+					(m) => m.BannersModule
+				),
+		},
+		{
 			path: 'dashboard',
 			loadChildren: () =>
 				import('./dashboard/dashboard.module').then(
@@ -27,6 +34,13 @@ const routes: Routes = [
 			  import('./products/products.module').then(
 			    (m) => m.ProductsModule
 			  ),
+		},
+		{
+			path: 'categories',
+			loadChildren: () =>
+				import('./categories/categories.module').then(
+					(m) => m.CategoriesModule
+				),
 		},
 		{
 			path: 'users',

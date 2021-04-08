@@ -35,6 +35,9 @@ import {FileUploadComponent} from '../share/file-upload/file-upload.component';
 		AddEditComponent,
 		FileUploadComponent
 	],
+	exports: [
+		FileUploadComponent
+	],
 	imports: [
 		CommonModule,
 		ProductsRoutingModule,

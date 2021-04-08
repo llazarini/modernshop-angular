@@ -5,12 +5,21 @@ import {IResponse, IResponseData} from '../../interfaces/IResponse';
 import {environment} from "../../../environments/environment";
 import {IState} from '../../interfaces/IState';
 import {IProduct} from '../../interfaces/IProduct';
+import {ICategory} from '../../interfaces/ICategory';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
     constructor(private httpClient: HttpClient) { }
+
+    public carousel(slug: string): Observable<IResponseData<IProduct>> {
+        let httpParams = new HttpParams();
+        httpParams = httpParams.append('slug', slug);
+        return this.httpClient.get<IResponseData<IProduct>>(environment.baseUrl + '/products/slug', {
+            params: httpParams
+        });
+    }
 
     public getAll(page?: number): Observable<IResponseData<IProduct>> {
         let httpParams = new HttpParams();
@@ -44,5 +53,5 @@ export class ProductService {
 }
 
 interface IDataprovider {
-    states: Array<IState>;
+    categories: Array<ICategory>;
 }

@@ -1,0 +1,26 @@
+<mat-progress-bar class="progress" *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+
+<div fxLayout="row" fxLayoutAlign="space-between start">
+    <h1>{{ id ? 'Editar' : 'Adicionar' }} Categoria</h1>
+    <button (click)="submit()" color="primary" mat-flat-button>
+        <i class="mdi mdi-plus"></i>
+        {{ id ? 'Salvar edição' : 'Adicionar' }}
+    </button>
+</div>
+
+<form class="common-form  padding" [formGroup]="formGroup" (submit)="submit()">
+    <div class="common-form-max" fxLayout="column">
+        <mat-form-field appearance="outline">
+            <mat-label>Nome da Categoria</mat-label>
+            <input matInput required formControlName="name"/>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Código (Slug)</mat-label>
+            <input matInput required formControlName="slug"/>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Descrição</mat-label>
+            <textarea matInput required formControlName="description"></textarea>
+        </mat-form-field>
+    </div>
+</form>

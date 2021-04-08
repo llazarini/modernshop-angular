@@ -11,13 +11,16 @@ import {IFile} from '../../interfaces/IFile';
 export class FileService {
     constructor(private httpClient: HttpClient) { }
 
-    public store(file: any, type: string, typeId: number): Observable<IResponse<IFile>> {
+    public store(file: any, type: string, typeId: number, token: string): Observable<IResponse<IFile>> {
         const form = new FormData();
         const headers = new HttpHeaders();
         headers.append('Content-Type', 'multipart/form-data');
         if (typeId) {
             form.append('type_id', typeId.toString());
+        } else {
+            form.append('request_token', token.toString());
         }
+
         form.append('type', type);
         form.append('file', file);
         return this.httpClient.post<IResponse<IFile>>(environment.baseUrl + '/files/store', form, { headers: headers });

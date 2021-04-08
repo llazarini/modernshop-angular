@@ -1,22 +1,22 @@
 <div fxLayout="column">
-  <input type="file" class="file-input" [multiple]="multiple"
-         (change)="changed($event)" #fileUpload>
+    <input type="file" class="file-input" [multiple]="multiple"
+           (change)="changed($event)" #fileUpload>
 
-  <div class="file-upload margin-bottom" fxLayout="row" fxLayoutAlign="start center" (click)="fileUpload.click()">
-    <button mat-mini-fab color="primary" class="upload-btn" type="button">
-      <mat-icon>attach_file</mat-icon>
-    </button>
-    <div class="margin-left pointer">Selecione o arquivo</div>
-  </div>
-
-  <div class="images margin-top" fxLayout="row wrap" fxLayoutAlign="start center">
-    <ng-container *ngFor="let file of files">
-      <div class="image margin-right margin-bottom" [style.background]="'url(' + file.url + ')'">
-        <button mat-icon-button color="warn" type="button" (click)="delete(file)">
-          <mat-icon>remove_circle_outline</mat-icon>
+    <div class="file-upload margin-bottom" fxLayout="row" fxLayoutAlign="start center" (click)="fileUpload.click()">
+        <button mat-mini-fab color="primary" class="upload-btn" type="button">
+            <mat-icon>attach_file</mat-icon>
         </button>
-      </div>
-    </ng-container>
-    <mat-spinner mode="indeterminate" *ngIf="loading"></mat-spinner>
-  </div>
+        <div class="margin-left pointer">Selecione o arquivo</div>
+    </div>
+
+    <div class="images margin-top" fxLayout="row wrap" fxLayoutAlign="start center">
+        <ng-container *ngFor="let file of files">
+            <div class="image margin-right margin-bottom" [style.background]="'url(' + file.url + ')'">
+                <button mat-icon-button color="warn" type="button" (click)="delete(file)">
+                    <mat-icon>remove_circle_outline</mat-icon>
+                </button>
+            </div>
+        </ng-container>
+        <mat-spinner mode="indeterminate" *ngIf="loading > 0"></mat-spinner>
+    </div>
 </div>
