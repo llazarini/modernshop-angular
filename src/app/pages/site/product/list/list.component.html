@@ -1,0 +1,17 @@
+<mat-progress-bar *ngIf="loading" class="progress" mode="indeterminate"></mat-progress-bar>
+
+<mat-drawer-container class="container" autosize>
+    <mat-drawer #drawer class="filters" mode="side" opened>
+        <h1>Filtros</h1>
+
+        z
+    </mat-drawer>
+
+    <div class="content">
+        <div class="products" fxLayout="row wrap">
+            <ng-container *ngFor="let product of products">
+                <app-product class="product" [product]="product"></app-product>
+            </ng-container>
+        </div>
+    </div>
+</mat-drawer-container>

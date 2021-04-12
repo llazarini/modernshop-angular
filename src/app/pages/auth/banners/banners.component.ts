@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AlertService} from '../../../services/alert/alert.service';
 import {ICategory} from '../../../interfaces/ICategory';
-import {CategoryService} from '../../../services/category/category.service';
-import {BannerService} from '../../../services/banner/banner.service';
+import {BannerService} from '../../../services/auth/banner/banner.service';
 import {IBannerCategory} from '../../../interfaces/IBanner';
 
 @Component({

@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "dashboard-daniel": {
+    "mordern-app": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/dashboard-daniel",
+            "outputPath": "dist/mordern-app",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -68,18 +68,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "dashboard-daniel:build"
+            "browserTarget": "mordern-app:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "dashboard-daniel:build:production"
+              "browserTarget": "mordern-app:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "dashboard-daniel:build"
+            "browserTarget": "mordern-app:build"
           }
         },
         "test": {
@@ -118,18 +118,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "dashboard-daniel:serve"
+            "devServerTarget": "mordern-app:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "dashboard-daniel:serve:production"
+              "devServerTarget": "mordern-app:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "dashboard-daniel",
+  "defaultProject": "mordern-app",
   "cli": {
     "analytics": "054e1f7a-5cdf-4a17-9883-ffba1f85a01f"
   }

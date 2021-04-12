@@ -17,29 +17,28 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { NgxMaskModule } from 'ngx-mask'
 
 @NgModule({
-  declarations: [
-    AuthComponent,
-    MenuComponent,
-    AlertComponent,
-    ConfirmComponent,
-  ],
-  exports: [
-  ],
-  imports: [
-    NgxMaskModule.forRoot(),
-    BrowserModule,
-    CommonModule,
-    MatListModule,
-    MatIconModule,
-    AuthRoutingModule,
-    MatSidenavModule,
-    MatListModule,
-    MatButtonModule,
-    MatIconModule,
-    FlexModule,
-    MatToolbarModule,
-    MatMenuModule,
-    MatDialogModule
-  ]
+    exports: [],
+    declarations: [
+        AuthComponent,
+        MenuComponent,
+        AlertComponent,
+        ConfirmComponent,
+    ],
+    imports: [
+        NgxMaskModule.forRoot(),
+        BrowserModule,
+        CommonModule,
+        MatListModule,
+        MatIconModule,
+        AuthRoutingModule,
+        MatSidenavModule,
+        MatListModule,
+        MatButtonModule,
+        MatIconModule,
+        FlexModule,
+        MatToolbarModule,
+        MatMenuModule,
+        MatDialogModule
+    ]
 })
 export class AuthModule { }

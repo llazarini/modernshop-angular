@@ -9,47 +9,47 @@ const routes: Routes = [
 		component: AuthComponent,
         canActivate: [AuthGuardGuard],
 		children: [
-		{
-			pathMatch: 'full',
-			path: '',
-			redirectTo: 'dashboard',
-		},
-		{
-			path: 'banners',
-			loadChildren: () =>
-				import('./banners/banners.module').then(
-					(m) => m.BannersModule
-				),
-		},
-		{
-			path: 'dashboard',
-			loadChildren: () =>
-				import('./dashboard/dashboard.module').then(
-					(m) => m.DashboardModule
-				),
-		},
-		{
-			path: 'products',
-			loadChildren: () =>
-			  import('./products/products.module').then(
-			    (m) => m.ProductsModule
-			  ),
-		},
-		{
-			path: 'categories',
-			loadChildren: () =>
-				import('./categories/categories.module').then(
-					(m) => m.CategoriesModule
-				),
-		},
-		{
-			path: 'users',
-			loadChildren: () =>
-				import('./user/user.module').then(
-					(m) => m.UserModule
-				),
-		},
-    ],
+			{
+				pathMatch: 'full',
+				path: '',
+				redirectTo: 'dashboard',
+			},
+			{
+				path: 'banners',
+				loadChildren: () =>
+					import('./banners/banners.module').then(
+						(m) => m.BannersModule
+					),
+			},
+			{
+				path: 'dashboard',
+				loadChildren: () =>
+					import('./dashboard/dashboard.module').then(
+						(m) => m.DashboardModule
+					),
+			},
+			{
+				path: 'products',
+				loadChildren: () =>
+				  import('./products/products.module').then(
+				    (m) => m.ProductsModule
+				  ),
+			},
+			{
+				path: 'categories',
+				loadChildren: () =>
+					import('./categories/categories.module').then(
+						(m) => m.CategoriesModule
+					),
+			},
+			{
+				path: 'users',
+				loadChildren: () =>
+					import('./user/user.module').then(
+						(m) => m.UserModule
+					),
+			},
+	    ],
 	}
 ];
 

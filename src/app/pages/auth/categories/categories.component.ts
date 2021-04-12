@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AlertService} from '../../../services/alert/alert.service';
 import {ICategory} from '../../../interfaces/ICategory';
-import {CategoryService} from '../../../services/category/category.service';
+import {CategoryService} from '../../../services/auth/category/category.service';
 
 @Component({
   selector: 'app-categories',
@@ -9,7 +9,7 @@ import {CategoryService} from '../../../services/category/category.service';
   styleUrls: ['./categories.component.scss']
 })
 export class CategoriesComponent implements OnInit {
-    public displayedColumns: Array<string> = ['id', 'name', 'actions'];
+    public displayedColumns: Array<string> = ['id', 'name', 'slug', 'actions'];
     public loading: boolean = true;
     public dataSource: Array<ICategory>;
     public page: number = 0;

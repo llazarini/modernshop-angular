@@ -2,8 +2,8 @@ import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 import {IState} from '../../../../interfaces/IState';
 import {ICity} from '../../../../interfaces/ICity';
-import {StateService} from '../../../../services/state/state.service';
-import {AddressService} from '../../../../services/address/address.service';
+import {StateService} from '../../../../services/auth/state/state.service';
+import {AddressService} from '../../../../services/auth/address/address.service';
 
 @Component({
   selector: 'app-address',

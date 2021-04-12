@@ -6,13 +6,17 @@ import {SiteRoutingModule} from './site-routing.module';
 import {HomeComponent} from './home/home.component';
 import {CarouselModule} from './share/carousel/carousel.module';
 import {FlexModule} from '@angular/flex-layout';
-import {ProductCarouselModule} from './share/product-slider/product-carousel.module';
+import {ProductCarouselModule} from './share/product-carousel/product-carousel.module';
+import {HeaderComponent} from './parts/header/header.component';
+import {FooterComponent} from './parts/footer/footer.component';
 
 @NgModule({
-    declarations: [
-        SiteComponent,
-	    HomeComponent,
-    ],
+	declarations: [
+		SiteComponent,
+		HomeComponent,
+		HeaderComponent,
+		FooterComponent,
+	],
 	imports: [
 		CommonModule,
 		MatProgressBarModule,

@@ -1,3 +1,8 @@
 <div class="product">
-    <h1>{{ product.name }}</h1>
+    <a (click)="open()">{{ product.name }}</a>
+    <app-carousel [slides]="product.files" [height]="250"></app-carousel>
+    <div fxLayout="row">
+        <button type="button" mat-button>Ver</button>
+        <button type="button" mat-button color="primary" (click)="addChart()">Adicionar ao Carrinho</button>
+    </div>
 </div>

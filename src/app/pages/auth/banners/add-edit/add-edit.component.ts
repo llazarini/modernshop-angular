@@ -3,8 +3,9 @@ import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angul
 import {ActivatedRoute, Router} from '@angular/router';
 import {AlertService} from '../../../../services/alert/alert.service';
 import {IBanner} from '../../../../interfaces/IBanner';
-import {BannerService} from '../../../../services/banner/banner.service';
+import {BannerService} from '../../../../services/auth/banner/banner.service';
 import {TokenHelper} from '../../../../helpers/TokenHelper';
+import {IFile} from '../../../../interfaces/IFile';
 
 @Component({
   selector: 'app-add-edit',
@@ -42,16 +43,6 @@ export class AddEditComponent implements OnInit {
         if (this.id) {
             this.get();
         }
-        this.dataprovider();
-    }
-
-    private dataprovider() {
-        this.loading = true;
-        this.bannerService
-            .dataprovider()
-            .subscribe((response) => {
-            })
-            .add(() => this.loading = false);
     }
 
     public submit() {
@@ -70,7 +61,7 @@ export class AddEditComponent implements OnInit {
         this.bannerService
             .store(this.formGroup.value)
             .subscribe((response) => {
-                this.router.navigate(['/', 'auth', 'categories'])
+                this.router.navigate(['/', 'auth', 'banners'])
                 this.alertService.toast(response.message);
             }, error => {
                 this.alertService.treatError(error)
@@ -82,7 +73,7 @@ export class AddEditComponent implements OnInit {
         this.bannerService
             .update(this.formGroup.value)
             .subscribe((response) => {
-                this.router.navigate(['/', 'auth', 'categories'])
+                this.router.navigate(['/', 'auth', 'banners'])
                 this.alertService.toast(response.message);
             }, error => {
                 this.alertService.treatError(error)
@@ -96,16 +87,30 @@ export class AddEditComponent implements OnInit {
             .get(this.id)
             .subscribe((response) => {
                 this.formGroup.patchValue(response);
+                response.banners.forEach(banner => this.addBanner(banner))
             })
             .add(() => this.loading = false);
     }
 
-    public addBanner() {
+    public addBanner(banner?: IBanner) {
         this.banners.push(
             this.formBuilder.group({
-                name: [null, [Validators.required, Validators.maxLength(255)]],
-                content: [null],
+                id: [banner?.id],
+                // @ts-ignore
+                file_id: [banner?.file?.id],
+                name: [banner?.name, [Validators.required, Validators.maxLength(255)]],
+                content: [banner?.content],
             })
         );
+    }
+
+    public fileUploaded(i: number, file: IFile) {
+        this.banners.at(i).patchValue({
+            file_id: file.id,
+        });
+    }
+
+    public removeBanner(i: number) {
+        this.banners.removeAt(i);
     }
 }

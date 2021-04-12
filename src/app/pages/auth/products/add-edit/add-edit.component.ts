@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AlertService} from '../../../../services/alert/alert.service';
-import {ProductService} from '../../../../services/product/product.service';
+import {ProductService} from '../../../../services/auth/product/product.service';
 import {ICategory} from '../../../../interfaces/ICategory';
 import {TokenHelper} from '../../../../helpers/TokenHelper';
 import {IFileClassType} from '../../../../interfaces/IFile';

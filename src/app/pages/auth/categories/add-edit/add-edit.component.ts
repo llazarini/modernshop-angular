@@ -3,7 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AlertService} from '../../../../services/alert/alert.service';
 import {ICategory} from '../../../../interfaces/ICategory';
-import {CategoryService} from '../../../../services/category/category.service';
+import {CategoryService} from '../../../../services/auth/category/category.service';
 
 @Component({
   selector: 'app-add-edit',

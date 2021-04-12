@@ -23,9 +23,10 @@
 
         <div fxFlex>
             <div *ngFor="let banner of banners.controls; let i = index" [formGroup]="banners.controls[i]" fxLayout="row" fxLayoutAlign="start center">
-                <app-file-upload type="App\Models\Banner" [id]="this.id" [token]="this.token" [multiple]="false">
+                <app-file-upload type="App\Models\Banner" [id]="banner.value.id" [token]="this.token" [multiple]="false"
+                                 (uploaded)="fileUploaded(i, $event)">
                 </app-file-upload>
-                <div fxLayout="column" class="margin-left">
+                <div fxLayout="column" class="margin-left" fxFlex>
                     <mat-form-field appearance="outline">
                         <mat-label>Nome</mat-label>
                         <input matInput required formControlName="name"/>
@@ -35,6 +36,7 @@
                         <textarea matInput required formControlName="content"></textarea>
                     </mat-form-field>
                 </div>
+                <button mat-icon-button type="button" (click)="removeBanner(i)"><i class="mdi mdi-trash-can"></i></button>
             </div>
         </div>
     </div>
