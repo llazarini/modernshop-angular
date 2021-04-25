@@ -12,6 +12,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {ApiInterceptor} from "./interceptor/api.interceptor";
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {SiteModule} from './pages/site/site.module';
+import {NgxMaskModule} from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import {SiteModule} from './pages/site/site.module';
     NotFoundComponent,
   ],
   imports: [
+    NgxMaskModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

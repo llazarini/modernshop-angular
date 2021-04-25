@@ -1,13 +1,39 @@
 @import '~@angular/material/theming';
 
+$flecha-accent: (
+        50: #e8eaf6,
+        500: #ff652a,
+        900: #c13b03,
+        A100: #eebcaa,
+        A200: #f6916c,
+        A400: #ea7342,
+        A700: #f65611,
+        contrast: (
+                50: $dark-primary-text,
+                100: $dark-primary-text,
+                200: $dark-primary-text,
+                300: $light-primary-text,
+                400: $light-primary-text,
+                500: $light-primary-text,
+                600: $light-primary-text,
+                700: $light-primary-text,
+                800: $light-primary-text,
+                900: $light-primary-text,
+                A100: $dark-primary-text,
+                A200: $light-primary-text,
+                A400: $light-primary-text,
+                A700: $light-primary-text,
+        )
+);
+
 $flecha-blue: (
         50: #e8eaf6,
-        500: #1b55e6,
-        900: #0e2a75,
-        A100: #8c9eff,
-        A200: #536dfe,
-        A400: #3d5afe,
-        A700: #304ffe,
+        500: #0ba8a8,
+        900: #005f5f,
+        A100: #8ac1c1,
+        A200: #5eb3b3,
+        A400: #3cbaba,
+        A700: #0ba8a8,
         contrast: (
                 50: $dark-primary-text,
                 100: $dark-primary-text,
@@ -27,5 +53,5 @@ $flecha-blue: (
 );
 
 $primary: mat-palette($flecha-blue);
-$accent: mat-palette($mat-pink, 100, 500, A100);
+$accent: mat-palette($flecha-accent);
 $warn: mat-palette($mat-red);

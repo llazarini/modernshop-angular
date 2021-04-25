@@ -9,7 +9,6 @@ import {FlexModule} from '@angular/flex-layout';
 import {ProductCarouselModule} from './share/product-carousel/product-carousel.module';
 import {HeaderComponent} from './parts/header/header.component';
 import {FooterComponent} from './parts/footer/footer.component';
-
 @NgModule({
 	declarations: [
 		SiteComponent,

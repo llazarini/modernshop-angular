@@ -1,8 +1,15 @@
-<div class="product">
-    <a (click)="open()">{{ product.name }}</a>
+<div class="product" fxLayout="column">
     <app-carousel [slides]="product.files" [height]="250"></app-carousel>
-    <div fxLayout="row">
-        <button type="button" mat-button>Ver</button>
-        <button type="button" mat-button color="primary" (click)="addChart()">Adicionar ao Carrinho</button>
+    <a class="title pointer" (click)="open()">{{ product.name }}</a>
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+        <div>{{ product.price | currency:'R$' }}</div>
+        <div fxLayout="row">
+            <button type="button" mat-icon-button [routerLink]="['product', 'view', product.id]">
+                <i class="mdi mdi-eye"></i>
+            </button>
+            <button type="button" mat-button color="primary" (click)="addChart()">
+                <i class="mdi mdi-cart"></i> Comprar
+            </button>
+        </div>
     </div>
 </div>

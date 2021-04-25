@@ -6,26 +6,26 @@ body { margin: 0; }
 .progress {
   width: 100%;
   position: absolute !important;
-  top: 0;
+  top: 60px;
   left: 0;
 }
 .bold {
   font-weight: bold;
 }
 .margin {
-  margin: 10px;
+  margin: 10px !important;
 }
 .margin-left {
-  margin-left: 10px;
+  margin-left: 10px !important;
 }
 .margin-right {
-  margin-right: 10px;
+  margin-right: 10px !important;
 }
 .margin-top {
   margin-top: 10px !important;
 }
 .margin-bottom {
-  margin-bottom: 10px;
+  margin-bottom: 10px !important;
 }
 .padding {
   padding: 10px;
@@ -90,4 +90,26 @@ mat-icon.small {
   margin-right: auto;
   max-width: 1200px;
   width: 100%;
+}
+.breadcrumb {
+  padding: 5px 0;
+  background: #fff3d2;
+  color: #ff652a;
+  width: 100%;
+  margin-bottom: 25px;
+  div {
+    i {
+      margin-right: 10px;
+      font-size: 12px;
+    }
+    > div {
+      font-size: 12px;
+      margin-right: 10px;
+    }
+  }
+}
+.inner-page {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  min-height: 500px;
 }

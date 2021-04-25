@@ -8,4 +8,8 @@ export interface IProduct {
 	categories?: Array<ICategory>;
 	files?: Array<IFile>;
 	file?: IFile;
+	price?: number;
+	price_cost?: number;
+	total_price?: number;
+	quantity?: number;
 }

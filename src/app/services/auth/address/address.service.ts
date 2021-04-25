@@ -11,8 +11,8 @@ export class AddressService {
 
     public postalCode(postalCode: string): Observable<any> {
         let params = new HttpParams();
-        params = params.append('postal_code', postalCode)
-        return this.httpClient.get<any>(environment.baseAuthUrl + '/address/postal_code/', {
+        params = params.append('zip_code', postalCode)
+        return this.httpClient.get<any>(environment.baseAuthUrl + '/address/zip_code/', {
             params
         });
     }

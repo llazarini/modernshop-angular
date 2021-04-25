@@ -3,7 +3,6 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from "rxjs";
 import {IResponse, IResponseData} from '../../../interfaces/IResponse';
 import {environment} from "../../../../environments/environment";
-import {IState} from '../../../interfaces/IState';
 import {IProduct} from '../../../interfaces/IProduct';
 import {ICategory} from '../../../interfaces/ICategory';
 

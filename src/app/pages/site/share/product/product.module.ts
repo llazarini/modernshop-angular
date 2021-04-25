@@ -4,6 +4,7 @@ import {ProductComponent} from './product.component';
 import {FlexModule} from '@angular/flex-layout';
 import {CarouselModule} from '../carousel/carousel.module';
 import {MatButtonModule} from '@angular/material/button';
+import {RouterModule} from '@angular/router';
 
 @NgModule({
 	declarations: [
@@ -16,7 +17,8 @@ import {MatButtonModule} from '@angular/material/button';
 		CommonModule,
 		FlexModule,
 		CarouselModule,
-		MatButtonModule
+		MatButtonModule,
+		RouterModule
 	]
 })
 export class ProductModule { }

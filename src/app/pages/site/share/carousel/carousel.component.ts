@@ -1,6 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {IFile} from '../../../../interfaces/IFile';
-import {animate, animation, keyframes, style, transition, trigger, useAnimation} from '@angular/animations';
+import {transition, trigger, useAnimation} from '@angular/animations';
 import {AnimationType, fadeIn, fadeOut, flipIn, flipOut, jackIn, jackOut, scaleIn, scaleOut} from './carousel.animations';
 
 @Component({
@@ -45,27 +44,33 @@ import {AnimationType, fadeIn, fadeOut, flipIn, flipOut, jackIn, jackOut, scaleI
 })
 export class CarouselComponent implements OnInit {
     @Input()
-    public slides: Array<IFile> = [];
+    public slides: Array<any> = [];
     @Input()
     public animationType = AnimationType.Scale;
     @Input()
+    public width: number;
+    @Input()
     public height: number;
+    @Input()
+    public arrows: boolean = false;
     public currentSlide = 0;
 
     constructor() {}
 
-    onPreviousClick() {
+    public onPreviousClick() {
         const previous = this.currentSlide - 1;
         this.currentSlide = previous < 0 ? this.slides.length - 1 : previous;
     }
 
-    onNextClick() {
+    public onNextClick() {
         const next = this.currentSlide + 1;
         this.currentSlide = next === this.slides.length ? 0 : next;
     }
 
-    ngOnInit() {
-        console.log(this.slides)
+    public ngOnInit() {
     }
 
+    public getUrl(slide: any) {
+        return slide.file?.url ? slide.file?.url : slide.url;
+    }
 }

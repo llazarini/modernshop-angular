@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {IProduct} from '../../../../interfaces/IProduct';
-import {ChartService} from '../../../../services/guest/chart/chart.service';
+import {CheckoutService} from '../../../../services/guest/checkout/checkout.service';
 import {Router} from '@angular/router';
 @Component({
   selector: "app-product",
@@ -11,14 +11,14 @@ export class ProductComponent implements OnInit {
     @Input()
     public product: IProduct;
 
-    constructor(private chartService: ChartService, private router: Router) {
+    constructor(private checkoutService: CheckoutService, private router: Router) {
     }
 
     public ngOnInit() {
     }
 
 	public addChart() {
-		this.chartService.add(this.product)
+		this.checkoutService.add(this.product)
 	}
 
 	open() {

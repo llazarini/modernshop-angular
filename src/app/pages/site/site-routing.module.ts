@@ -20,8 +20,15 @@ const routes: Routes = [
 			{
 				path: 'product',
 				loadChildren: () =>
-					import('./product/product.module').then(
+					import('./products/product.module').then(
 						(m) => m.ProductModule
+					),
+			},
+			{
+				path: 'checkout',
+				loadChildren: () =>
+					import('./checkout/checkout.module').then(
+						(m) => m.CheckoutModule
 					),
 			},
 		]

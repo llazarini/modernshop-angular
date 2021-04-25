@@ -1,0 +1,24 @@
+.page {
+    padding-top: 20px;
+    .product-info {
+        padding-left: 30px;
+        .price {
+            font-size: 30px;
+            font-weight: 100;
+        }
+        .shipping {
+            margin-top: 20px;
+            color: #0ba8a8;
+            border: 1px solid #0ba8a8;
+            padding: 7px;
+            max-width: 300px;
+            > div {
+                i {
+                    font-size: 22px;
+                    margin-right: 10px;
+                }
+                font-size: 12px;
+            }
+        }
+    }
+}

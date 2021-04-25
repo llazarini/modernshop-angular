@@ -23,8 +23,7 @@ export class HomeComponent implements OnInit {
             .category('top-home')
             .subscribe(banners => {
                 this.banners = banners
-                    .filter(banner => !!banner.file)
-                    .map(banner => banner.file);
+                    .filter(banner => !!banner.file);
             })
     }
 }

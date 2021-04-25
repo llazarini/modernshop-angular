@@ -8,10 +8,16 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
 import {ProductModule as ProductShareModule} from '../share/product/product.module';
 import {MatSelectModule} from '@angular/material/select';
+import {CarouselModule} from '../share/carousel/carousel.module';
+import {ViewComponent} from './view/view.component';
+import {MatInputModule} from '@angular/material/input';
+import {NgxMaskModule} from 'ngx-mask';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
     declarations: [
 	    ListComponent,
+	    ViewComponent,
     ],
 	imports: [
 		ProductRoutingModule,
@@ -21,7 +27,11 @@ import {MatSelectModule} from '@angular/material/select';
 		MatSidenavModule,
 		MatButtonModule,
 		ProductShareModule,
-		MatSelectModule
+		MatSelectModule,
+		CarouselModule,
+		MatInputModule,
+		NgxMaskModule,
+		FormsModule,
 	]
 })
 export class ProductModule { }

@@ -1,5 +1,6 @@
-<div class="products" fxLayout="row wrap">
+<div class="products" fxLayout="row wrap" fxLayoutAlign="start start">
     <ng-container *ngFor="let product of products; let i = index">
         <app-product class="product" [product]="product"></app-product>
     </ng-container>
+    <div class="see-more">Ver mais</div>
 </div>

@@ -1,0 +1,33 @@
+<mat-progress-bar *ngIf="loading > 0" class="progress" mode="indeterminate"></mat-progress-bar>
+
+<div class="container inner-page" fxLayout="column">
+    <h1>Cadastre uma conta bem rapidinho :)</h1>
+    <h2>Ou <a [routerLink]="['/','checkout', 'login']">clique aqui</a> se já tiver uma conta.</h2>
+    <form [formGroup]="formGroup" fxLayout="column" (submit)="submit()">
+        <mat-form-field  appearance="outline">
+            <mat-label>Nome Completo</mat-label>
+            <input matInput required formControlName="name"/>
+        </mat-form-field>
+        <div fxLayout="row">
+            <mat-form-field  appearance="outline" class="margin-right">
+                <mat-label>E-mail</mat-label>
+                <input matInput required formControlName="email"/>
+            </mat-form-field>
+            <mat-form-field fxFlex appearance="outline">
+                <mat-label>Telefone</mat-label>
+                <input matInput mask="(00)0000-00000" formControlName="phone"/>
+            </mat-form-field>
+        </div>
+        <div fxLayout="row">
+            <mat-form-field appearance="outline" class="margin-right">
+                <mat-label>Senha</mat-label>
+                <input matInput type="password" required formControlName="password"/>
+            </mat-form-field>
+            <mat-form-field fxFlex appearance="outline">
+                <mat-label>Confirme sua Senha</mat-label>
+                <input matInput type="password" required formControlName="password_confirm"/>
+            </mat-form-field>
+        </div>
+        <button mat-flat-button color="primary" type="submit">Continuar</button>
+    </form>
+</div>

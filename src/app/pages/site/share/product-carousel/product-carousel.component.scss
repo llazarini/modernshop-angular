@@ -1,5 +1,16 @@
 .products {
+    display: row;
     .product {
-        width: 250px;
+        width: calc(20% - 20px);
+        margin-right: 20px;
+    }
+    .see-more {
+        height: 240px;
+        background: #f3f3f3;
+        color: #0ca8a0;
+        line-height: 240px;
+        font-size: 25px;
+        border: 5px solid;
+        padding: 0px 50px;
     }
 }

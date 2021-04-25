@@ -23,7 +23,6 @@ export class ProductCarouselComponent implements OnInit {
             .category(this.category)
             .subscribe(response => {
                 this.products = response.data;
-                console.log(this.products)
             })
     }
 }

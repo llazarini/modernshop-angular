@@ -1,12 +1,12 @@
 <!-- carousel -->
-<div class="carousel" [style.height]="height + 'px'">
+<div class="carousel" [style.height]="height + 'px'" [style.width]="width + 'px'">
     <ng-container *ngFor="let slide of slides; let i = index">
-        <img
-                *ngIf="i === currentSlide"
-                [src]="slide.url"
-                class="slide"
-                [@slideAnimation]="animationType"
-        />
+        <div class="slide" *ngIf="i === currentSlide" [style.background]="'url(' + getUrl(slide) + ')'"
+             [@slideAnimation]="animationType">
+            <div class="container" fxLayoutAlign="start center">
+                <div class="slide-content" [innerHTML]="slide.content"></div>
+            </div>
+        </div>
     </ng-container>
 
     <!-- controls -->

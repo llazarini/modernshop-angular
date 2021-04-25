@@ -20,6 +20,10 @@ export class AuthService {
         return localStorage.getItem('token');
     }
 
+    public get logged() {
+        return !!this.user;
+    }
+
     public get user() {
         const user = localStorage.getItem('user');
         if (user) {
@@ -34,6 +38,13 @@ export class AuthService {
         }
         return false;
     }
+
+	public logout() {
+		this.login({
+            user: null,
+            token: null,
+        })
+	}
 }
 
 interface ILoginResponse {

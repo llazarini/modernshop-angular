@@ -1,0 +1,48 @@
+<mat-progress-bar *ngIf="loading" class="progress" mode="indeterminate"></mat-progress-bar>
+
+<div class="breadcrumb">
+    <div class="container" fxLayout="row">
+        <div>Home</div>
+        <i class="mdi mdi-arrow-right"></i>
+        <div>Produtos</div>
+        <i class="mdi mdi-arrow-right"></i>
+        <div>{{ product?.name }}</div>
+    </div>
+</div>
+
+<div class="container page">
+     <div fxLayout="row" fxLayoutAlign="start start">
+        <app-carousel fxFlex="none" [slides]="product?.files" [width]="500" [height]="500"></app-carousel>
+        <div class="product-info">
+            <h1 class="name">{{ product?.name }}</h1>
+            <div class="price">{{ product?.price | currency:'R$' }}</div>
+
+            <div class="shipping">
+                <div fxLayoutAlign="start center"><i class="mdi mdi-truck"></i> Entrega em até 3 dias úteis para sua região.</div>
+                <div fxLayoutAlign="start center"><i class="mdi mdi-store"></i> Retire grátis a partir de amanhã em Santo André.</div>
+            </div>
+            <br>
+            <b>Descrição do Produto</b>
+            <div [innerHTML]="product?.description"></div>
+
+            <div fxLayoutAlign="start center" fxLayout="row">
+                <mat-form-field appearance="outline" class="no-padding no-margin">
+                    <mat-label>Informe seu CEP</mat-label>
+                    <input class="no-margin no-padding" placeholder="00000-000" [mask]="'00000-000'" [(ngModel)]="postalCode" matInput>
+                </mat-form-field>
+                <button type="button" mat-button color="primary" (click)="shipment()">
+                    <i class="mdi mdi-cart"></i> Calcular Frete
+                </button>
+            </div>
+
+            <div fxLayout="row" class="margin-top" fxLayoutAlign="start center">
+                <button type="button" mat-flat-button color="primary" (click)="addChart()">
+                    <i class="mdi mdi-cart"></i> Adicionar ao Carrinho
+                </button>
+                <button class="margin-left" type="button" mat-flat-button color="accent" (click)="buyNow()">
+                    <i class="mdi mdi-cart"></i> Comprar agora
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

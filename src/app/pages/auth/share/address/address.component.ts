@@ -46,12 +46,12 @@ export class AddressComponent implements OnInit {
     }
 
 	public searchPostalCode() {
-        if (this.formGroup.value.postal_code?.length !== 8 || this.loading) {
+        if (this.formGroup.value.zip_code?.length !== 8 || this.loading) {
             return;
         }
         this.loading = true;
         this.addressService
-            .postalCode(this.formGroup.value.postal_code)
+            .postalCode(this.formGroup.value.zip_code)
             .subscribe((response) => {
                 this.formGroup.patchValue(response)
                 this.stateChanged();
