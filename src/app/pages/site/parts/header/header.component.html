@@ -7,12 +7,27 @@
         <div class="menu" fxLayout="row">
             <a class="item" routerLink="home">Home</a>
             <div class="margin-left">
-                <a class="item" routerLink="checkout">
-                    <i class="mdi mdi-cart"></i> <span>Carrinho</span>
+                <a class="item" routerLink="checkout" [matBadge]="badge" [matBadgeHidden]="!badge">
+                    <i class="mdi mdi-cart"></i> <span class="margin-left">Meu carrinho</span>
                 </a>
-                <a class="item" (click)="logout()">
-                    <i class="mdi mdi-cart"></i> <span>Logout</span>
+                <a class="item" [routerLink]="['user', 'login']" *ngIf="!logged">
+                    <i class="mdi mdi-usb"></i> <span class="margin-left">Fazer Login</span>
                 </a>
+                <ng-container *ngIf="logged">
+                    <a class="item" [matMenuTriggerFor]="menu" aria-label="Abrir o menu">
+                        <i class="mdi mdi-menu"></i> <span class="margin-left">Minha conta</span>
+                    </a>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item [routerLink]="['user', 'orders']">
+                            <i class="mdi mdi-list-status margin-right"></i>
+                            <span>Meus pedidos</span>
+                        </button>
+                        <button mat-menu-item (click)="logout()">
+                            <i class="mdi mdi-logout margin-right"></i>
+                            <span>Fazer logout</span>
+                        </button>
+                    </mat-menu>
+                </ng-container>
             </div>
         </div>
     </div>

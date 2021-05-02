@@ -1,5 +1,5 @@
 <!-- carousel -->
-<div class="carousel" [style.height]="height + 'px'" [style.width]="width + 'px'">
+<div class="carousel" [style.max-width]="'100%'" [style.height]="height + 'px'" [style.width]="width + 'px'">
     <ng-container *ngFor="let slide of slides; let i = index">
         <div class="slide" *ngIf="i === currentSlide" [style.background]="'url(' + getUrl(slide) + ')'"
              [@slideAnimation]="animationType">
@@ -10,7 +10,7 @@
     </ng-container>
 
     <!-- controls -->
-    <div class="container" fxLayout="row" fxLayoutAlign="space-between center">
+    <div class="container arrows" fxLayout="row" fxLayoutAlign="space-between center">
         <button class="control prev" (click)="onPreviousClick()">
             <span class="arrow left"></span>
         </button>

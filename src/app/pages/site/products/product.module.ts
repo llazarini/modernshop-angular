@@ -13,6 +13,8 @@ import {ViewComponent} from './view/view.component';
 import {MatInputModule} from '@angular/material/input';
 import {NgxMaskModule} from 'ngx-mask';
 import {FormsModule} from '@angular/forms';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatRadioModule} from '@angular/material/radio';
 
 @NgModule({
     declarations: [
@@ -32,6 +34,8 @@ import {FormsModule} from '@angular/forms';
 		MatInputModule,
 		NgxMaskModule,
 		FormsModule,
+		MatSlideToggleModule,
+		MatRadioModule,
 	]
 })
 export class ProductModule { }

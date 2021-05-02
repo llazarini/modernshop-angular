@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {CheckoutService} from '../../../../services/guest/checkout/checkout.service';
 import {IProduct} from '../../../../interfaces/IProduct';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormArray, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AlertService} from '../../../../services/alert/alert.service';
+import {Router} from '@angular/router';
+import {IUser} from '../../../../interfaces/IUser';
+import {AuthService} from '../../../../services/auth/auth.service';
+import {UserService} from '../../../../services/guest/user/user.service';
 
 @Component({
     selector: 'app-finish',
@@ -12,57 +16,63 @@ import {AlertService} from '../../../../services/alert/alert.service';
 export class FinishComponent implements OnInit {
     public loading: number;
     public products: Array<IProduct>;
-    public subTotal: number = 0;
     public total: number = 0;
-    public cep: string;
     public formGroup: FormGroup;
+	public subTotal: number;
+    public shippingOption: any;
+	public user: IUser;
 
     constructor(
         private checkoutService: CheckoutService,
-        private alertService: AlertService
+        private alertService: AlertService,
+        private router: Router,
+        private authService: AuthService,
+        private userService: UserService,
     ) {
         this.formGroup = new FormGroup({
-            cardNumber: new FormControl(),
-            name: new FormControl(),
-            number: new FormControl(),
-            cvc: new FormControl(),
+            name: new FormControl([], [Validators.required]),
+            cpf: new FormControl([], [Validators.required, Validators.minLength(11)]),
+            number: new FormControl([], [Validators.required, Validators.minLength(16)]),
+            date: new FormControl([], [Validators.required, Validators.minLength(4)]),
+            cvc: new FormControl([], [Validators.required, Validators.minLength(2), Validators.maxLength(4)]),
+            products: new FormArray([]),
+            shipping: new FormControl([]),
         });
+    }
+
+    public get form() {
+        return this.formGroup.controls;
     }
 
     public ngOnInit(): void {
         this.index();
+        this.userService.me().subscribe(user => {
+            this.user = user;
+        })
+        this.user = this.authService.user;
     }
 
     public index() {
         this.products = this.checkoutService.products;
-    }
-
-    public remove(i: any) {
-        this.products.splice(i, 1);
-        this.checkoutService.products = this.products;
-    }
-
-    public change() {
-        this.products.forEach(product => {
-            if (product.quantity <= 0) {
-                product.quantity = 1;
-            }
-            product.total_price = product.price * product.quantity
-        });
-    }
-
-    public shipping() {
-
+        this.shippingOption = this.checkoutService.shippingOption;
+        this.total = this.checkoutService.total;
+        this.subTotal = this.checkoutService.subTotal;
+        if (!this.shippingOption) {
+            this.router.navigate(['user', 'address']);
+        }
     }
 
     public submit() {
-        if (this.loading > 0) {
+        if (this.loading > 0 || !this.formGroup.valid) {
             return;
         }
         this.loading += 1;
-        this.checkoutService.payment(this.formGroup.value)
+        const form = this.formGroup.value;
+        this.checkoutService
+            .payment(form)
             .subscribe((response) => {
-                console.log(response);
+                this.router.navigate(['checkout', 'success', response.data.id])
+                this.checkoutService.clear();
             },
             error => this.alertService.treatError(error))
             .add(() => this.loading -= 1);

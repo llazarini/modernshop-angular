@@ -5,6 +5,7 @@ import {IResponse, IResponseData} from '../../../interfaces/IResponse';
 import {environment} from "../../../../environments/environment";
 import {IProduct} from '../../../interfaces/IProduct';
 import {ICategory} from '../../../interfaces/ICategory';
+import {IOption} from '../../../interfaces/IOption';
 
 @Injectable({
   providedIn: 'root'
@@ -52,5 +53,6 @@ export class ProductService {
 }
 
 interface IDataprovider {
+	options: Array<IOption>;
     categories: Array<ICategory>;
 }

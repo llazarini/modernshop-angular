@@ -1,0 +1,53 @@
+<mat-progress-bar class="progress" *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+
+<div fxLayout="row" fxLayoutAlign="space-between start">
+    <h1>{{ id ? 'Editar' : 'Adicionar' }} Opção</h1>
+    <button (click)="submit()" color="primary" mat-flat-button>
+        <i class="mdi mdi-plus"></i>
+        {{ id ? 'Salvar edição' : 'Adicionar' }}
+    </button>
+</div>
+
+<form class="common-form padding" [formGroup]="formGroup" (submit)="submit()">
+    <div class="common-form-max" fxLayout="column">
+        <mat-form-field appearance="outline">
+            <mat-label>Nome da Opção</mat-label>
+            <input matInput required formControlName="name"/>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Tipo</mat-label>
+            <mat-select formControlName="type">
+                <mat-option [value]="true">Adicional (+)</mat-option>
+                <mat-option [value]="false">Adicional (-)</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Preço</mat-label>
+            <input matInput required formControlName="price"/>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Descrição</mat-label>
+            <textarea matInput required formControlName="description"></textarea>
+        </mat-form-field>
+        <div fxLayout="row">
+            <mat-form-field fxFlex appearance="outline">
+                <mat-label>Peso (g)</mat-label>
+                <input matInput required type="number" formControlName="weight">
+            </mat-form-field>
+            <mat-form-field class="margin-left" fxFlex appearance="outline">
+                <mat-label>Comprimento (cm)</mat-label>
+                <input matInput required type="number" formControlName="width">
+            </mat-form-field>
+        </div>
+        <div fxLayout="row">
+            <mat-form-field fxFlex appearance="outline">
+                <mat-label>Altura (cm)</mat-label>
+                <input matInput required type="number" formControlName="height">
+            </mat-form-field>
+            <mat-form-field class="margin-left" fxFlex appearance="outline">
+                <mat-label>Largura (cm)</mat-label>
+                <input matInput required type="number" formControlName="length">
+            </mat-form-field>
+        </div>
+    </div>
+</form>

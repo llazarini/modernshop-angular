@@ -43,6 +43,13 @@ const routes: Routes = [
 					),
 			},
 			{
+				path: 'options',
+				loadChildren: () =>
+					import('./options/options.module').then(
+						(m) => m.OptionsModule
+					),
+			},
+			{
 				path: 'users',
 				loadChildren: () =>
 					import('./user/user.module').then(

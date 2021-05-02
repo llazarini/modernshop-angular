@@ -10,7 +10,7 @@ import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import { AddEditComponent } from './add-edit/add-edit.component';
 import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from "@angular/material/input";
 import {MatIconModule} from "@angular/material/icon";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
@@ -65,6 +65,7 @@ import {FileUploadComponent} from '../share/file-upload/file-upload.component';
 		MatTooltipModule,
 		MatAutocompleteModule,
 		NgxMatSelectSearchModule,
+		FormsModule,
 	]
 })
 export class ProductsModule { }

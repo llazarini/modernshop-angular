@@ -1,15 +1,14 @@
-<div class="product" fxLayout="column">
-    <app-carousel [slides]="product.files" [height]="250"></app-carousel>
-    <a class="title pointer" (click)="open()">{{ product.name }}</a>
-    <div fxLayout="row" fxLayoutAlign="space-between center">
-        <div>{{ product.price | currency:'R$' }}</div>
-        <div fxLayout="row">
-            <button type="button" mat-icon-button [routerLink]="['product', 'view', product.id]">
-                <i class="mdi mdi-eye"></i>
-            </button>
-            <button type="button" mat-button color="primary" (click)="addChart()">
-                <i class="mdi mdi-cart"></i> Comprar
-            </button>
+<mat-card class="product" fxLayout="column">
+    <app-carousel class="photo" [slides]="product.files" [height]="300"></app-carousel>
+    <div class="padding" fxLayout="column">
+        <a class="title pointer" (click)="buy()">{{ product.name }}</a>
+        <div fxLayout="row" fxLayoutAlign="space-between center">
+            <div>{{ product.price | currency:'R$' }}</div>
+            <div fxLayout="row">
+                <button type="button" mat-stroked-button color="primary" (click)="buy()">
+                    <i class="mdi mdi-cart"></i> Comprar
+                </button>
+            </div>
         </div>
     </div>
-</div>
+</mat-card>

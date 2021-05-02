@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {IUser} from "../../interfaces/IUser";
+import {Observable, Subject} from 'rxjs';
 
 
 
@@ -8,12 +9,14 @@ import {IUser} from "../../interfaces/IUser";
   providedIn: 'root'
 })
 export class AuthService {
+    private loggedSubject = new Subject<boolean>();
 
     constructor(private httpClient: HttpClient) { }
 
     public login(response: ILoginResponse) {
         localStorage.setItem('token', response.token);
         localStorage.setItem('user', JSON.stringify(response.user));
+        this.loggedSubject.next(true);
     }
 
     public get token() {
@@ -44,6 +47,11 @@ export class AuthService {
             user: null,
             token: null,
         })
+        this.loggedSubject.next(false);
+	}
+
+	public logging(): Observable<boolean> {
+		return this.loggedSubject.asObservable();
 	}
 }
 

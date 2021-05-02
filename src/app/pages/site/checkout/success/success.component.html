@@ -1,0 +1,13 @@
+<mat-progress-bar *ngIf="loading > 0" class="progress" mode="indeterminate"></mat-progress-bar>
+
+<div class="container inner-page" fxLayout="row" fxLayoutAlign="start center">
+    <div>
+        <img src="assets/images/empty-cart.png">
+    </div>
+    <div>
+        <h1>Pedido gerado com sucesso!</h1>
+        <h3>Código #{{ order.id }}</h3>
+        <div class="muted">Adicione produtos no carrinho antes de prosseguir para o checkout.</div>
+        <button class="margin-top" mat-stroked-button color="primary" [routerLink]="['/']">Ir para loja</button>
+    </div>
+</div>

@@ -2,8 +2,14 @@
     <h1>{{ data?.title }}</h1>
     <div class="message" [innerHtml]="data?.message"></div>
     <div fxLayout="row" fxLayoutAlign="end center">
-        <button mat-stroked-button class="margin-horizontal" color="primary"
-            (click)="confirm(false)">{{data.no}}</button>
-        <button mat-raised-button color="primary" (click)="confirm(true)">{{data.yes}}</button>
+        <ng-container *ngIf="data.yes || data.no; else close">
+            <button mat-stroked-button class="margin-horizontal" color="primary" *ngIf="data.no"
+                (click)="confirm(false)">{{data.no}}</button>
+            <button mat-raised-button color="primary" (click)="confirm(true)"
+                    *ngIf="data.yes">{{data.yes}}</button>
+        </ng-container>
+        <ng-template #close>
+            <button mat-raised-button color="primary" (click)="confirm(true)">Fechar</button>
+        </ng-template>
     </div>
 </div>

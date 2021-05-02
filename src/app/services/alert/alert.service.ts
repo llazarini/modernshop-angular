@@ -41,4 +41,15 @@ export class AlertService {
         });
         return matDialog.afterClosed();
     }
+
+    public alert(message: string, title: string) {
+        const matDialog = this.matDialog.open(ConfirmComponent, {
+            minWidth: '300px',
+            maxWidth: '700px',
+            disableClose: true,
+            panelClass: 'dialog-no-padding',
+            data: { message, title },
+        });
+        return matDialog.afterClosed();
+    }
 }

@@ -9,6 +9,9 @@ import {FlexModule} from '@angular/flex-layout';
 import {ProductCarouselModule} from './share/product-carousel/product-carousel.module';
 import {HeaderComponent} from './parts/header/header.component';
 import {FooterComponent} from './parts/footer/footer.component';
+import {MatBadgeModule} from '@angular/material/badge';
+import {MatMenuModule} from '@angular/material/menu';
+import {MatButtonModule} from '@angular/material/button';
 @NgModule({
 	declarations: [
 		SiteComponent,
@@ -22,7 +25,10 @@ import {FooterComponent} from './parts/footer/footer.component';
 		SiteRoutingModule,
 		CarouselModule,
 		FlexModule,
-		ProductCarouselModule
+		ProductCarouselModule,
+		MatBadgeModule,
+		MatMenuModule,
+		MatButtonModule
 	]
 })
 export class SiteModule { }

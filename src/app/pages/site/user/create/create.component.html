@@ -3,29 +3,35 @@
 <div class="container inner-page" fxLayout="column">
     <h1>Cadastre uma conta bem rapidinho :)</h1>
     <h2>Ou <a [routerLink]="['/','checkout', 'login']">clique aqui</a> se já tiver uma conta.</h2>
-    <form [formGroup]="formGroup" fxLayout="column" (submit)="submit()">
+    <form class="common-form-max" [formGroup]="formGroup" fxLayout="column" (submit)="submit()">
         <mat-form-field  appearance="outline">
             <mat-label>Nome Completo</mat-label>
             <input matInput required formControlName="name"/>
+            <mat-error *ngIf="form.name?.errors?.required">Você deve preencher o seu nome.</mat-error>
+            <mat-error *ngIf="form.name?.errors?.minLength">Digite seu nome completo.</mat-error>
         </mat-form-field>
         <div fxLayout="row">
-            <mat-form-field  appearance="outline" class="margin-right">
+            <mat-form-field fxFlex appearance="outline" class="margin-right">
                 <mat-label>E-mail</mat-label>
                 <input matInput required formControlName="email"/>
+                <mat-error *ngIf="form.email?.errors?.required">Você deve preencher o e-mail.</mat-error>
             </mat-form-field>
             <mat-form-field fxFlex appearance="outline">
                 <mat-label>Telefone</mat-label>
-                <input matInput mask="(00)0000-00000" formControlName="phone"/>
+                <input matInput required mask="(00)0000-00009" formControlName="phone"/>
+                <mat-error *ngIf="form.phone?.errors?.required || form.phone?.errors?.minLength || form.phone?.errors?.maxLength">O telefone é inválido.</mat-error>
             </mat-form-field>
         </div>
         <div fxLayout="row">
-            <mat-form-field appearance="outline" class="margin-right">
+            <mat-form-field fxFlex appearance="outline" class="margin-right">
                 <mat-label>Senha</mat-label>
                 <input matInput type="password" required formControlName="password"/>
+                <mat-error *ngIf="form.password?.errors?.required">Você deve preencher a senha.</mat-error>
             </mat-form-field>
             <mat-form-field fxFlex appearance="outline">
                 <mat-label>Confirme sua Senha</mat-label>
                 <input matInput type="password" required formControlName="password_confirm"/>
+                <mat-error *ngIf="form.password_confirm?.errors?.required">Você deve preencher a confirmação senha.</mat-error>
             </mat-form-field>
         </div>
         <button mat-flat-button color="primary" type="submit">Continuar</button>

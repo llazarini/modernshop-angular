@@ -1,0 +1,55 @@
+<div fxLayout="column" fxFill>
+    <mat-progress-bar *ngIf="loading" class="progress" mode="indeterminate"></mat-progress-bar>
+    <mat-list class="cart" fxLayout="column">
+        <div mat-subheader>Produtos</div>
+        <mat-list-item *ngFor="let product of products; let i = index" fxFill fxLayoutAlign="space-between center" class="margin-bottom">
+            <div fxLayout="row">
+                <img [src]="product.files[0]?.url" class="product-image rounded">
+                <div class="margin-left">
+                    <div>{{ product.name }}</div>
+                    <div class="muted">{{ product.selected_option?.name }}</div>
+                </div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="space-between center">
+                <button mat-icon-button (click)="minus(i)"><i class="mdi mdi-minus-circle"></i></button>
+                <div>{{ product.quantity }}</div>
+                <button mat-icon-button (click)="plus(i)"><i class="mdi mdi-plus-circle"></i></button>
+                <div class="margin-left">{{ product.total_price | currency:'R$' }}</div>
+                <button mat-icon-button color="warn" (click)="remove(i)">
+                    <i class="mdi mdi-trash-can"></i>
+                </button>
+            </div>
+            <mat-divider></mat-divider>
+        </mat-list-item>
+        <div mat-subheader>Frete</div>
+        <mat-list-item *ngIf="user && user.main_address">
+            <div class="padding-top padding-bottom ">Entregar em {{ user.main_address.street_name }}, {{ user.main_address.city.name }} ou
+                <a [routerLink]="['/', 'user', 'address']">troque o endereço</a>
+            </div>
+        </mat-list-item>
+        <mat-list-item *ngFor="let ship of shipping">
+            <div fxFill fxLayoutAlign="space-between center" class="margin-bottom padding-top">
+                <div fxLayout="row" fxLayoutAlign="start center">
+                    <img [src]="ship.image" width="50px" height="16px">
+                    <div class="margin-left">
+                        <div>{{ ship.name }}</div>
+                        <div class="muted">Entrega em até {{ ship.delivery_time }} dias úteis</div>
+                    </div>
+                </div>
+                <div class="shipping-price">{{ ship.price | currency:'R$' }}</div>
+            </div>
+            <mat-divider></mat-divider>
+        </mat-list-item>
+        <mat-list-item *ngIf="!user?.main_address && !shipping">
+            <mat-form-field appearance="outline" class="margin-right">
+                <mat-label>CEP</mat-label>
+                <input matInput [(ngModel)]="postalCode" placeholder="Informe seu CEP" (change)="shipment()">
+            </mat-form-field>
+            <button mat-stroked-button (click)="shipment()">Calcular o Frete</button>
+        </mat-list-item>
+        <mat-list-item *ngIf="!user?.main_address && shipping && postalCode">
+            Frete calculado para o CEP {{ postalCode }} ou <button class="margin-left" mat-stroked-button (click)="clearShipment()">informe outro CEP.</button>
+        </mat-list-item>
+    </mat-list>
+    <hr>
+</div>

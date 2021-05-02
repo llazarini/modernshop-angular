@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from "rxjs";
 import {environment} from "../../../../environments/environment";
-import {IBanner} from '../../../interfaces/IBanner';
 import {IProduct} from '../../../interfaces/IProduct';
-import {IResponse} from '../../../interfaces/IResponse';
 import {IUser} from '../../../interfaces/IUser';
 import {IAddress} from '../../../interfaces/IAddress';
 
@@ -20,11 +18,58 @@ export class CheckoutService {
     }
 
     public set products(products: Array<IProduct>) {
+        sessionStorage.removeItem('shipping');
         sessionStorage.setItem('chart_products', JSON.stringify(products));
     }
 
+    public set shipping(shipping: any) {
+        sessionStorage.setItem('shipping', JSON.stringify(shipping));
+    }
+
+    public get shipping() {
+        const parsed = JSON.parse(sessionStorage.getItem('shipping'));
+        return parsed ? parsed : [];
+    }
+
+    public set postalCode(postalCode: string) {
+        sessionStorage.setItem('postal_code', postalCode);
+    }
+
+    public get postalCode() {
+        return sessionStorage.getItem('postal_code');
+    }
+
+    public set shippingOption(shippingOption: any) {
+        sessionStorage.setItem('shipping_option', JSON.stringify(shippingOption));
+    }
+
+    public get shippingOption() {
+        return JSON.parse(sessionStorage.getItem('shipping_option'));
+    }
+
+    public clear() {
+        this.products = [];
+        this.shippingOption = null;
+        this.postalCode = '';
+        this.shipping = null;
+    }
+
+    public get total(): number {
+        let total = this.subTotal;
+        total += +this.shippingOption?.price;
+        return total;
+    }
+
+    public get subTotal(): number {
+        let total = 0;
+        this.products.forEach(product => total = product.total_price + (product.selected_option.type ? product.selected_option.price : -product.selected_option.price))
+        return total;
+    }
+
     public add(product: IProduct): void {
-        const productFound = this.products.findIndex(findProduct => findProduct.id === product.id);
+        const productFound = this.products.findIndex(findProduct =>
+            findProduct.id === product.id &&
+            findProduct.selected_option?.id === product.selected_option?.id);
         if (productFound >= 0) {
             const products = this.products;
             products[productFound].quantity += 1;
@@ -51,21 +96,21 @@ export class CheckoutService {
         });
     }
 
-    public create(user: IUser): Observable<any> {
-        return this.httpClient.post<any>(environment.baseSiteUrl + '/checkout/create', user);
-    }
-
-    public address(address: IAddress): Observable<any> {
-        return this.httpClient.post<any>(environment.baseSiteUrl + '/checkout/address', address);
-    }
-
     public payment(card: any): Observable<any> {
-        return this.httpClient.post<any>(environment.baseSiteUrl + '/checkout/payment', card);
+        const products = this.products.map(product => {
+            return { id: product.id, quantity: product.quantity, option_id: product.selected_option?.id }
+        });
+        const shipping_option_id = this.shippingOption.id;
+        return this.httpClient.post<any>(environment.baseSiteUrl + '/checkout/payment', {
+            card,
+            products,
+            shipping_option_id
+        });
     }
 
     public shipment(postalCode: string, products: Array<IProduct>) {
         const shipments = products.map(product => {
-            return { id: product.id, quantity: product.quantity ? product.quantity : 1 }
+            return { id: product.id, option_id: product.selected_option?.id, quantity: product.quantity ? product.quantity : 1 }
         })
         return this.httpClient.post<any>(environment.baseSiteUrl + '/checkout/shipment', { postal_code: postalCode, products: shipments });
     }

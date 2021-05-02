@@ -31,6 +31,13 @@ const routes: Routes = [
 						(m) => m.CheckoutModule
 					),
 			},
+			{
+				path: 'user',
+				loadChildren: () =>
+					import('./user/user.module').then(
+						(m) => m.UserModule
+					),
+			},
 		]
 	},
 ];

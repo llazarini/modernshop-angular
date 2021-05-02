@@ -1,15 +1,27 @@
+:host ::ng-deep .mat-form-field-wrapper{
+    margin: 0 !important;
+    padding: 0;
+}
 .page {
     padding-top: 20px;
+    .sub-title {
+        font-weight: bold;
+        margin-bottom: 5px;
+        margin-top: 10px;
+    }
     .product-info {
         padding-left: 30px;
         .price {
             font-size: 30px;
-            font-weight: 100;
+            font-weight: bold;
+        }
+        .shipping-price {
+            font-weight: bold;
         }
         .shipping {
-            margin-top: 20px;
+            border-radius: 10px;
             color: #0ba8a8;
-            border: 1px solid #0ba8a8;
+            border: 1px solid #e0e0e0;
             padding: 7px;
             max-width: 300px;
             > div {
@@ -20,5 +32,15 @@
                 font-size: 12px;
             }
         }
+    }
+    .shipping-details {
+        font-weight: bold;
+        font-size: 12px;
+        div:last-child {
+            margin-left: 10px;
+        }
+    }
+    .postal-code {
+        margin-top: 30px;
     }
 }

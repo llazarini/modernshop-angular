@@ -11,37 +11,64 @@
 </div>
 
 <div class="container page">
-     <div fxLayout="row" fxLayoutAlign="start start">
-        <app-carousel fxFlex="none" [slides]="product?.files" [width]="500" [height]="500"></app-carousel>
+     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start start">
+        <app-carousel fxFlex="none" [slides]="product?.files" [width]="600" [height]="800"></app-carousel>
         <div class="product-info">
             <h1 class="name">{{ product?.name }}</h1>
-            <div class="price">{{ product?.price | currency:'R$' }}</div>
-
-            <div class="shipping">
-                <div fxLayoutAlign="start center"><i class="mdi mdi-truck"></i> Entrega em até 3 dias úteis para sua região.</div>
-                <div fxLayoutAlign="start center"><i class="mdi mdi-store"></i> Retire grátis a partir de amanhã em Santo André.</div>
+            <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="space-between center">
+                <div class="price">{{ price | currency:'R$' }}</div>
+                <div fxLayout="row" class="margin-top" fxLayoutAlign="start center">
+                    <button type="button" mat-flat-button color="primary" (click)="addChart()">
+                        <i class="mdi mdi-cart"></i> Adicionar ao Carrinho
+                    </button>
+                    <button class="margin-left" type="button" mat-flat-button color="accent" (click)="buyNow()">
+                        <i class="mdi mdi-cart-check"></i> Comprar agora
+                    </button>
+                </div>
             </div>
             <br>
-            <b>Descrição do Produto</b>
-            <div [innerHTML]="product?.description"></div>
-
-            <div fxLayoutAlign="start center" fxLayout="row">
-                <mat-form-field appearance="outline" class="no-padding no-margin">
-                    <mat-label>Informe seu CEP</mat-label>
-                    <input class="no-margin no-padding" placeholder="00000-000" [mask]="'00000-000'" [(ngModel)]="postalCode" matInput>
-                </mat-form-field>
-                <button type="button" mat-button color="primary" (click)="shipment()">
-                    <i class="mdi mdi-cart"></i> Calcular Frete
-                </button>
+            <div class="margin-top margin-bottom">
+                <div class="sub-title">Opções do Produto</div>
+                <div>
+                    <mat-radio-group fxLayout="column" [(ngModel)]="option" (ngModelChange)="optionChanged()">
+                        <mat-radio-button *ngFor="let option of product?.options" [value]="option" class="margin-bottom">
+                            <div>{{ option.name }}</div>
+                            <small class="muted">{{option.description}}</small>
+                        </mat-radio-button>
+                    </mat-radio-group>
+                </div>
             </div>
-
-            <div fxLayout="row" class="margin-top" fxLayoutAlign="start center">
-                <button type="button" mat-flat-button color="primary" (click)="addChart()">
-                    <i class="mdi mdi-cart"></i> Adicionar ao Carrinho
-                </button>
-                <button class="margin-left" type="button" mat-flat-button color="accent" (click)="buyNow()">
-                    <i class="mdi mdi-cart"></i> Comprar agora
-                </button>
+            <div class="margin-bottom">
+                <div class="sub-title">Descrição do Produto</div>
+                <div [innerHTML]="product?.description"></div>
+            </div>
+            <div class="sub-title">Calcule o Frete</div>
+            <div class="margin-horizontal margin-bottom" fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="space-between start">
+                <div class="margin-right" fxLayout="column">
+                    <mat-form-field appearance="outline" class="no-padding no-margin">
+                        <mat-label>Informe seu CEP</mat-label>
+                        <input class="no-margin no-padding" placeholder="00000-000" [mask]="'00000-000'" [(ngModel)]="postalCode" matInput>
+                    </mat-form-field>
+                    <button class="margin-top" type="button" mat-stroked-button color="primary" (click)="shipment()">
+                        <i class="mdi mdi-truck"></i> Calcular Frete
+                    </button>
+                </div>
+                <div class="shipping">
+                    <div fxLayoutAlign="start center"><i class="mdi mdi-truck"></i> Entrega em até 3 dias úteis para sua região.</div>
+                    <div fxLayoutAlign="start center"><i class="mdi mdi-store"></i> Retire grátis a partir de amanhã em Santo André.</div>
+                </div>
+            </div>
+            <div class="margin-top">
+                <ng-container *ngFor="let ship of shipping">
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <div>
+                            <img [src]="ship.image" width="80px">
+                            <div>{{ ship.name }} entrega em até {{ ship.delivery_time }} dias úteis</div>
+                        </div>
+                        <div class="shipping-price">{{ ship.price | currency:'R$' }}</div>
+                    </div>
+                    <hr>
+                </ng-container>
             </div>
         </div>
     </div>

@@ -1,6 +1,6 @@
 <div class="products" fxLayout="row wrap" fxLayoutAlign="start start">
+    <mat-progress-spinner *ngIf="loading > 0" mode="indeterminate"></mat-progress-spinner>
     <ng-container *ngFor="let product of products; let i = index">
         <app-product class="product" [product]="product"></app-product>
     </ng-container>
-    <div class="see-more">Ver mais</div>
 </div>

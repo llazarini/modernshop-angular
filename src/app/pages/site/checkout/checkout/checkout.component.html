@@ -1,6 +1,6 @@
 <mat-progress-bar *ngIf="loading > 0" class="progress" mode="indeterminate"></mat-progress-bar>
-<div class="container inner-page" fxLayout="column" fxLayout.gt-sm="row">
-    <div fxFlex class="margin-right">
+<div class="container inner-page" fxLayout="column" fxLayoutAlign="space-between start" fxLayout.gt-sm="row">
+    <div fxFlex class="margin-right common-form-max">
         <h1>Informe seu e-mail</h1>
         <h2>
             O seu e-mail será usado para lhe enviar atualizações de status do pedido.
@@ -17,34 +17,6 @@
     </div>
     <div fxFlex.gt-sm="500px">
         <h1>Finalizar Compra</h1>
-        <div *ngFor="let product of products; let i = index" class="col-md-5">
-            <div fxFlex="200px">{{ product.name }}</div>
-            <div fxFlex="100px">{{ product.price | currency:'R$' }}</div>
-            <div fxFlex="60px">
-                <mat-form-field appearance="outline" class="no-padding no-margin" fxFlex="60px">
-                    <input type="number" matInput [(ngModel)]="product.quantity" (change)="change()"/>
-                </mat-form-field>
-            </div>
-            <div fxFlex="100px">{{ product.total_price | currency:'R$' }}</div>
-            <div>
-                <button mat-icon-button color="warn" (click)="remove(i)">
-                    <i class="mdi mdi-trash-can"></i>
-                </button>
-            </div>
-        </div>
-        <div fxLayoutAlign="end center">
-            <div class="margin-right">Subtotal</div>
-            <div>{{ subTotal | currency: 'R$' }}</div>
-        </div>
-        <div fxLayoutAlign="end center">
-            <div class="margin-right">Calcule o frete</div>
-            <mat-form-field appearance="outline">
-                <input matInput [(ngModel)]="cep" (change)="shipping()"/>
-            </mat-form-field>
-        </div>
-        <div fxLayoutAlign="end center">
-            <div class="margin-right">Total</div>
-            <div>{{ total | currency: 'R$' }}</div>
-        </div>
+        <app-cart></app-cart>
     </div>
 </div>

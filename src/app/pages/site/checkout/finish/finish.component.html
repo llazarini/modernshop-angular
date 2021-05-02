@@ -1,64 +1,116 @@
-<mat-progress-bar *ngIf="loading > 0" class="progress" mode="indeterminate"></mat-progress-bar>
-<div class="container inner-page" fxLayout="column" fxLayout.gt-sm="row">
-    <div fxFlex class="margin-right">
+<mat-progress-bar color="accent" *ngIf="loading > 0" class="progress" mode="indeterminate"></mat-progress-bar>
+<div class="container inner-page" fxLayout="column" fxLayoutAlign="space-between start" fxLayout.gt-sm="row">
+    <div fxFlex class="margin-right common-form-max">
         <h1>Pague com cartão de crédito</h1>
-
         <div class="card">
             <div class="number"></div>
         </div>
-
         <form [formGroup]="formGroup" fxLayout="column" (submit)="submit()">
-            <mat-form-field  appearance="outline">
+            <mat-form-field appearance="outline">
                 <mat-label>Número do Cartão</mat-label>
-                <input matInput mask="0000 0000 0000 0000" required formControlName="cardNumber"/>
+                <input matInput mask="0000 0000 0000 0000" required formControlName="number"/>
+                <mat-error *ngIf="form?.number?.errors?.required">
+                    O número do cartão é requerido.
+                </mat-error>
+                <mat-error *ngIf="form?.number?.errors?.minLength">
+                    O cartão precisa ter ao menos 16 números
+                </mat-error>
             </mat-form-field>
-            <mat-form-field  appearance="outline" class="margin-right">
+            <mat-form-field  appearance="outline">
                 <mat-label>Nome no Cartão</mat-label>
                 <input matInput required formControlName="name"/>
+                <mat-error *ngIf="form?.name?.errors?.required">
+                    O nome é requerido.
+                </mat-error>
             </mat-form-field>
             <div fxLayout="row">
                 <mat-form-field  appearance="outline" class="margin-right">
                     <mat-label>Expira em</mat-label>
-                    <input matInput mask="00/00" formControlName="date"/>
+                    <input matInput required mask="00/00" formControlName="date"/>
+                    <mat-error *ngIf="form?.date?.errors?.required">
+                        A data é requerida.
+                    </mat-error>
                 </mat-form-field>
                 <mat-form-field fxFlex appearance="outline">
                     <mat-label>CVC</mat-label>
-                    <input matInput mask="0000" formControlName="cvc"/>
+                    <input matInput required mask="0009" formControlName="cvc"/>
+                    <mat-error *ngIf="form.cvc.errors?.required">
+                        O código do cartão é requerido.
+                    </mat-error>
                 </mat-form-field>
             </div>
-            <button mat-flat-button color="primary" type="submit">Continuar</button>
+            <mat-form-field  appearance="outline">
+                <mat-label>Número do CPF</mat-label>
+                <input matInput required [mask]="'000.000.000-00'" formControlName="cpf"/>
+                <mat-error *ngIf="form?.cpf?.errors?.required">
+                    O CPF é requerido.
+                </mat-error>
+            </mat-form-field>
+            <button mat-flat-button color="primary" type="submit">Efetuar pagamento</button>
         </form>
     </div>
-    <div fxFlex.gt-sm="500px">
-        <h1>Finalizar Compra</h1>
-        <div *ngFor="let product of products; let i = index" class="col-md-5">
-            <div fxFlex="200px">{{ product.name }}</div>
-            <div fxFlex="100px">{{ product.price | currency:'R$' }}</div>
-            <div fxFlex="60px">
-                <mat-form-field appearance="outline" class="no-padding no-margin" fxFlex="60px">
-                    <input type="number" matInput [(ngModel)]="product.quantity" (change)="change()"/>
-                </mat-form-field>
-            </div>
-            <div fxFlex="100px">{{ product.total_price | currency:'R$' }}</div>
-            <div>
-                <button mat-icon-button color="warn" (click)="remove(i)">
-                    <i class="mdi mdi-trash-can"></i>
-                </button>
-            </div>
-        </div>
-        <div fxLayoutAlign="end center">
-            <div class="margin-right">Subtotal</div>
-            <div>{{ subTotal | currency: 'R$' }}</div>
-        </div>
-        <div fxLayoutAlign="end center">
-            <div class="margin-right">Calcule o frete</div>
-            <mat-form-field appearance="outline">
-                <input matInput [(ngModel)]="cep" (change)="shipping()"/>
-            </mat-form-field>
-        </div>
-        <div fxLayoutAlign="end center">
-            <div class="margin-right">Total</div>
-            <div>{{ total | currency: 'R$' }}</div>
-        </div>
+    <div fxFlex.gt-sm="500px" fxLayout="column" ngClass.lt-sm="margin-top">
+        <h1>Confira seu carrinho</h1>
+        <mat-list class="cart" fxLayout="column">
+            <div mat-subheader>Produtos</div>
+            <mat-list-item *ngFor="let product of products; let i = index">
+                <div fxFill fxLayoutAlign="space-between center" class="margin-bottom">
+                    <div fxLayout="row">
+                        <img [src]="product.files[0]?.url" class="product-image rounded">
+                        <div class="margin-left">
+                            <div>{{ product.name }}</div>
+                            <div class="muted">{{ product.selected_option?.name }}</div>
+                        </div>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <div class="margin-right">{{ product.quantity }} unidades</div>
+                        <div class="margin-left">{{ product.total_price | currency:'R$' }}</div>
+                    </div>
+                    <mat-divider></mat-divider>
+                </div>
+            </mat-list-item>
+            <mat-list-item>
+                <div fxFill fxLayoutAlign="end center" class="margin-bottom">
+                    <div fxLayout="row" class="text-right bold margin-right">
+                        Sub-total:
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                        {{ subTotal | currency: 'R$' }}
+                    </div>
+                    <mat-divider></mat-divider>
+                </div>
+            </mat-list-item>
+            <mat-list-item fxFill>
+                <div fxFill fxLayoutAlign="space-between center" class="margin-horizontal">
+                    <div fxLayout="row" fxLayoutAlign="start center">
+                        <img height="12px" width="50px" [src]="shippingOption.image">
+                        <div class="margin-left" fxLayout="column">
+                            <div>{{ shippingOption?.name }}</div>
+                            <small class="muted">
+                                {{ user.main_address?.street_name }}, {{ user.main_address?.street_number }} {{ user.main_address?.complement }},
+                                {{ user.main_address?.city?.name }}
+                                - {{ user.main_address?.city?.state?.code }}
+                                - {{ user.main_address?.zip_code }}
+                            </small>
+                            <small><a [routerLink]="['/','checkout', 'address']">Trocar o endereço</a></small>
+                        </div>
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                        {{ shippingOption?.price | currency:'R$' }}
+                    </div>
+                    <mat-divider></mat-divider>
+                </div>
+            </mat-list-item>
+            <mat-list-item>
+                <div fxFill fxLayoutAlign="end center" class="margin-bottom">
+                    <div fxLayout="row" class="text-right bold margin-right">
+                        Total:
+                    </div>
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                        {{ total | currency: 'R$' }}
+                    </div>
+                </div>
+            </mat-list-item>
+        </mat-list>
     </div>
 </div>

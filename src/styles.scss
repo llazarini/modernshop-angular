@@ -12,6 +12,9 @@ body { margin: 0; }
 .bold {
   font-weight: bold;
 }
+.rounded {
+  border-radius: 50%;
+}
 .margin {
   margin: 10px !important;
 }
@@ -26,6 +29,22 @@ body { margin: 0; }
 }
 .margin-bottom {
   margin-bottom: 10px !important;
+}
+.margin-horizontal {
+  margin: 10px 0px;
+}
+.margin-vertical {
+  margin: 10px 0px;
+}
+.text-right {
+  text-align: right;
+}
+.text-bold {
+  font-weight: bold;
+}
+hr {
+  border-top: 0px;
+  border-bottom: 1px solid #d2d2d2;
 }
 .padding {
   padding: 10px;
@@ -44,7 +63,13 @@ body { margin: 0; }
 }
 .no-margin {
   margin: 0 !important;
+
 }
+:host ::ng-deep .mat-form-field-wrapper{
+  margin: 0 !important;
+  padding: 0;
+}
+
 .no-padding {
   padding: 0 !important;
 }
@@ -71,7 +96,7 @@ mat-icon.small {
 .pointer {
   cursor: pointer;
 }
-.width100 {
+.width100 :host {
   width: 100%;
 }
 .actions {

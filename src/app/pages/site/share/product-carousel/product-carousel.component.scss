@@ -1,8 +1,9 @@
 .products {
     display: row;
     .product {
-        width: calc(20% - 20px);
+        width: calc(25% - 20px);
         margin-right: 20px;
+        padding: 0px;
     }
     .see-more {
         height: 240px;

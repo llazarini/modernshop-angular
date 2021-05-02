@@ -1,13 +1,14 @@
 <mat-progress-bar *ngIf="loading" class="progress" mode="indeterminate"></mat-progress-bar>
 
-<div class="container inner-page" fxLayout="row">
-    <div fxFlex>
-        <h1>Cadastre seu endereço</h1>
+<div class="container inner-page" fxLayout="column" fxLayoutAlign="space-between start" fxLayout.gt-sm="row">
+    <div class="common-form-max margin-right">
+        <h1>Informe o endereço de entrega</h1>
         <form [formGroup]="formGroup" fxLayout="column" (submit)="submit()">
             <div fxLayout="row" fxLayoutAlign="start center">
                 <mat-form-field fxFlex appearance="outline">
                     <mat-label>CEP</mat-label>
                     <input matInput (ngModelChange)="searchPostalCode()" formControlName="zip_code">
+                    <mat-error *ngIf="form.zip_code?.errors?.required || form.zip_code?.errors?.minLength || form.zip_code?.errors?.maxLength">O CEP é inválido.</mat-error>
                 </mat-form-field>
                 <div fxFlex="300px" class="margin-left">
                     <button mat-button color="primary" type="button" (click)="searchPostalCode()">
@@ -20,12 +21,14 @@
             <mat-form-field appearance="outline">
                 <mat-label>Endereço</mat-label>
                 <input matInput [readonly]="found" formControlName="street_name">
+                <mat-error *ngIf="form.street_name?.errors?.required">Informe o nome da rua.</mat-error>
             </mat-form-field>
 
             <div fxLayout="row">
                 <mat-form-field appearance="outline" fxFlex>
                     <mat-label>Número</mat-label>
                     <input matInput formControlName="street_number">
+                    <mat-error *ngIf="form.number?.errors?.required">Informe o número de sua casa.</mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" fxFlex="200px" class="margin-left">
@@ -37,6 +40,7 @@
             <mat-form-field appearance="outline">
                 <mat-label>Bairro</mat-label>
                 <input matInput [readonly]="found" formControlName="neighborhood">
+                <mat-error *ngIf="form.neighborhood?.errors?.required">Informe o bairro onde você mora.</mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="outline">
@@ -44,6 +48,7 @@
                 <mat-select formControlName="state_id" (ngModelChange)="stateChanged()">
                     <mat-option *ngFor="let state of states" [value]="state.id">{{ state.name }}</mat-option>
                 </mat-select>
+                <mat-error *ngIf="form.state_id?.errors?.required">Informe o estado onde você mora.</mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="outline">
@@ -58,10 +63,35 @@
                     </mat-option>
                     <mat-option *ngFor="let city of getCities()" [value]="city.id">{{ city.name }}</mat-option>
                 </mat-select>
+                <mat-error *ngIf="form.city_id?.errors?.required">Informe a cidade onde você mora.</mat-error>
             </mat-form-field>
             <button mat-flat-button color="primary" type="submit">Continuar</button>
         </form>
     </div>
-    <div fxFlex.gt-sm="50%">
+    <div fxFlex.gt-sm="500px">
+        <ng-container *ngIf="shipping">
+            <h1>Escolha uma opção de frete</h1>
+            <mat-radio-group class="width100" fxLayout="column" [(ngModel)]="shippingOption" (ngModelChange)="setShipping()">
+                <ng-container *ngFor="let ship of shipping">
+                    <div fxFill fxLayoutAlign="space-between center" class="margin-bottom">
+                        <mat-radio-button [value]="ship">
+                            <div fxLayout="row" fxLayoutAlign="space-between center">
+                                <div class="margin-right margin-left">
+                                    <div>
+                                        <img [src]="ship.image" width="50px" height="15px">
+                                        {{ ship.name }}
+                                    </div>
+                                    <div class="muted">Entrega em até {{ ship.delivery_time }} dias úteis</div>
+                                </div>
+                            </div>
+                        </mat-radio-button>
+                        <div fxLayout="row" fxLayoutAlign="space-between center">
+                            <div class="margin-right">{{ ship.price | currency:'R$' }}</div>
+                        </div>
+                        <mat-divider></mat-divider>
+                    </div>
+                </ng-container>
+            </mat-radio-group>
+        </ng-container>
     </div>
 </div>

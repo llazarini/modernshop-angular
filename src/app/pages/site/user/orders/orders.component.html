@@ -1,0 +1,7 @@
+<mat-progress-bar *ngIf="loading > 0" class="progress" mode="indeterminate"></mat-progress-bar>
+
+<div class="container inner-page" fxLayout="column" fxLayoutAlign="start start">
+    <div *ngFor="let order of orders">
+       <h1>{{ order.id }}</h1>
+    </div>
+</div>

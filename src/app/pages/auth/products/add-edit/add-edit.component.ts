@@ -6,6 +6,7 @@ import {ProductService} from '../../../../services/auth/product/product.service'
 import {ICategory} from '../../../../interfaces/ICategory';
 import {TokenHelper} from '../../../../helpers/TokenHelper';
 import {IFileClassType} from '../../../../interfaces/IFile';
+import {IOption} from '../../../../interfaces/IOption';
 
 @Component({
   selector: 'app-add-edit',
@@ -17,9 +18,10 @@ export class AddEditComponent implements OnInit {
     public loading: boolean;
     public error: string;
     public id: number = null;
-    public categories: Array<ICategory>;
     public fileType = IFileClassType.product;
     public token: string = TokenHelper.generate();
+    public categories: Array<ICategory> = [];
+	public options: Array<IOption> = [];
 
     constructor(
       private formBuilder: FormBuilder = null,
@@ -39,9 +41,9 @@ export class AddEditComponent implements OnInit {
             meta_name: [null],
             meta_description: [null],
             meta_keys: [null],
-            categories: formBuilder.array([])
+            categories: formBuilder.array([]),
+            options: formBuilder.array([])
         });
-        this.categories = []
     }
 
     ngOnInit(): void {
@@ -59,8 +61,12 @@ export class AddEditComponent implements OnInit {
             .dataprovider()
             .subscribe((response) => {
                 this.categories.forEach(category => category.selected = true);
-                this.categories = this.categories
-                    .concat(response.categories.filter(responseCategory => !this.categories.some(cat => cat.id === responseCategory.id)));
+                this.formGroup.value.categories = this.categories.map(category => category.id);
+                this.categories = this.categories.concat(response.categories.filter(item => !this.categories.some(category => category.id === item.id)));
+
+                this.options.forEach(option => option.selected = true);
+                this.formGroup.value.options = this.options.map(option => option.id);
+                this.options = this.options.concat(response.options.filter(item => !this.options.some(option => option.id === item.id)));
             })
             .add(() => this.loading = false);
     }
@@ -108,6 +114,7 @@ export class AddEditComponent implements OnInit {
             .get(this.id)
             .subscribe((response) => {
                 this.formGroup.patchValue(response);
+                this.options = response.options;
                 this.categories = response.categories;
                 this.dataprovider();
             })
@@ -127,5 +134,20 @@ export class AddEditComponent implements OnInit {
 
     public selectedCategories() {
         return this.categories?.filter(category => category.selected)
+    }
+
+    public selectOption(option: IOption) {
+        option.selected = !option.selected;
+        this.formGroup.value.options = this.options
+            .filter(option => option.selected)
+            .map(option => option.id);
+    }
+
+    public nonSelectedOptions() {
+        return this.options?.filter(option => !option.selected)
+    }
+
+    public selectedOptions() {
+        return this.options?.filter(option => option.selected)
     }
 }

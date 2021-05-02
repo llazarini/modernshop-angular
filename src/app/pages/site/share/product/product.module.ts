@@ -5,6 +5,7 @@ import {FlexModule} from '@angular/flex-layout';
 import {CarouselModule} from '../carousel/carousel.module';
 import {MatButtonModule} from '@angular/material/button';
 import {RouterModule} from '@angular/router';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
 	declarations: [
@@ -18,7 +19,8 @@ import {RouterModule} from '@angular/router';
 		FlexModule,
 		CarouselModule,
 		MatButtonModule,
-		RouterModule
+		RouterModule,
+		MatCardModule
 	]
 })
 export class ProductModule { }

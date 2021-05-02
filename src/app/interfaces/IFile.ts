@@ -3,6 +3,7 @@ import {ICompany} from './ICompany';
 export class IFileClassType {
     public static product: string = 'App\\Models\\Product';
     public static category: string = 'App\\Models\\Product';
+    public static productOption: string = 'App\\Models\\ProductOption';
 }
 
 export interface IFile {

@@ -1,0 +1,12 @@
+<mat-progress-bar *ngIf="loading" class="progress" mode="indeterminate"></mat-progress-bar>
+
+<div class="container inner-page" fxLayout="row" fxLayoutAlign="start center">
+    <div>
+        <img src="assets/images/empty-cart.png">
+    </div>
+    <div>
+        <h1>Poxa, seu carrinho está vazio :|</h1>
+        <div class="muted">Adicione produtos no carrinho antes de prosseguir para o checkout.</div>
+        <button class="margin-top" mat-stroked-button color="primary" [routerLink]="['/']">Ir para loja</button>
+    </div>
+</div>

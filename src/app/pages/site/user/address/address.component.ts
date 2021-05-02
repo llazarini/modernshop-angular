@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {IState} from '../../../../interfaces/IState';
 import {ICity} from '../../../../interfaces/ICity';
 import {StateService} from '../../../../services/auth/state/state.service';
@@ -20,9 +20,11 @@ export class AddressComponent implements OnInit {
     public index: number = 0;
     public states: Array<IState>;
     public cities: Array<ICity>;
-    public loading: boolean = false;
+    public loading: number = 0;
     public searchCity: string = '';
     public found: boolean = false;
+    public shippingOption: string;
+    public shipping: any;
 
     constructor(
         private stateService: StateService,
@@ -34,51 +36,71 @@ export class AddressComponent implements OnInit {
         private authService: AuthService,
     ) {
         this.formGroup = new FormGroup({
-            zip_code: new FormControl('', ),
-            street_name: new FormControl('', ),
-            street_number: new FormControl('', ),
-            neighborhood: new FormControl(''),
+            zip_code: new FormControl('', [Validators.required, Validators.minLength(8)]),
+            street_name: new FormControl('', [Validators.required]),
+            street_number: new FormControl('', [Validators.required]),
+            neighborhood: new FormControl('', [Validators.required]),
             complement: new FormControl('', ),
-            state_id: new FormControl('', ),
-            city_id: new FormControl('', ),
+            state_id: new FormControl('', [Validators.required]),
+            city_id: new FormControl('', [Validators.required]),
         });
     }
 
+    public get form() {
+        return this.formGroup.controls;
+    }
+
     ngOnInit(): void {
-        this.getStates();
         if (this.authService.logged) {
-            this.userService.me().subscribe(user => {
-                this.formGroup.patchValue(user.main_address)
-                this.stateChanged();
-            })
+            this.user();
         }
+        this.getStates();
+    }
+
+    public shipment() {
+        const postal = this.formGroup.value.zip_code;
+        this.loading += 1;
+        this.checkoutService
+            .shipment(postal, this.checkoutService.products)
+            .subscribe((shippings) => {
+                    shippings = shippings.filter(shipping => !shipping.error);
+                    this.shipping = shippings;
+                    this.checkoutService.shipping = shippings;
+                    this.checkoutService.postalCode = postal;
+                },
+                error => this.alertService.treatError(error))
+            .add(() => this.loading -= 1);
     }
 
     public stateChanged()
     {
-        this.loading = true;
+        if (!this.formGroup.value?.state_id) {
+            return;
+        }
+        this.loading += 1;
         this.stateService
             .getAllCities(this.formGroup.value?.state_id)
             .subscribe((response) => {
                 this.cities = response;
             })
-            .add(() => this.loading = false)
+            .add(() => this.loading -= 1)
     }
 
     public searchPostalCode()
     {
-        if (this.formGroup.value.zip_code?.length !== 8 || this.loading) {
+        if (this.formGroup.value.zip_code?.length !== 8 || this.loading > 0) {
             return;
         }
-        this.loading = true;
+        this.loading += 1;
         this.addressService
             .postalCode(this.formGroup.value.zip_code)
             .subscribe((response) => {
                 this.formGroup.patchValue(response)
                 this.found = false;
+                this.shipment();
                 this.stateChanged();
             }, error => this.alertService.treatError(error))
-            .add(() => this.loading = false)
+            .add(() => this.loading -= 1)
     }
 
     public cityName(item: any) {
@@ -94,22 +116,45 @@ export class AddressComponent implements OnInit {
     }
 
     private getStates() {
-        this.loading = true;
+        this.loading += 1;
         this.stateService
             .states()
             .subscribe(states => {
                 this.states = states;
             }, error => this.alertService.treatError(error))
-            .add(() => this.loading = false)
+            .add(() => this.loading -= 1)
     }
 
     public submit() {
-        this.loading = true;
-        this.checkoutService
+        if (this.loading > 0) {
+            return;
+        }
+        if (!this.checkoutService.shippingOption) {
+            this.alertService.alert('Escolha uma opção de frete.', 'Escolha um frete antes.')
+            return;
+        }
+        this.loading += 1;
+        this.userService
             .address(this.formGroup.value)
             .subscribe(response => {
                 this.router.navigate(['checkout', 'finish']);
             }, error => this.alertService.treatError(error))
-            .add(() => this.loading = false)
+            .add(() => this.loading -= 1)
+    }
+
+    public setShipping() {
+        this.checkoutService.shippingOption = this.shippingOption;
+    }
+
+    private user() {
+        this.loading += 1;
+        this.userService
+            .me()
+            .subscribe(user => {
+                this.formGroup.patchValue(user.main_address)
+                this.shipment();
+                this.stateChanged();
+            }, error => this.alertService.treatError(error))
+            .add(() => this.loading -= 1)
     }
 }

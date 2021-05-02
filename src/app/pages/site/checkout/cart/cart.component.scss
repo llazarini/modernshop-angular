@@ -1,0 +1,39 @@
+:host ::ng-deep .mat-form-field-wrapper{
+  margin: 0 !important;
+  padding: 0;
+}
+.shipping-details {
+  div {
+    margin-left: 10px;
+    color: #7a7a7a;
+    font-size: 14px;
+    padding: 3px 0;
+  }
+}
+.products {
+  margin-bottom: 10px;
+  .quantity {
+    margin-right: 10px;
+  }
+}
+.sub-total {
+  font-weight: bold;
+  color: #343434;
+  padding: 10px 0;
+}
+.total {
+  font-weight: bold;
+}
+.text-center {
+  text-align: center;
+}
+.postal-code {
+  margin-top: 20px;
+}
+.product-image {
+  width: 50px;
+  height: 50px;
+}
+.cart :host {
+  width: 100%;
+}
