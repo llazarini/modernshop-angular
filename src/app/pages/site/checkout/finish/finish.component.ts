@@ -14,7 +14,7 @@ import {UserService} from '../../../../services/guest/user/user.service';
     styleUrls: ['./finish.component.scss'],
 })
 export class FinishComponent implements OnInit {
-    public loading: number;
+    public loading: number = 0;
     public products: Array<IProduct>;
     public total: number = 0;
     public formGroup: FormGroup;

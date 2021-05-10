@@ -20,6 +20,8 @@ import {LoginComponent} from './login/login.component';
 import {CreateComponent} from './create/create.component';
 import {AddressComponent} from './address/address.component';
 import {ForgotComponent} from './forgot/forgot.component';
+import {PasswordComponent} from './password/password.component';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
 	exports: [
@@ -28,6 +30,7 @@ import {ForgotComponent} from './forgot/forgot.component';
 		CreateComponent,
 		AddressComponent,
 		ForgotComponent,
+		PasswordComponent,
 	],
 	declarations: [
 		OrdersComponent,
@@ -35,6 +38,7 @@ import {ForgotComponent} from './forgot/forgot.component';
 		CreateComponent,
 		AddressComponent,
 		ForgotComponent,
+		PasswordComponent,
 	],
 	imports: [
 		UserRoutingModule,
@@ -55,6 +59,7 @@ import {ForgotComponent} from './forgot/forgot.component';
 		MatRadioModule,
 		ExtendedModule,
 		MatListModule,
+		MatCardModule,
 	]
 })
 export class UserModule { }

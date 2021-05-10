@@ -5,15 +5,15 @@
         <h1>Informe o endereço de entrega</h1>
         <form [formGroup]="formGroup" fxLayout="column" (submit)="submit()">
             <div fxLayout="row" fxLayoutAlign="start center">
-                <mat-form-field fxFlex appearance="outline">
+                <mat-form-field fxFlex appearance="outline" class="no-margin">
                     <mat-label>CEP</mat-label>
-                    <input matInput (ngModelChange)="searchPostalCode()" formControlName="zip_code">
+                    <input matInput [mask]="'00000-000'" (ngModelChange)="searchPostalCode()" formControlName="zip_code">
                     <mat-error *ngIf="form.zip_code?.errors?.required || form.zip_code?.errors?.minLength || form.zip_code?.errors?.maxLength">O CEP é inválido.</mat-error>
                 </mat-form-field>
-                <div fxFlex="300px" class="margin-left">
-                    <button mat-button color="primary" type="button" (click)="searchPostalCode()">
-                        <i class="mdi mdi-find-replace"></i>
-                        Buscar
+                <div fxFlex="300px" class="margin-left margin-bottom">
+                    <button mat-stroked-button color="primary" type="button" (click)="searchPostalCode()">
+                        <i class="mdi mdi-card-search"></i>
+                        Buscar Endereço
                     </button>
                 </div>
             </div>
@@ -28,7 +28,7 @@
                 <mat-form-field appearance="outline" fxFlex>
                     <mat-label>Número</mat-label>
                     <input matInput formControlName="street_number">
-                    <mat-error *ngIf="form.number?.errors?.required">Informe o número de sua casa.</mat-error>
+                    <mat-error *ngIf="form.street_number?.errors?.required">Informe o número de sua casa.</mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" fxFlex="200px" class="margin-left">

@@ -2,7 +2,9 @@
 
 <div class="container inner-page">
     <h1>Faça login com sua conta</h1>
-    <h2>Ou <a [routerLink]="['/','user', 'create']">clique aqui</a> para criar uma nova conta.</h2>
+    <p>
+        Ou <a [routerLink]="['/','user', 'create']">clique aqui</a> para criar uma nova conta. <br>
+    </p>
     <form class="common-form-max" [formGroup]="formGroup" fxLayout="column" (submit)="submit()">
         <mat-form-field appearance="outline" class="margin-right">
             <mat-label>E-mail</mat-label>
@@ -13,6 +15,9 @@
             <input matInput type="password" formControlName="password"/>
         </mat-form-field>
         <mat-error *ngIf="error">{{ error }}</mat-error>
+        <p class="text-right">
+            <a [routerLink]="['/', 'user', 'forgot']">Esqueci a senha</a>
+        </p>
         <button mat-flat-button color="primary" type="submit">Fazer Login</button>
     </form>
 </div>

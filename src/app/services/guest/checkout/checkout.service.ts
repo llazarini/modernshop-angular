@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
-import {Observable} from "rxjs";
+import {Observable, Subject} from 'rxjs';
 import {environment} from "../../../../environments/environment";
 import {IProduct} from '../../../interfaces/IProduct';
-import {IUser} from '../../../interfaces/IUser';
-import {IAddress} from '../../../interfaces/IAddress';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CheckoutService {
+    private productsQuantitySubject: Subject<number> = new Subject<number>();
+
     constructor(private httpClient: HttpClient) { }
 
     public get products(): Array<IProduct> {
@@ -20,6 +20,7 @@ export class CheckoutService {
     public set products(products: Array<IProduct>) {
         sessionStorage.removeItem('shipping');
         sessionStorage.setItem('chart_products', JSON.stringify(products));
+        this.updateProductsQuantity();
     }
 
     public set shipping(shipping: any) {
@@ -52,6 +53,7 @@ export class CheckoutService {
         this.shippingOption = null;
         this.postalCode = '';
         this.shipping = null;
+        this.updateProductsQuantity();
     }
 
     public get total(): number {
@@ -82,10 +84,18 @@ export class CheckoutService {
         const products = this.products;
         products.push(product);
         this.products = products;
+        this.updateProductsQuantity();
     }
 
     public remove(product: IProduct): void {
         this.products.push(product);
+        this.updateProductsQuantity();
+    }
+
+    public get quantity(): number {
+        let quantity = 0;
+        this.products.forEach(product => quantity += product.quantity)
+        return quantity;
     }
 
     public exists(email: string): Observable<boolean> {
@@ -113,5 +123,13 @@ export class CheckoutService {
             return { id: product.id, option_id: product.selected_option?.id, quantity: product.quantity ? product.quantity : 1 }
         })
         return this.httpClient.post<any>(environment.baseSiteUrl + '/checkout/shipment', { postal_code: postalCode, products: shipments });
+    }
+
+    public productsQuantity(): Observable<number> {
+        return this.productsQuantitySubject.asObservable();
+    }
+
+    private updateProductsQuantity() {
+        this.productsQuantitySubject.next(this.quantity);
     }
 }

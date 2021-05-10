@@ -1,17 +1,27 @@
 <mat-progress-bar *ngIf="loading > 0" class="progress" mode="indeterminate"></mat-progress-bar>
 
 <div class="container inner-page">
-    <h1>Esqueci a senha</h1>
-    <h2>Iremos enviar um código para seu e-mail. Ou <a [routerLink]="['/','user', 'create']">clique aqui</a> para fazer login.</h2>
-    <form class="common-form-max" [formGroup]="formGroup" fxLayout="column" (submit)="submit()">
-        <mat-form-field appearance="outline" class="margin-right">
-            <mat-label>Informe seu e-mail</mat-label>
-            <input matInput required formControlName="email"/>
-        </mat-form-field>
-        <mat-form-field appearance="outline" *ngIf="codeStep">
-            <mat-label>Código</mat-label>
-            <input matInput type="password" formControlName="password"/>
-        </mat-form-field>
-        <button mat-flat-button color="primary" type="submit">Enviar código para meu e-mail</button>
-    </form>
+    <ng-container *ngIf="!sent">
+        <h1>Esqueci a senha</h1>
+        <p>Iremos enviar um código para seu e-mail. Ou <a [routerLink]="['/','user', 'create']">clique aqui</a> para fazer login.</p>
+        <form class="common-form-max" [formGroup]="formGroup" fxLayout="column" (submit)="submit()">
+            <mat-form-field appearance="outline" class="margin-right">
+                <mat-label>Informe seu e-mail</mat-label>
+                <input matInput required formControlName="email"/>
+            </mat-form-field>
+            <button mat-flat-button color="primary" type="submit">Enviar código para meu e-mail</button>
+        </form>
+    </ng-container>
+    <ng-container *ngIf="sent">
+        <div class="container inner-page" fxLayout="row" fxLayoutAlign="start center">
+            <div>
+                <img src="assets/images/empty-cart.png">
+            </div>
+            <div>
+                <h1>Sucesso ao enviar o código para seu e-mail!</h1>
+                <p>Agora basta você entrar no seu e-mail e clicar no botão para redefinir sua senha!</p>
+                <button class="margin-top" mat-stroked-button color="primary" [routerLink]="['/']">Voltar para a loja</button>
+            </div>
+        </div>
+    </ng-container>
 </div>

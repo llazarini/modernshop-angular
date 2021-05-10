@@ -36,6 +36,7 @@ export class AddressComponent implements OnInit {
         private authService: AuthService,
     ) {
         this.formGroup = new FormGroup({
+            id: new FormControl(null),
             zip_code: new FormControl('', [Validators.required, Validators.minLength(8)]),
             street_name: new FormControl('', [Validators.required]),
             street_number: new FormControl('', [Validators.required]),
@@ -126,7 +127,7 @@ export class AddressComponent implements OnInit {
     }
 
     public submit() {
-        if (this.loading > 0) {
+        if (this.loading > 0 || this.formGroup.invalid) {
             return;
         }
         if (!this.checkoutService.shippingOption) {

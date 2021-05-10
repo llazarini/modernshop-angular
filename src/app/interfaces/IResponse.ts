@@ -2,7 +2,7 @@ export interface IResponse<T> {
     id: number;
     status: boolean,
     message: string,
-    data: T;
+    data?: T;
 }
 
 export interface IResponseData<T> {

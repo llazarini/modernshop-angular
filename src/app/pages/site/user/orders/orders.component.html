@@ -1,7 +1,33 @@
 <mat-progress-bar *ngIf="loading > 0" class="progress" mode="indeterminate"></mat-progress-bar>
 
 <div class="container inner-page" fxLayout="column" fxLayoutAlign="start start">
-    <div *ngFor="let order of orders">
-       <h1>{{ order.id }}</h1>
-    </div>
+    <mat-card *ngFor="let order of orders" class="margin-bottom" fxFill fxLayout="column">
+        <h1>Pedido #{{ order.id }}</h1>
+        <div mat-card-content>
+            <div fxFlex="400px">
+                <div><b fxFlex="120px">Status do pagamento:</b> {{ order.payment_status?.name }}</div>
+                <div><b fxFlex="120px">Status do envio:</b> {{ order.payment_type?.name }}</div>
+
+                <div class="margin-top"><b fxFlex="120px">Sub-total:</b> {{ order.amount_without_shipment | currency:'R$' }}</div>
+                <div><b fxFlex="120px">Frete:</b> {{ order.shipment | currency:'R$' }} </div>
+                <div><b fxFlex="120px">Valor Total:</b> {{ order.amount | currency:'R$' }}</div>
+
+                <div class="margin-top"><b fxFlex="120px">Endereço:</b>
+                    {{ order.user_address.street_name }} Nº{{ order.user_address.street_number }} {{ order.user_address.complement }},
+                    {{ order.user_address.zip_code }}, {{ order.user_address.city?.name }} - {{ order.user_address.state?.name }}
+                </div>
+            </div>
+            <div>
+                <h4>Itens do Pedido:</h4>
+                <div *ngFor="let orderProduct of order.order_products" class="product" fxLayout="column" fxLayoutAlign="start start">
+                    <div class="title">{{ orderProduct.product?.name }}</div>
+                    <div fxLayout="row">
+                        <div><b>Preço Unitário:</b> {{ orderProduct.price | currency:'R$' }}</div>
+                        <div class="margin-left">{{ orderProduct.quantity}} x</div>
+                        <div class="margin-left"><b>Total: </b>{{ orderProduct.amount | currency:'R$' }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </mat-card>
 </div>

@@ -18,7 +18,6 @@ export class OrdersComponent implements OnInit {
         private activatedRoute: ActivatedRoute) {
     }
 
-
     public ngOnInit(): void {
         this.loading += 1;
         this.id = this.activatedRoute.snapshot.params.id;

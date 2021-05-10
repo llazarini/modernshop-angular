@@ -2,7 +2,7 @@
 
 <div class="container inner-page" fxLayout="column">
     <h1>Cadastre uma conta bem rapidinho :)</h1>
-    <h2>Ou <a [routerLink]="['/','checkout', 'login']">clique aqui</a> se já tiver uma conta.</h2>
+    <p>Ou <a [routerLink]="['/','user', 'login']">clique aqui</a> se já tiver uma conta.</p>
     <form class="common-form-max" [formGroup]="formGroup" fxLayout="column" (submit)="submit()">
         <mat-form-field  appearance="outline">
             <mat-label>Nome Completo</mat-label>

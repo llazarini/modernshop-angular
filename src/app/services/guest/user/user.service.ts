@@ -36,6 +36,21 @@ export class UserService {
         return this.httpClient.post<any>(environment.baseSiteUrl + '/users/address', address);
     }
 
+    public rememberToken(code: string): Observable<any> {
+        return this.httpClient.post<any>(environment.baseSiteUrl + '/remember_token', {
+            code,
+        });
+    }
+
+    public password(data: IPassword): Observable<any> {
+        return this.httpClient.post<any>(environment.baseSiteUrl + '/password', data);
+    }
+
+}
+interface IPassword {
+    code: string;
+    password: string;
+    password_confirm: string;
 }
 
 interface ILoginResponse {

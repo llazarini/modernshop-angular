@@ -12,7 +12,7 @@ import {AlertService} from '../../../../services/alert/alert.service';
 export class ForgotComponent implements OnInit {
     public loading: number = 0;
     public formGroup: FormGroup;
-    public codeStep: boolean = false;
+	public sent: boolean = false;
 
     constructor(
         private userService: UserService,
@@ -36,7 +36,7 @@ export class ForgotComponent implements OnInit {
         this.userService
             .forgot(this.formGroup.value.email)
             .subscribe((response) => {
-                this.codeStep = true;
+                this.sent = true;
             }, (error) => this.alertService.treatError(error))
             .add(() => {
                 this.loading -= 1;

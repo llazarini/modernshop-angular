@@ -7,6 +7,7 @@ import {CardItemsGuard} from '../../../guard/card-items.guard';
 import {LoginComponent} from './login/login.component';
 import {AddressComponent} from './address/address.component';
 import {ForgotComponent} from './forgot/forgot.component';
+import {PasswordComponent} from './password/password.component';
 
 const routes: Routes = [
 	{
@@ -27,6 +28,11 @@ const routes: Routes = [
 	{
 		path: 'forgot',
 		component: ForgotComponent,
+		canActivate: [],
+	},
+	{
+		path: 'password/:code',
+		component: PasswordComponent,
 		canActivate: [],
 	},
 	{
