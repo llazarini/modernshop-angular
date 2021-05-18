@@ -4,20 +4,24 @@
             <img src="assets/images/logo.png">
         </div>
 
-        <div class="menu" fxLayout="row">
+        <div fxLayout="row" class="menu">
             <a class="item" routerLink="home">Home</a>
             <div class="margin-left">
                 <a class="item" routerLink="checkout" [matBadge]="badge" [matBadgeHidden]="!badge">
-                    <i class="mdi mdi-cart"></i> <span class="margin-left">Meu carrinho</span>
+                    <i class="mdi mdi-cart"></i> <span fxHide.lt-sm class="margin-left">Meu carrinho</span>
                 </a>
-                <a class="item" [routerLink]="['user', 'login']" *ngIf="!logged">
+                <a class="item" [routerLink]="['user', 'login']" *ngIf="!logged" fxHide.lt-sm>
                     <i class="mdi mdi-usb"></i> <span class="margin-left">Fazer Login</span>
                 </a>
                 <ng-container *ngIf="logged">
                     <a class="item" [matMenuTriggerFor]="menu" aria-label="Abrir o menu">
-                        <i class="mdi mdi-menu"></i> <span class="margin-left">Minha conta</span>
+                        <i class="mdi mdi-menu"></i> <span fxHide.lt-sm class="margin-left">Minha conta</span>
                     </a>
                     <mat-menu #menu="matMenu">
+                        <button mat-menu-item [routerLink]="['user', 'login']" fxShow.gt-sm>
+                            <i class="mdi mdi-usb margin-right"></i>
+                            <span>Fazer Login</span>
+                        </button>
                         <button mat-menu-item [routerLink]="['user', 'orders']">
                             <i class="mdi mdi-list-status margin-right"></i>
                             <span>Meus pedidos</span>

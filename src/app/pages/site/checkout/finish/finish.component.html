@@ -1,6 +1,17 @@
 <mat-progress-bar *ngIf="loading > 0" class="progress" mode="indeterminate"></mat-progress-bar>
 <div class="container inner-page" fxLayout="column" fxLayoutAlign="space-between start" fxLayout.gt-sm="row">
-    <div fxFlex class="margin-right common-form-max">
+    <div fxLayout="column" fxFlex class="margin-right common-form-max">
+        <h1>Pague com PIX</h1>
+        <div>
+            Faça um pagamento para a chave <b>contato@anaraquelilustracoes.com.br</b> com o valor de <b>{{ total | currency:'R$' }}.</b>
+        </div>
+        <button (click)="pix()" mat-flat-button color="primary" type="submit">Efetuei o pagamento</button>
+        <div class="margin-bottom text-center or" fxLayout="row">
+            <div class="line" fxFlex></div>
+            <div class="muted" fxFlex>ou</div>
+            <div class="line" fxFlex></div>
+        </div>
+
         <h1>Pague com cartão de crédito</h1>
         <div class="card">
             <div class="number"></div>
@@ -92,7 +103,7 @@
                                 - {{ user.main_address?.city?.state?.code }}
                                 - {{ user.main_address?.zip_code }}
                             </small>
-                            <small><a [routerLink]="['/','checkout', 'address']">Trocar o endereço</a></small>
+                            <small><a [routerLink]="['/','user', 'address']">Trocar o endereço</a></small>
                         </div>
                     </div>
                     <div fxLayout="row" fxLayoutAlign="space-between center">

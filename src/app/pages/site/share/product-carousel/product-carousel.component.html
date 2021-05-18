@@ -1,6 +1,8 @@
-<div class="products" fxLayout="row wrap" fxLayoutAlign="start start">
+<div class="products" fxLayoutAlign="start start" fxFlex="100%">
     <mat-progress-spinner *ngIf="loading > 0" mode="indeterminate"></mat-progress-spinner>
-    <ng-container *ngFor="let product of products; let i = index">
-        <app-product class="product" [product]="product"></app-product>
-    </ng-container>
+    <div fxFlex="100%" fxLayoutGap.gt-sm="2%" fxLayout="row wrap">
+        <ng-container *ngFor="let product of products; let i = index">
+            <app-product fxFlex="100%" fxFlex.gt-sm="18%" [product]="product"></app-product>
+        </ng-container>
+    </div>
 </div>

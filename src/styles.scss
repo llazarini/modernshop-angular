@@ -61,9 +61,19 @@ hr {
 .padding-bottom {
   padding-bottom: 10px;
 }
+.padding-horizontal {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+.padding-vertical {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
 .no-margin {
   margin: 0 !important;
-
+}
+.text-center {
+  text-align: center;
 }
 :host ::ng-deep .mat-form-field-wrapper{
   margin: 0 !important;

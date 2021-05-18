@@ -69,7 +69,7 @@ export class FinishComponent implements OnInit {
         this.loading += 1;
         const form = this.formGroup.value;
         this.checkoutService
-            .payment(form)
+            .paymentCreditCard(form)
             .subscribe((response) => {
                 this.router.navigate(['checkout', 'success', response.data.id])
                 this.checkoutService.clear();
@@ -77,4 +77,15 @@ export class FinishComponent implements OnInit {
             error => this.alertService.treatError(error))
             .add(() => this.loading -= 1);
     }
+
+	public pix() {
+        this.checkoutService
+            .paymentPix()
+            .subscribe((response) => {
+                    this.router.navigate(['checkout', 'success', response.data.id])
+                    this.checkoutService.clear();
+                },
+                error => this.alertService.treatError(error))
+            .add(() => this.loading -= 1);
+	}
 }

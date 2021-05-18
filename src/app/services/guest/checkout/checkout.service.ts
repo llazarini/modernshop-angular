@@ -106,18 +106,6 @@ export class CheckoutService {
         });
     }
 
-    public payment(card: any): Observable<any> {
-        const products = this.products.map(product => {
-            return { id: product.id, quantity: product.quantity, option_id: product.selected_option?.id }
-        });
-        const shipping_option_id = this.shippingOption.id;
-        return this.httpClient.post<any>(environment.baseSiteUrl + '/checkout/payment', {
-            card,
-            products,
-            shipping_option_id
-        });
-    }
-
     public shipment(postalCode: string, products: Array<IProduct>) {
         const shipments = products.map(product => {
             return { id: product.id, option_id: product.selected_option?.id, quantity: product.quantity ? product.quantity : 1 }
@@ -132,4 +120,27 @@ export class CheckoutService {
     private updateProductsQuantity() {
         this.productsQuantitySubject.next(this.quantity);
     }
+
+    public paymentCreditCard(card: any): Observable<any> {
+        const products = this.products.map(product => {
+            return { id: product.id, quantity: product.quantity, option_id: product.selected_option?.id }
+        });
+        const shipping_option_id = this.shippingOption.id;
+        return this.httpClient.post<any>(environment.baseSiteUrl + '/checkout/payment', {
+            card,
+            products,
+            shipping_option_id
+        });
+    }
+
+	public paymentPix() {
+        const products = this.products.map(product => {
+            return { id: product.id, quantity: product.quantity, option_id: product.selected_option?.id }
+        });
+        const shipping_option_id = this.shippingOption.id;
+        return this.httpClient.post<any>(environment.baseSiteUrl + '/checkout/pix', {
+            products,
+            shipping_option_id
+        });
+	}
 }

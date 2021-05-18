@@ -10,5 +10,9 @@
 
 <section class="container">
     <h1 class="margin-top">Todas as Ilustrações</h1>
-
+    <div fxLayout="row wrap" fxLayoutGap.gt-sm="2%">
+        <ng-container *ngFor="let product of products">
+            <app-product fxFlex="100%" fxFlex.gt-sm="18%" class="product" [ngClass.lt-sm]="''" [product]="product"></app-product>
+        </ng-container>
+    </div>
 </section>
