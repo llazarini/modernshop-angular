@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  baseUrl: 'http://localhost',
+  baseAuthUrl: 'https://server.anaraquelilustracoes.com.br/api/auth',
+  baseSiteUrl: 'https://server.anaraquelilustracoes.com.br/api/guest',
 };
