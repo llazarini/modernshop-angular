@@ -1,5 +1,4 @@
 @import '~@angular/material/theming';
-@import '~@mdi/font/css/materialdesignicons.css';
 @import 'variables';
 @include mat-core();
 
@@ -15,6 +14,7 @@ $flecha-theme: mat-light-theme($primary, $accent, $warn);
 @include mat-base-typography($custom-typography);
 @include angular-material-theme($flecha-theme);
 @include mat-core($custom-typography);
+
 /*
 .mat-raised-button, .mat-flat-button, .mat-stroked-button {
         border-radius: 20px !important;
@@ -61,3 +61,4 @@ $flecha-theme: mat-light-theme($primary, $accent, $warn);
         padding: 10px 0px;
 }
 */
+

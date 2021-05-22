@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import {BrowserModule, DomSanitizer} from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,6 +13,7 @@ import {ApiInterceptor} from "./interceptor/api.interceptor";
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {SiteModule} from './pages/site/site.module';
 import {NgxMaskModule} from 'ngx-mask';
+import {MatIconModule, MatIconRegistry} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -20,16 +21,17 @@ import {NgxMaskModule} from 'ngx-mask';
     NotFoundComponent,
   ],
   imports: [
-    NgxMaskModule.forRoot(),
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    FlexLayoutModule,
-    AuthModule,
-    GuestModule,
-    SiteModule,
-    HttpClientModule,
-    MatSnackBarModule,
+      NgxMaskModule.forRoot(),
+      BrowserModule,
+      AppRoutingModule,
+      BrowserAnimationsModule,
+      FlexLayoutModule,
+      AuthModule,
+      GuestModule,
+      SiteModule,
+      HttpClientModule,
+      MatSnackBarModule,
+      MatIconModule
   ],
   providers: [
     {
@@ -40,4 +42,10 @@ import {NgxMaskModule} from 'ngx-mask';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+    constructor(iconRegistry: MatIconRegistry, domSanitizer: DomSanitizer) {
+        iconRegistry.addSvgIconSet(
+            domSanitizer.bypassSecurityTrustResourceUrl('./assets/mdi.svg')
+        );
+    }
+}

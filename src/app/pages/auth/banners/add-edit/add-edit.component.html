@@ -3,7 +3,7 @@
 <div fxLayout="row" fxLayoutAlign="space-between start">
     <h1>{{ id ? 'Editar' : 'Adicionar' }} Banner</h1>
     <button (click)="submit()" color="primary" mat-flat-button>
-        <i class="mdi mdi-plus"></i>
+        <mat-icon class="icon" svgIcon="plus"></mat-icon>
         {{ id ? 'Salvar edição' : 'Adicionar' }}
     </button>
 </div>
@@ -36,7 +36,7 @@
                         <textarea matInput required formControlName="content"></textarea>
                     </mat-form-field>
                 </div>
-                <button mat-icon-button type="button" (click)="removeBanner(i)"><i class="mdi mdi-trash-can"></i></button>
+                <button mat-icon-button type="button" (click)="removeBanner(i)"><mat-icon class="icon" svgIcon="trash-can"></mat-icon></button>
             </div>
         </div>
     </div>

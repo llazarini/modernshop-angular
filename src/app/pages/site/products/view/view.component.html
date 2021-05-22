@@ -3,9 +3,9 @@
 <div class="breadcrumb">
     <div class="container" fxLayout="row">
         <div>Home</div>
-        <i class="mdi mdi-arrow-right"></i>
+        <mat-icon class="icon" svgIcon="arrow-right"></mat-icon>
         <div>Produtos</div>
-        <i class="mdi mdi-arrow-right"></i>
+        <mat-icon class="icon" svgIcon="arrow-right"></mat-icon>
         <div>{{ product?.name }}</div>
     </div>
 </div>
@@ -19,10 +19,10 @@
                 <div class="price">{{ price | currency:'R$' }}</div>
                 <div fxLayout="row" class="margin-top" fxLayoutAlign="start center">
                     <button type="button" mat-flat-button color="primary" (click)="addChart()">
-                        <i class="mdi mdi-cart"></i> Adicionar ao Carrinho
+                        <mat-icon class="icon" svgIcon="cart"></mat-icon> Adicionar ao Carrinho
                     </button>
                     <button class="margin-left" type="button" mat-flat-button color="accent" (click)="buyNow()">
-                        <i class="mdi mdi-cart-check"></i> Comprar agora
+                        <mat-icon class="icon" svgIcon="cart-check"></mat-icon> Comprar agora
                     </button>
                 </div>
             </div>
@@ -50,12 +50,12 @@
                         <input class="no-margin no-padding" placeholder="00000-000" [mask]="'00000-000'" [(ngModel)]="postalCode" matInput>
                     </mat-form-field>
                     <button class="margin-top" type="button" mat-stroked-button color="primary" (click)="shipment()">
-                        <i class="mdi mdi-truck"></i> Calcular Frete
+                        <mat-icon class="icon" svgIcon="truck"></mat-icon> Calcular Frete
                     </button>
                 </div>
                 <div class="shipping">
-                    <div fxLayoutAlign="start center"><i class="mdi mdi-truck"></i> Entrega em até 3 dias úteis para sua região.</div>
-                    <div fxLayoutAlign="start center"><i class="mdi mdi-store"></i> Retire grátis a partir de amanhã em Santo André.</div>
+                    <div fxLayoutAlign="start center"><mat-icon class="icon" svgIcon="truck"></mat-icon> Entrega em até 3 dias úteis para sua região.</div>
+                    <div fxLayoutAlign="start center"><mat-icon class="icon" svgIcon="store"></mat-icon> Retire grátis a partir de amanhã em Santo André.</div>
                 </div>
             </div>
             <div class="margin-top">

@@ -13,6 +13,7 @@ import {MatBadgeModule} from '@angular/material/badge';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
 import {ProductModule} from './share/product/product.module';
+import {MatIconModule} from '@angular/material/icon';
 @NgModule({
 	declarations: [
 		SiteComponent,
@@ -31,7 +32,8 @@ import {ProductModule} from './share/product/product.module';
 		MatMenuModule,
 		MatButtonModule,
 		ProductModule,
-		ExtendedModule
+		ExtendedModule,
+		MatIconModule
 	]
 })
 export class SiteModule { }

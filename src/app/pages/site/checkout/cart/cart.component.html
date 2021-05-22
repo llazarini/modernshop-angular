@@ -11,12 +11,12 @@
                 </div>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between center">
-                <button mat-icon-button (click)="minus(i)"><i class="mdi mdi-minus-circle"></i></button>
+                <button mat-icon-button (click)="minus(i)"><mat-icon class="icon" svgIcon="minus-circle"></mat-icon></button>
                 <div>{{ product.quantity }}</div>
-                <button mat-icon-button (click)="plus(i)"><i class="mdi mdi-plus-circle"></i></button>
+                <button mat-icon-button (click)="plus(i)"><mat-icon class="icon" svgIcon="plus-circle"></mat-icon></button>
                 <div class="margin-left">{{ product.total_price | currency:'R$' }}</div>
                 <button mat-icon-button color="warn" (click)="remove(i)">
-                    <i class="mdi mdi-trash-can"></i>
+                    <mat-icon class="icon" svgIcon="trash-can"></mat-icon>
                 </button>
             </div>
             <mat-divider></mat-divider>
