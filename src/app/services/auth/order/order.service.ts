@@ -3,13 +3,24 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from "rxjs";
 import {environment} from "../../../../environments/environment";
 import {IOrder} from '../../../interfaces/IOrder';
-import {IResponseData} from '../../../interfaces/IResponse';
+import {IResponse, IResponseData} from '../../../interfaces/IResponse';
+import {IProduct} from '../../../interfaces/IProduct';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
     constructor(private httpClient: HttpClient) { }
+
+    public getAll(page?: number): Observable<IResponseData<IProduct>> {
+        let httpParams = new HttpParams();
+        if (page) {
+            httpParams = httpParams.append('page', page.toString());
+        }
+        return this.httpClient.get<IResponseData<IProduct>>(environment.baseAuthUrl + '/orders/get-all', {
+            params: httpParams
+        });
+    }
 
     public show(id: number): Observable<IOrder> {
         let params = new HttpParams();
@@ -19,8 +30,8 @@ export class OrderService {
         });
     }
 
-    public index(): Observable<IResponseData<IOrder>> {
-        return this.httpClient.get<IResponseData<IOrder>>(environment.baseSiteUrl + '/orders/index/');
+    public delete(id: number): Observable<IResponse<IProduct>> {
+        return this.httpClient.delete<IResponse<IProduct>>(environment.baseAuthUrl + '/orders/delete/' + id, {});
     }
 }
 

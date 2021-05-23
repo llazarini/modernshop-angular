@@ -22,6 +22,7 @@ import {AddressComponent} from './address/address.component';
 import {ForgotComponent} from './forgot/forgot.component';
 import {PasswordComponent} from './password/password.component';
 import {MatCardModule} from '@angular/material/card';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
 	exports: [
@@ -60,6 +61,7 @@ import {MatCardModule} from '@angular/material/card';
 		ExtendedModule,
 		MatListModule,
 		MatCardModule,
+		MatProgressSpinnerModule,
 	]
 })
 export class UserModule { }

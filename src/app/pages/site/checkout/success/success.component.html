@@ -1,15 +1,27 @@
 <mat-progress-bar *ngIf="loading > 0" class="progress" mode="indeterminate"></mat-progress-bar>
 
-<div class="container inner-page" fxLayout="row" fxLayoutAlign="start center">
+<div class="container inner-page" fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start center">
     <div>
-        <img src="assets/images/empty-cart.png">
+        <img class="image" src="assets/images/empty-cart.png">
     </div>
     <div>
-        <h1>Pedido gerado com sucesso!</h1>
-        <h3>Código #{{ order?.id }}</h3>
-        <div class="muted">O seu pedido está na etapa de <b>{{ order?.payment_status.name }}</b>, mas fique tranquilo(a),
-            iremos te avisar sempre que uma etapa mudar através do seu e-mail.</div>
-
-        <button class="margin-top" mat-stroked-button color="primary" [routerLink]="['/']">Ir para loja</button>
+        <ng-container *ngIf="order?.payment_type?.slug === 'pix'">
+            <h1>Pedido gerado com pagamento via PIX</h1>
+            <div class="margin-bottom">
+                Faça um pagamento para a chave pix da nossa loja: <b>contato@anaraquelilustracoes.com.br</b> no valor de <b>{{ order.amount | currency:'R$' }}.</b>
+            </div>
+            <div class="muted margin-top">
+                Caso queira agilizar o processo você pode enviar um comprovante de pagamento para nosso e-mail <b>contato@anaraquelilustracoes.com.br</b> ou Whatsapp <b>(11)9.7457-7357</b>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="order?.payment_type?.slug === 'creditcard'">
+            <h1>Pedido gerado com sucesso</h1>
+            <div class="muted">O seu pedido está na etapa de <b>{{ order?.payment_status.name }}</b>, mas fique tranquilo(a),
+                iremos te avisar sempre que uma etapa mudar através do seu e-mail.</div>
+        </ng-container>
+        <div fxLayout="row wrap" class="margin-top">
+            <button mat-stroked-button class="margin-right" color="primary" [routerLink]="['/', 'user', 'orders']">Ver meus pedidos</button>
+            <button mat-stroked-button color="primary" [routerLink]="['/']">Ir para loja</button>
+        </div>
     </div>
 </div>

@@ -1,3 +1,5 @@
+@import "src/variables";
+
 table {
   border-collapse: collapse;
   th {
@@ -30,4 +32,27 @@ table {
 }
 .cart :host {
   width: 100%;
+}
+.payment-options {
+  margin-bottom: 30px;
+  > div {
+    cursor: pointer;
+    padding: 30px;
+    color: $base-accent;
+    border: 2px solid $base-accent;
+    border-radius: 10px;
+    text-align: center;
+    font-size: 24px;
+    &.selected {
+      background: $base-accent;
+      color: #fff;
+    }
+    > div {
+      margin-top: 20px;
+    }
+    i {
+      margin-top: 10px;
+      font-size: 50px;
+    }
+  }
 }

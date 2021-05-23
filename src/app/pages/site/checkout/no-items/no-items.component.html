@@ -1,8 +1,8 @@
 <mat-progress-bar *ngIf="loading" class="progress" mode="indeterminate"></mat-progress-bar>
 
-<div class="container inner-page" fxLayout="row" fxLayoutAlign="start center">
+<div class="container inner-page" fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start center">
     <div>
-        <img src="assets/images/empty-cart.png">
+        <img class="image" src="assets/images/empty-cart.png">
     </div>
     <div>
         <h1>Poxa, seu carrinho está vazio :|</h1>

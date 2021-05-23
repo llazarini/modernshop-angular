@@ -10,8 +10,8 @@
                 <a class="item" routerLink="checkout" [matBadge]="badge" [matBadgeHidden]="!badge">
                     <i class="mdi mdi-cart"></i> <span fxHide.lt-sm class="margin-left">Meu carrinho</span>
                 </a>
-                <a class="item" [routerLink]="['user', 'login']" *ngIf="!logged" fxHide.lt-sm>
-                    <i class="mdi mdi-usb"></i> <span class="margin-left">Fazer Login</span>
+                <a class="item" [routerLink]="['user', 'login']" *ngIf="!logged">
+                    <i class="mdi mdi-login"></i> <span fxHide.lt-sm class="margin-left">Fazer Login</span>
                 </a>
                 <ng-container *ngIf="logged">
                     <a class="item" [matMenuTriggerFor]="menu" aria-label="Abrir o menu">

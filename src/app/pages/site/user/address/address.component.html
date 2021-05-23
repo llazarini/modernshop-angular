@@ -4,13 +4,13 @@
     <div class="common-form-max margin-right">
         <h1>Informe o endereço de entrega</h1>
         <form [formGroup]="formGroup" fxLayout="column" (submit)="submit()">
-            <div fxLayout="row" fxLayoutAlign="start center">
+            <div fxLayout="row wrap" fxLayoutAlign="start center">
                 <mat-form-field fxFlex appearance="outline" class="no-margin">
                     <mat-label>CEP</mat-label>
                     <input matInput [mask]="'00000-000'" (ngModelChange)="searchPostalCode()" formControlName="zip_code">
                     <mat-error *ngIf="form.zip_code?.errors?.required || form.zip_code?.errors?.minLength || form.zip_code?.errors?.maxLength">O CEP é inválido.</mat-error>
                 </mat-form-field>
-                <div fxFlex="300px" class="margin-left margin-bottom">
+                <div fxFlex="300px" ngClass.gt-sm="margin-left margin-bottom" fxHide.lt-sm>
                     <button mat-stroked-button color="primary" type="button" (click)="searchPostalCode()">
                         <i class="mdi mdi-card-search"></i>
                         Buscar Endereço
@@ -24,14 +24,13 @@
                 <mat-error *ngIf="form.street_name?.errors?.required">Informe o nome da rua.</mat-error>
             </mat-form-field>
 
-            <div fxLayout="row">
+            <div fxLayout="row wrap">
                 <mat-form-field appearance="outline" fxFlex>
                     <mat-label>Número</mat-label>
                     <input matInput formControlName="street_number">
                     <mat-error *ngIf="form.street_number?.errors?.required">Informe o número de sua casa.</mat-error>
                 </mat-form-field>
-
-                <mat-form-field appearance="outline" fxFlex="200px" class="margin-left">
+                <mat-form-field appearance="outline" fxFlex="200px" ngClass.gt-sm="margin-left">
                     <mat-label>Complemento</mat-label>
                     <input matInput formControlName="complement">
                 </mat-form-field>
@@ -65,17 +64,17 @@
                 </mat-select>
                 <mat-error *ngIf="form.city_id?.errors?.required">Informe a cidade onde você mora.</mat-error>
             </mat-form-field>
-            <button mat-flat-button color="primary" type="submit">Continuar</button>
+            <button fxHide.xs mat-flat-button color="primary" type="submit">Continuar</button>
         </form>
     </div>
-    <div fxFlex.gt-sm="500px">
+    <div fxFlex.gt-sm="500px" fxFill fxLayout="column" ngClass.gt-sm="margin-top">
         <ng-container *ngIf="shipping">
             <h1>Escolha uma opção de frete</h1>
             <mat-radio-group class="width100" fxLayout="column" [(ngModel)]="shippingOption" (ngModelChange)="setShipping()">
                 <ng-container *ngFor="let ship of shipping">
                     <div fxFill fxLayoutAlign="space-between center" class="margin-bottom">
                         <mat-radio-button [value]="ship">
-                            <div fxLayout="row" fxLayoutAlign="space-between center">
+                            <div fxLayout="row wrap" fxLayoutAlign="space-between center">
                                 <div class="margin-right margin-left">
                                     <div>
                                         <img [src]="ship.image" width="50px" height="15px">
@@ -85,7 +84,7 @@
                                 </div>
                             </div>
                         </mat-radio-button>
-                        <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <div fxLayout="row wrap" fxLayoutAlign="space-between center">
                             <div class="margin-right">{{ ship.price | currency:'R$' }}</div>
                         </div>
                         <mat-divider></mat-divider>
@@ -93,5 +92,12 @@
                 </ng-container>
             </mat-radio-group>
         </ng-container>
+        <button fxHide.gt-xs mat-flat-button color="primary" (click)="submit()" [disabled]="loading > 0">
+            Continuar
+            <ng-container *ngIf="loading > 0">
+                <mat-progress-spinner></mat-progress-spinner>
+                Carregando
+            </ng-container>
+        </button>
     </div>
 </div>

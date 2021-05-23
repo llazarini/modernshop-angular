@@ -1,18 +1,17 @@
-<mat-progress-bar class="progress" *ngIf="loading" mode="indeterminate"></mat-progress-bar>
-
 <div class="container" fxFlexFill fxLayoutAlign="center center">
-  <mat-card class="login-card" fxFlex.gt-sm="500px" fxFlex="100%">
+  <mat-progress-spinner *ngIf="loading" mode="indeterminate"></mat-progress-spinner>
+  <mat-card  class="login-card" fxFlex.gt-sm="500px" fxFlex="100%" *ngIf="!loading">
     <mat-card-content fxLayout="column">
       <div class="logo">
-        <img height="40px" src="assets/images/logo.png">
+        <img [style.height]="'100px'" src="/assets/images/logo-black.png">
       </div>
       <form name="form" [formGroup]="formGroup" (submit)="submit()" fxLayout="column">
-        <mat-form-field appearance="outline" appearance="fill">
-          <mat-label>Usuário</mat-label>
+        <mat-form-field appearance="outline">
+          <mat-label>E-mail</mat-label>
           <input matInput formControlName="user">
         </mat-form-field>
-        <mat-form-field appearance="outline" appearance="fill">
-          <mat-label>password</mat-label>
+        <mat-form-field appearance="outline">
+          <mat-label>Senha</mat-label>
           <input formControlName="password" matInput [type]="hide ? 'password' : 'text'">
           <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Esconder senha'" [attr.aria-pressed]="hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>

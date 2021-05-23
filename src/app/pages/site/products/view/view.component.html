@@ -1,5 +1,4 @@
 <mat-progress-bar *ngIf="loading" class="progress" mode="indeterminate"></mat-progress-bar>
-
 <div class="breadcrumb">
     <div class="container" fxLayout="row">
         <div>Home</div>
@@ -9,19 +8,19 @@
         <div>{{ product?.name }}</div>
     </div>
 </div>
-
 <div class="container page">
      <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start start">
         <app-carousel fxFlex="none" [slides]="product?.files" [width]="600" [height]="800"></app-carousel>
-        <div class="product-info">
+        <div class="product-info" ngClass.gt-sm="large">
             <h1 class="name">{{ product?.name }}</h1>
             <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="space-between center">
                 <div class="price">{{ price | currency:'R$' }}</div>
-                <div fxLayout="row" class="margin-top" fxLayoutAlign="start center">
+                <div fxLayout="column" fxLayout.gt-sm="row" class="margin-top" fxLayoutAlign.gt-sm="start center">
                     <button type="button" mat-flat-button color="primary" (click)="addChart()">
                         <i class="mdi mdi-cart"></i> Adicionar ao Carrinho
                     </button>
-                    <button class="margin-left" type="button" mat-flat-button color="accent" (click)="buyNow()">
+                    <button ngClass.gt-sm="margin-left" ngClass.lt-sm="margin-top" type="button" mat-flat-button
+                            color="accent" (click)="buyNow()">
                         <i class="mdi mdi-cart-check"></i> Comprar agora
                     </button>
                 </div>
@@ -44,7 +43,7 @@
             </div>
             <div class="sub-title">Calcule o Frete</div>
             <div class="margin-horizontal margin-bottom" fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="space-between start">
-                <div class="margin-right" fxLayout="column">
+                <div ngClass.gt-sm="margin-right" fxLayout="column">
                     <mat-form-field appearance="outline" class="no-padding no-margin">
                         <mat-label>Informe seu CEP</mat-label>
                         <input class="no-margin no-padding" placeholder="00000-000" [mask]="'00000-000'" [(ngModel)]="postalCode" matInput>
@@ -53,7 +52,7 @@
                         <i class="mdi mdi-truck"></i> Calcular Frete
                     </button>
                 </div>
-                <div class="shipping">
+                <div class="shipping" ngClass.lt-sm="margin-top">
                     <div fxLayoutAlign="start center"><i class="mdi mdi-truck"></i> Entrega em até 3 dias úteis para sua região.</div>
                     <div fxLayoutAlign="start center"><i class="mdi mdi-store"></i> Retire grátis a partir de amanhã em Santo André.</div>
                 </div>

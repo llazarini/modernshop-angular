@@ -11,6 +11,7 @@ import {ICategory} from '../../../interfaces/ICategory';
 })
 export class CategoryService {
     constructor(private httpClient: HttpClient) { }
+
     public getAll(page?: number): Observable<IResponseData<ICategory>> {
         let httpParams = new HttpParams();
         if (page) {

@@ -21,6 +21,7 @@ export class FinishComponent implements OnInit {
 	public subTotal: number;
     public shippingOption: any;
 	public user: IUser;
+	public option: string = '';
 
     constructor(
         private checkoutService: CheckoutService,
@@ -62,7 +63,7 @@ export class FinishComponent implements OnInit {
         }
     }
 
-    public submit() {
+    public creditCard() {
         if (this.loading > 0 || !this.formGroup.valid) {
             return;
         }
@@ -79,13 +80,25 @@ export class FinishComponent implements OnInit {
     }
 
 	public pix() {
+        if (this.loading > 0) {
+            return;
+        }
+        this.loading += 1;
         this.checkoutService
             .paymentPix()
             .subscribe((response) => {
-                    this.router.navigate(['checkout', 'success', response.data.id])
-                    this.checkoutService.clear();
-                },
-                error => this.alertService.treatError(error))
+                this.router.navigate(['checkout', 'success', response.data.id])
+                this.checkoutService.clear();
+            },
+            error => this.alertService.treatError(error))
             .add(() => this.loading -= 1);
 	}
+
+    public submit() {
+        if (this.option === 'pix') {
+            this.pix();
+            return;
+        }
+        this.creditCard();
+    }
 }

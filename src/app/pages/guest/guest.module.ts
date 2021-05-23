@@ -10,6 +10,7 @@ import {FlexModule} from "@angular/flex-layout";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatIconModule} from "@angular/material/icon";
 import {MatCardModule} from "@angular/material/card";
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 
 
@@ -18,16 +19,17 @@ import {MatCardModule} from "@angular/material/card";
     GuestComponent,
     LoginComponent,
   ],
-  imports: [
-    CommonModule,
-    GuestRoutingModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    MatButtonModule,
-    FlexModule,
-    MatProgressBarModule,
-    MatIconModule,
-    MatCardModule,
-  ]
+	imports: [
+		CommonModule,
+		GuestRoutingModule,
+		MatInputModule,
+		ReactiveFormsModule,
+		MatButtonModule,
+		FlexModule,
+		MatProgressBarModule,
+		MatIconModule,
+		MatCardModule,
+		MatProgressSpinnerModule,
+	]
 })
 export class GuestModule { }

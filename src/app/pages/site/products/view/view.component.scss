@@ -10,7 +10,11 @@
         margin-top: 10px;
     }
     .product-info {
-        padding-left: 30px;
+        padding-top: 20px;
+        &.large {
+            padding-top: 0px;
+            padding-left: 30px;
+        }
         .price {
             font-size: 30px;
             font-weight: bold;

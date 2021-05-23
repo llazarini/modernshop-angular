@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {AfterViewInit, Component, HostListener, Input, OnInit} from '@angular/core';
 import {transition, trigger, useAnimation} from '@angular/animations';
 import {AnimationType, fadeIn, fadeOut, flipIn, flipOut, jackIn, jackOut, scaleIn, scaleOut} from './carousel.animations';
 
@@ -42,7 +42,7 @@ import {AnimationType, fadeIn, fadeOut, flipIn, flipOut, jackIn, jackOut, scaleI
     ])
   ]
 })
-export class CarouselComponent implements OnInit {
+export class CarouselComponent implements AfterViewInit {
     @Input()
     public slides: Array<any> = [];
     @Input()
@@ -54,6 +54,8 @@ export class CarouselComponent implements OnInit {
     @Input()
     public arrows: boolean = false;
     public currentSlide = 0;
+    public windowWidth: number = 0;
+    public windowHeight: number = 0;
 
     constructor() {}
 
@@ -67,10 +69,29 @@ export class CarouselComponent implements OnInit {
         this.currentSlide = next === this.slides.length ? 0 : next;
     }
 
-    public ngOnInit() {
+    @HostListener("window:resize", [])
+    public onResize() {
+        this.detectScreenSize();
+    }
+
+    public ngAfterViewInit() {
+        this.detectScreenSize();
+    }
+
+    private detectScreenSize() {
+        this.windowHeight = window.outerHeight;
+        this.windowWidth = window.outerWidth;
     }
 
     public getUrl(slide: any) {
         return slide.file?.url ? slide.file?.url : slide.url;
+    }
+
+    public get sliderWidth(): number {
+        return this.width > this.windowWidth ? this.windowWidth : this.width;
+    }
+
+    public get sliderHeight(): number {
+        return this.height > this.windowHeight ? this.windowHeight : this.height;
     }
 }
