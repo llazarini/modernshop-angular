@@ -24,7 +24,7 @@
         <ng-container matColumnDef="price">
             <th mat-header-cell *matHeaderCellDef>Preço</th>
             <td mat-cell *matCellDef="let row">
-                {{row.price | currency:'R$'}} <span class="muted">{{row.type ? '(+) Adicional' : '(-) Remover'}}</span>
+                {{row.price | price }} <span class="muted">{{row.type ? '(+) Adicional' : '(-) Remover'}}</span>
             </td>
         </ng-container>
 

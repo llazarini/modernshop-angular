@@ -8,9 +8,9 @@
                 <div><b fxFlex="120px">Status do pagamento:</b> {{ order.payment_status?.name }}</div>
                 <div><b fxFlex="120px">Status do envio:</b> {{ order.payment_type?.name }}</div>
 
-                <div class="margin-top"><b fxFlex="120px">Sub-total:</b> {{ order.amount_without_shipment | currency:'R$' }}</div>
-                <div><b fxFlex="120px">Frete:</b> {{ order.shipment | currency:'R$' }} </div>
-                <div><b fxFlex="120px">Valor Total:</b> {{ order.amount | currency:'R$' }}</div>
+                <div class="margin-top"><b fxFlex="120px">Sub-total:</b> {{ order.amount_without_shipment | price }}</div>
+                <div><b fxFlex="120px">Frete:</b> {{ order.shipment | price }} </div>
+                <div><b fxFlex="120px">Valor Total:</b> {{ order.amount | price }}</div>
 
                 <div class="margin-top"><b fxFlex="120px">Endereço:</b>
                     {{ order.user_address.street_name }} Nº{{ order.user_address.street_number }} {{ order.user_address.complement }},
@@ -22,9 +22,9 @@
                 <div *ngFor="let orderProduct of order.order_products" class="product" fxLayout="column" fxLayoutAlign="start start">
                     <div class="title">{{ orderProduct.product?.name }}</div>
                     <div fxLayout="row">
-                        <div><b>Preço Unitário:</b> {{ orderProduct.price | currency:'R$' }}</div>
+                        <div><b>Preço Unitário:</b> {{ orderProduct.price | price }}</div>
                         <div class="margin-left">{{ orderProduct.quantity}} x</div>
-                        <div class="margin-left"><b>Total: </b>{{ orderProduct.amount | currency:'R$' }}</div>
+                        <div class="margin-left"><b>Total: </b>{{ orderProduct.amount | price }}</div>
                     </div>
                 </div>
             </div>

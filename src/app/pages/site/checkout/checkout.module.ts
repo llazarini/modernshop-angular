@@ -20,6 +20,7 @@ import {CartComponent} from './cart/cart.component';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatListModule} from '@angular/material/list';
 import {SuccessComponent} from './success/success.component';
+import {PriceModule} from '../../../pipes/price.module';
 
 @NgModule({
 	exports: [
@@ -52,6 +53,7 @@ import {SuccessComponent} from './success/success.component';
 		MatRadioModule,
 		ExtendedModule,
 		MatListModule,
+		PriceModule,
 	]
 })
 export class CheckoutModule { }

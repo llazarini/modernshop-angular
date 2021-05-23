@@ -14,7 +14,7 @@
                 <button mat-icon-button (click)="minus(i)"><i class="mdi mdi-minus-circle"></i></button>
                 <div>{{ product.quantity }}</div>
                 <button mat-icon-button (click)="plus(i)"><i class="mdi mdi-plus-circle"></i></button>
-                <div class="margin-left">{{ product.total_price | currency:'R$' }}</div>
+                <div class="margin-left">{{ product.total_price | price }}</div>
                 <button mat-icon-button color="warn" (click)="remove(i)">
                     <i class="mdi mdi-trash-can"></i>
                 </button>
@@ -36,7 +36,7 @@
                         <div class="muted">Entrega em até {{ ship.delivery_time }} dias úteis</div>
                     </div>
                 </div>
-                <div class="shipping-price">{{ ship.price | currency:'R$' }}</div>
+                <div class="shipping-price">{{ ship.price | price }}</div>
             </div>
             <mat-divider></mat-divider>
         </mat-list-item>

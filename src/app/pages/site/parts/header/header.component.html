@@ -15,13 +15,9 @@
                 </a>
                 <ng-container *ngIf="logged">
                     <a class="item" [matMenuTriggerFor]="menu" aria-label="Abrir o menu">
-                        <i class="mdi mdi-menu"></i> <span fxHide.lt-sm class="margin-left">Minha conta</span>
+                        <i class="mdi mdi-account"></i> <span fxHide.lt-sm class="margin-left">Minha conta</span>
                     </a>
                     <mat-menu #menu="matMenu">
-                        <button mat-menu-item [routerLink]="['user', 'login']" fxShow.gt-sm>
-                            <i class="mdi mdi-usb margin-right"></i>
-                            <span>Fazer Login</span>
-                        </button>
                         <button mat-menu-item [routerLink]="['user', 'orders']">
                             <i class="mdi mdi-list-status margin-right"></i>
                             <span>Meus pedidos</span>

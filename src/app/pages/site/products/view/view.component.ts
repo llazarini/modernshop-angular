@@ -96,4 +96,11 @@ export class ViewComponent implements OnInit {
             error => this.alertService.treatError(error))
             .add(() => this.loading -= 1);
     }
+
+	public optionValue(option: IOption) {
+		if (!this.product) {
+		    return 0;
+        }
+        return this.product.price + (option.type ? +option.price : -option.price);
+	}
 }

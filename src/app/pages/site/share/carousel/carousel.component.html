@@ -1,5 +1,5 @@
 <!-- carousel -->
-<div class="carousel" [style.height]="sliderHeight + 'px'" [style.width]="sliderWidth + 'px'">
+<div #carousel class="carousel" [style.height]="sliderHeight() + 'px'" [style.width]="'100%'">
     <ng-container *ngFor="let slide of slides; let i = index">
         <div class="slide" *ngIf="i === currentSlide" [style.background]="'url(' + getUrl(slide) + ')'"
              [@slideAnimation]="animationType">

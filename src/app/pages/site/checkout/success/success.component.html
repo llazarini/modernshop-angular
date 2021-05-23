@@ -8,7 +8,7 @@
         <ng-container *ngIf="order?.payment_type?.slug === 'pix'">
             <h1>Pedido gerado com pagamento via PIX</h1>
             <div class="margin-bottom">
-                Faça um pagamento para a chave pix da nossa loja: <b>contato@anaraquelilustracoes.com.br</b> no valor de <b>{{ order.amount | currency:'R$' }}.</b>
+                Faça um pagamento para a chave pix da nossa loja: <b>contato@anaraquelilustracoes.com.br</b> no valor de <b>{{ order.amount | price }}.</b>
             </div>
             <div class="muted margin-top">
                 Caso queira agilizar o processo você pode enviar um comprovante de pagamento para nosso e-mail <b>contato@anaraquelilustracoes.com.br</b> ou Whatsapp <b>(11)9.7457-7357</b>

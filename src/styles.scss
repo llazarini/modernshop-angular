@@ -127,21 +127,21 @@ mat-icon.small {
   width: 100%;
 }
 .breadcrumb {
-  padding: 5px 0;
-  background: #fff3d2;
-  color: #ff652a;
-  width: 100%;
-  margin-bottom: 25px;
-  div {
-    i {
-      margin-right: 10px;
-      font-size: 12px;
+    padding: 5px 0;
+    background: #fff3d2;
+    color: #ff652a;
+    width: 100%;
+    margin-bottom: 25px;
+    div {
+        i {
+            margin-right: 10px;
+            font-size: 12px;
+        }
+        > div {
+            font-size: 16px;
+            margin-right: 10px;
+        }
     }
-    > div {
-      font-size: 12px;
-      margin-right: 10px;
-    }
-  }
 }
 .inner-page {
   padding-top: 50px;
@@ -150,4 +150,7 @@ mat-icon.small {
 }
 .image {
   max-width: 100%;
+}
+.w100 {
+  width: 100%;
 }

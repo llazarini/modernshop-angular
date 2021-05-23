@@ -76,7 +76,7 @@
                     </div>
                     <div fxLayout="row" fxLayoutAlign="space-between center">
                         <div class="margin-right">{{ product.quantity }} unidades</div>
-                        <div class="margin-left">{{ product.total_price | currency:'R$' }}</div>
+                        <div class="margin-left">{{ product.total_price | price }}</div>
                     </div>
                     <mat-divider></mat-divider>
                 </div>
@@ -108,7 +108,7 @@
                         </div>
                     </div>
                     <div fxLayout="row" fxLayoutAlign="space-between center">
-                        {{ shippingOption?.price | currency:'R$' }}
+                        {{ shippingOption?.price | price }}
                     </div>
                     <mat-divider></mat-divider>
                 </div>

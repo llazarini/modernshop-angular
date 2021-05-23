@@ -15,6 +15,7 @@ import {NgxMaskModule} from 'ngx-mask';
 import {FormsModule} from '@angular/forms';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatRadioModule} from '@angular/material/radio';
+import {PriceModule} from '../../../pipes/price.module';
 
 @NgModule({
     declarations: [
@@ -37,6 +38,7 @@ import {MatRadioModule} from '@angular/material/radio';
 		MatSlideToggleModule,
 		MatRadioModule,
 		ExtendedModule,
+		PriceModule,
 	]
 })
 export class ProductModule { }

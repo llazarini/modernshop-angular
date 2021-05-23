@@ -10,20 +10,20 @@
 </div>
 <div class="container page">
      <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start start">
-        <app-carousel fxFlex="none" [slides]="product?.files" [width]="600" [height]="800"></app-carousel>
+        <app-carousel fxFlex="none" ngClass.lt-sm="w100" fxFlex.gt-sm="500px" [slides]="product?.files" [width]="600" [height]="850"></app-carousel>
         <div class="product-info" ngClass.gt-sm="large">
             <h1 class="name">{{ product?.name }}</h1>
-            <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign.gt-sm="space-between center">
-                <div class="price">{{ price | currency:'R$' }}</div>
-                <div fxLayout="column" fxLayout.gt-sm="row" class="margin-top" fxLayoutAlign.gt-sm="start center">
-                    <button type="button" mat-flat-button color="primary" (click)="addChart()">
-                        <i class="mdi mdi-cart"></i> Adicionar ao Carrinho
-                    </button>
-                    <button ngClass.gt-sm="margin-left" ngClass.lt-sm="margin-top" type="button" mat-flat-button
-                            color="accent" (click)="buyNow()">
-                        <i class="mdi mdi-cart-check"></i> Comprar agora
-                    </button>
-                </div>
+            <div class="price">
+                {{ price | price }}
+            </div>
+            <div fxLayout="column" fxLayout.gt-sm="row" class="margin-top" fxLayoutAlign.gt-sm="start center">
+                <button type="button" mat-flat-button color="primary" (click)="addChart()">
+                    <i class="mdi mdi-cart"></i> Adicionar ao Carrinho
+                </button>
+                <button ngClass.gt-sm="margin-left" ngClass.lt-sm="margin-top" type="button" mat-flat-button
+                        color="accent" (click)="buyNow()">
+                    <i class="mdi mdi-cart-check"></i> Comprar agora
+                </button>
             </div>
             <br>
             <div class="margin-top margin-bottom">
@@ -32,6 +32,7 @@
                     <mat-radio-group fxLayout="column" [(ngModel)]="option" (ngModelChange)="optionChanged()">
                         <mat-radio-button *ngFor="let option of product?.options" [value]="option" class="margin-bottom">
                             <div>{{ option.name }}</div>
+                            <div>{{ optionValue(option) | price }}</div>
                             <small class="muted">{{option.description}}</small>
                         </mat-radio-button>
                     </mat-radio-group>
@@ -64,7 +65,7 @@
                             <img [src]="ship.image" width="80px">
                             <div>{{ ship.name }} entrega em até {{ ship.delivery_time }} dias úteis</div>
                         </div>
-                        <div class="shipping-price">{{ ship.price | currency:'R$' }}</div>
+                        <div class="shipping-price">{{ ship.price | price }}</div>
                     </div>
                     <hr>
                 </ng-container>

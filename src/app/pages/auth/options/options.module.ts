@@ -27,6 +27,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {NgxMatSelectSearchModule} from 'ngx-mat-select-search';
 import {OptionsComponent} from './options.component';
 import {OptionsRoutingModule} from './options-routing.module';
+import {PriceModule} from '../../../pipes/price.module';
 
 @NgModule({
 	declarations: [
@@ -60,6 +61,7 @@ import {OptionsRoutingModule} from './options-routing.module';
 		MatTooltipModule,
 		MatAutocompleteModule,
 		NgxMatSelectSearchModule,
+		PriceModule,
 	]
 })
 export class OptionsModule { }
