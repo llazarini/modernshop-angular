@@ -3,7 +3,7 @@
     <div class="padding" fxLayout="column">
         <a class="title pointer" (click)="buy()">{{ product.name }}</a>
         <div fxLayout="column">
-            <div class="margin-bottom">À partir de <b>{{ product.price | price }}</b></div>
+            <div class="margin-bottom">A partir de <b>{{ product.price | price }}</b></div>
             <button type="button" mat-stroked-button color="primary" (click)="buy()">
                 <i class="mdi mdi-cart"></i> Comprar
             </button>

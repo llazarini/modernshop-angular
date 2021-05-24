@@ -16,16 +16,6 @@
             <div class="price">
                 {{ price | price }}
             </div>
-            <div fxLayout="column" fxLayout.gt-sm="row" class="margin-top" fxLayoutAlign.gt-sm="start center">
-                <button type="button" mat-flat-button color="primary" (click)="addChart()">
-                    <i class="mdi mdi-cart"></i> Adicionar ao Carrinho
-                </button>
-                <button ngClass.gt-sm="margin-left" ngClass.lt-sm="margin-top" type="button" mat-flat-button
-                        color="accent" (click)="buyNow()">
-                    <i class="mdi mdi-cart-check"></i> Comprar agora
-                </button>
-            </div>
-            <br>
             <div class="margin-top margin-bottom">
                 <div class="sub-title">Opções do Produto</div>
                 <div>
@@ -37,6 +27,15 @@
                         </mat-radio-button>
                     </mat-radio-group>
                 </div>
+            </div>
+            <div fxLayout="column" fxLayout.gt-sm="row" class="margin-top" fxLayoutAlign.gt-sm="start center">
+                <button type="button" mat-flat-button color="primary" (click)="addChart()">
+                    <i class="mdi mdi-cart"></i> Adicionar ao Carrinho
+                </button>
+                <button ngClass.gt-sm="margin-left" ngClass.lt-sm="margin-top" type="button" mat-flat-button
+                        color="accent" (click)="buyNow()">
+                    <i class="mdi mdi-cart-check"></i> Comprar agora
+                </button>
             </div>
             <div class="margin-bottom">
                 <div class="sub-title">Descrição do Produto</div>

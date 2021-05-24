@@ -22,5 +22,6 @@
             <mat-label>Descrição</mat-label>
             <textarea matInput required formControlName="description"></textarea>
         </mat-form-field>
+        <app-file-upload [multiple]="false" [type]="fileType" [id]="this.id" [token]="this.token"></app-file-upload>
     </div>
 </form>

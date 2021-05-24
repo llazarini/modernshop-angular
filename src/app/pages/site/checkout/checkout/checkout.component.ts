@@ -30,7 +30,7 @@ export class CheckoutComponent implements OnInit {
 
     public ngOnInit(): void {
         if (this.authService.logged) {
-            this.router.navigate(['checkout', 'finish'])
+            this.router.navigate(['checkout', 'logged'])
         }
     }
 

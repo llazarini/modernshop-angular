@@ -3,8 +3,9 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AlertService} from '../../../../services/alert/alert.service';
 import {ICategory} from '../../../../interfaces/ICategory';
-import {CategoryService} from '../../../../services/auth/category/category.service';
 import {OptionService} from '../../../../services/auth/option/option.service';
+import {IFileClassType} from '../../../../interfaces/IFile';
+import {TokenHelper} from '../../../../helpers/TokenHelper';
 
 @Component({
   selector: 'app-add-edit',
@@ -17,6 +18,8 @@ export class AddEditComponent implements OnInit {
     public error: string;
     public id: number = null;
     public categories: Array<ICategory>;
+    public fileType = IFileClassType.option;
+    public token: string = TokenHelper.generate();
 
     constructor(
         private formBuilder: FormBuilder = null,
@@ -43,16 +46,6 @@ export class AddEditComponent implements OnInit {
         if (this.id) {
             this.get();
         }
-        this.dataprovider();
-    }
-
-    private dataprovider() {
-        this.loading = true;
-        this.optionService
-            .dataprovider()
-            .subscribe((response) => {
-            })
-            .add(() => this.loading = false);
     }
 
     public submit() {

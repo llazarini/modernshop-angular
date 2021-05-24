@@ -3,4 +3,13 @@ section {
     .product {
         margin-bottom: 30px;
     }
+    .categories {
+        overflow: auto;
+        .selected {
+            opacity: 70%;
+        }
+    }
+    .info {
+        font-size: 20px;
+    }
 }

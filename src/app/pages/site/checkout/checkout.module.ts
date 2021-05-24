@@ -21,18 +21,17 @@ import {MatRadioModule} from '@angular/material/radio';
 import {MatListModule} from '@angular/material/list';
 import {SuccessComponent} from './success/success.component';
 import {PriceModule} from '../../../pipes/price.module';
+import {CheckoutLoggedComponent} from './checkout-logged/checkout-logged.component';
 
 @NgModule({
-	exports: [
-		CheckoutComponent,
-		FinishComponent,
-	],
+	exports: [],
 	declarations: [
 		CheckoutComponent,
 		FinishComponent,
 		NoItemsComponent,
 		CartComponent,
 		SuccessComponent,
+		CheckoutLoggedComponent,
 	],
 	imports: [
 		CheckoutRoutingModule,

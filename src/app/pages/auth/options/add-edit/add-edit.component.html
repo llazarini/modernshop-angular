@@ -49,5 +49,6 @@
                 <input matInput required type="number" formControlName="length">
             </mat-form-field>
         </div>
+        <app-file-upload [multiple]="false" [type]="fileType" [id]="this.id" [token]="this.token"></app-file-upload>
     </div>
 </form>

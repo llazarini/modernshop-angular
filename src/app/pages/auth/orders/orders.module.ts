@@ -9,7 +9,7 @@ import {MatProgressBarModule} from "@angular/material/progress-bar";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatInputModule} from "@angular/material/input";
 import {MatIconModule} from "@angular/material/icon";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
@@ -60,6 +60,7 @@ import {PriceModule} from '../../../pipes/price.module';
 		MatAutocompleteModule,
 		NgxMatSelectSearchModule,
 		PriceModule,
+		FormsModule,
 	]
 })
 export class OrdersModule { }

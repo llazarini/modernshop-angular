@@ -4,6 +4,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {AlertService} from '../../../../services/alert/alert.service';
 import {ICategory} from '../../../../interfaces/ICategory';
 import {CategoryService} from '../../../../services/auth/category/category.service';
+import {TokenHelper} from '../../../../helpers/TokenHelper';
+import {IFileClassType} from '../../../../interfaces/IFile';
 
 @Component({
   selector: 'app-add-edit',
@@ -16,6 +18,8 @@ export class AddEditComponent implements OnInit {
     public error: string;
     public id: number = null;
     public categories: Array<ICategory>;
+    public token: string = TokenHelper.generate();
+    public fileType = IFileClassType.category;
 
     constructor(
       private formBuilder: FormBuilder = null,

@@ -27,6 +27,7 @@ import {NgxMaskModule} from 'ngx-mask';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {NgxMatSelectSearchModule} from 'ngx-mat-select-search';
+import {ProductsModule} from '../products/products.module';
 
 @NgModule({
 	declarations: [
@@ -60,6 +61,7 @@ import {NgxMatSelectSearchModule} from 'ngx-mat-select-search';
 		MatTooltipModule,
 		MatAutocompleteModule,
 		NgxMatSelectSearchModule,
+		ProductsModule,
 	]
 })
 export class CategoriesModule { }

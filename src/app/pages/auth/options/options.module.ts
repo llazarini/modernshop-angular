@@ -28,6 +28,7 @@ import {NgxMatSelectSearchModule} from 'ngx-mat-select-search';
 import {OptionsComponent} from './options.component';
 import {OptionsRoutingModule} from './options-routing.module';
 import {PriceModule} from '../../../pipes/price.module';
+import {ProductsModule} from '../products/products.module';
 
 @NgModule({
 	declarations: [
@@ -62,6 +63,7 @@ import {PriceModule} from '../../../pipes/price.module';
 		MatAutocompleteModule,
 		NgxMatSelectSearchModule,
 		PriceModule,
+		ProductsModule,
 	]
 })
 export class OptionsModule { }

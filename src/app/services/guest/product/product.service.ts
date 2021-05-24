@@ -28,8 +28,17 @@ export class ProductService {
         });
     }
 
-    public index(): Observable<IResponseData<IProduct>> {
-        return this.httpClient.get<IResponseData<IProduct>>(environment.baseSiteUrl + '/products/index');
+    public index(filter?: IFilter): Observable<IResponseData<IProduct>> {
+        let httpParams = new HttpParams();
+        if (filter?.category_id) {
+            httpParams = httpParams.append('category_id', filter.category_id.toString());
+        }
+        if (filter?.page) {
+            httpParams = httpParams.append('page', filter?.page.toString());
+        }
+        return this.httpClient.get<IResponseData<IProduct>>(environment.baseSiteUrl + '/products/index', {
+            params: httpParams,
+        });
     }
 
     public dataprovider(): Observable<IDataprovider> {
@@ -39,4 +48,9 @@ export class ProductService {
 
 interface IDataprovider {
     categories: Array<ICategory>;
+}
+
+interface IFilter {
+    page: number;
+    category_id?: number;
 }

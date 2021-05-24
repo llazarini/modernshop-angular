@@ -63,11 +63,11 @@
     </div>
     <div fxFlex.gt-sm="500px" fxLayout="column" ngClass.lt-sm="margin-top">
         <h1>Confira seu carrinho</h1>
-        <mat-list class="cart" fxLayout="column">
-            <div mat-subheader>Produtos</div>
-            <mat-list-item *ngFor="let product of products; let i = index">
-                <div fxFill fxLayoutAlign="space-between center" class="margin-bottom">
-                    <div fxLayout="row">
+        <div class="cart" fxLayout="column">
+            <small class="muted">Produtos</small>
+            <div *ngFor="let product of products; let i = index">
+                <div fxFill fxLayoutAlign="space-between center" class="padding-vertical">
+                    <div fxLayout="row" class="padding-horizontal">
                         <img [src]="product.files[0]?.url" class="product-image rounded">
                         <div class="margin-left">
                             <div>{{ product.name }}</div>
@@ -75,24 +75,23 @@
                         </div>
                     </div>
                     <div fxLayout="row" fxLayoutAlign="space-between center">
-                        <div class="margin-right">{{ product.quantity }} unidades</div>
-                        <div class="margin-left">{{ product.total_price | price }}</div>
+                        <div class="margin-right" fxFlex="80px">{{ product.quantity }} unidades</div>
+                        <div class="margin-left" fxFlex="80px">{{ product.total_price | price }}</div>
                     </div>
-                    <mat-divider></mat-divider>
                 </div>
-            </mat-list-item>
-            <mat-list-item>
-                <div fxFill fxLayoutAlign="end center" class="margin-bottom">
-                    <div fxLayout="row" class="text-right bold margin-right">
-                        Sub-total:
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center">
-                        {{ subTotal | currency: 'R$' }}
-                    </div>
-                    <mat-divider></mat-divider>
+                <mat-divider></mat-divider>
+            </div>
+            <div fxFill fxLayoutAlign="end center" class="padding-vertical">
+                <div fxLayout="row" class="text-right bold margin-right">
+                    Sub-total:
                 </div>
-            </mat-list-item>
-            <mat-list-item fxFill>
+                <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex="80px">
+                    {{ subTotal | currency: 'R$' }}
+                </div>
+            </div>
+
+            <small class="margin-top" class="muted">Frete</small>
+            <div fxFill>
                 <div fxFill fxLayoutAlign="space-between center" class="margin-horizontal">
                     <div fxLayout="row" fxLayoutAlign="start center">
                         <img height="12px" width="50px" [src]="shippingOption.image">
@@ -107,23 +106,22 @@
                             <small><a [routerLink]="['/','user', 'address']">Trocar o endereço</a></small>
                         </div>
                     </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                    <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex="80px">
                         {{ shippingOption?.price | price }}
                     </div>
-                    <mat-divider></mat-divider>
                 </div>
-            </mat-list-item>
-            <mat-list-item>
-                <div fxFill fxLayoutAlign="end center" class="margin-bottom">
-                    <div fxLayout="row" class="text-right bold margin-right">
-                        Total:
-                    </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center">
-                        {{ total | currency: 'R$' }}
-                    </div>
+            </div>
+            <mat-divider></mat-divider>
+
+            <div fxFill fxLayoutAlign="end center" class="margin-bottom padding-vertical">
+                <div fxLayout="row" class="text-right bold margin-right">
+                    Total:
                 </div>
-            </mat-list-item>
-        </mat-list>
+                <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex="80px" class="text-right">
+                    {{ total | currency: 'R$' }}
+                </div>
+            </div>
+        </div>
         <button mat-flat-button color="primary" (click)="submit()" [disabled]="!option">
             <span *ngIf="option">Efetuar pagamento</span>
             <span *ngIf="!option">Escolha uma opção de pagamento</span>

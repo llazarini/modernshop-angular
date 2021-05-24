@@ -13,6 +13,8 @@ import {MatBadgeModule} from '@angular/material/badge';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
 import {ProductModule} from './share/product/product.module';
+import {CategoryModule} from './share/category/category.module';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 @NgModule({
 	declarations: [
 		SiteComponent,
@@ -31,7 +33,9 @@ import {ProductModule} from './share/product/product.module';
 		MatMenuModule,
 		MatButtonModule,
 		ProductModule,
-		ExtendedModule
+		ExtendedModule,
+		CategoryModule,
+		MatProgressSpinnerModule
 	]
 })
 export class SiteModule { }

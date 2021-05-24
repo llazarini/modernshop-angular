@@ -1,18 +1,30 @@
 <mat-progress-bar *ngIf="loading" class="progress" mode="indeterminate"></mat-progress-bar>
-<app-carousel [height]="500" [width]="1920" [slides]="banners"></app-carousel>
+<app-carousel fxHide.lt-sm [height]="500" [width]="1920" [slides]="banners"></app-carousel>
 
 <section class="container">
-    <h1 class="margin-top">Em destaque</h1>
-    <div>
-        <app-product-carousel category="spotlight"></app-product-carousel>
+    <h1 class="margin-top">Categorias</h1>
+    <div fxLayout="row" fxLayoutGap="2%" class="categories">
+        <ng-container *ngFor="let category of categories">
+            <app-category [category]="category" (click)="filtering(category)"
+                          [class.selected]="category.id === this.filter?.category_id"></app-category>
+        </ng-container>
+    </div>
+    <div fxFlexFill fxLayoutAlign="center center">
+        <mat-progress-spinner mode="indeterminate" *ngIf="loadingCategories"></mat-progress-spinner>
     </div>
 </section>
 
 <section class="container">
-    <h1 class="margin-top">Todas as Ilustrações</h1>
+    <h1 class="margin-top">{{ title() }}</h1>
     <div fxLayout="row wrap" fxLayoutGap.gt-sm="2%">
         <ng-container *ngFor="let product of products">
             <app-product fxFlex="100%" fxFlex.gt-sm="18%" class="product" [ngClass.lt-sm]="''" [product]="product"></app-product>
         </ng-container>
+    </div>
+    <div fxFlexFill fxLayoutAlign="center center">
+        <mat-progress-spinner mode="indeterminate" *ngIf="loadingProducts"></mat-progress-spinner>
+        <div *ngIf="!loadingProducts && products.length === 0" class="muted info">
+            Nenhum produto nesta categoria.
+        </div>
     </div>
 </section>
