@@ -5,8 +5,9 @@ section {
     }
     .categories {
         overflow: auto;
+        opacity: 70%;
         .selected {
-            opacity: 70%;
+            opacity: 100%;
         }
     }
     .info {
