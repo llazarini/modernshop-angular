@@ -63,6 +63,7 @@ export class CartComponent implements OnInit {
         this.products.splice(i, 1);
         this.checkoutService.products = this.products;
         this.shipment();
+        this.change();
         if (!this.products.length) {
             this.router.navigate(['/', 'checkout', 'no-items'])
         }
@@ -74,7 +75,8 @@ export class CartComponent implements OnInit {
             if (product.quantity <= 0) {
                 product.quantity = 1;
             }
-            product.total_price = product.price * product.quantity
+            product.total_price = (product.price + (product.selected_option.type ? product.selected_option?.price : -product.selected_option?.price))
+                * product.quantity
             this.subTotal += product.total_price;
         });
         this.total = this.subTotal;
