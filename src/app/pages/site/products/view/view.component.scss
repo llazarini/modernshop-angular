@@ -31,10 +31,13 @@
             margin-bottom:  $margin * 2;
         }
         .attributes {
-            button.selected {
-                background: $base-accent;
-                border: $base-accent;
-                color: #fff;
+            button {
+                font-size: 12px;
+                &.selected {
+                    background: $base-accent;
+                    border: $base-accent;
+                    color: #fff;
+                }
             }
         }
         .price {
