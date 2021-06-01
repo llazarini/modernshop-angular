@@ -92,7 +92,7 @@
                 </ng-container>
             </mat-radio-group>
         </ng-container>
-        <button fxHide.gt-xs mat-flat-button color="primary" (click)="submit()" [disabled]="loading > 0">
+        <button fxHide.gt-xs mat-flat-button color="primary" (click)="submit()" [disabled]="loading > 0" class="large-button">
             Continuar
             <ng-container *ngIf="loading > 0">
                 <mat-progress-spinner></mat-progress-spinner>

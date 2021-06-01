@@ -7,7 +7,7 @@
                 <img [src]="product.files[0]?.url" class="product-image rounded">
                 <div class="margin-left">
                     <div>{{ product.name }}</div>
-                    <div class="muted">{{ product.selected_option?.name }}</div>
+                    <div class="muted" *ngFor="let option of product?.selected_options">{{ option?.name }}</div>
                 </div>
             </div>
             <div fxLayout="row" fxLayoutAlign="space-between center">

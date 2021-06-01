@@ -11,18 +11,18 @@ import {IOrder} from '../../../interfaces/IOrder';
 export class OrderService {
     constructor(private httpClient: HttpClient) { }
 
-    public user(page?: number): Observable<IResponseData<IOrder>> {
+    public index(page?: number): Observable<IResponseData<IOrder>> {
         let httpParams = new HttpParams();
         if (page) {
             httpParams = httpParams.append('page', page.toString());
         }
-        return this.httpClient.get<IResponseData<IOrder>>(environment.baseAuthUrl + '/orders/user', {
+        return this.httpClient.get<IResponseData<IOrder>>(environment.baseSiteUrl + '/orders/index', {
             params: httpParams
         });
     }
 
     public get(id: number): Observable<IOrder> {
-        return this.httpClient.get<IOrder>(environment.baseAuthUrl + '/orders/get/' + id, {});
+        return this.httpClient.get<IOrder>(environment.baseSiteUrl + '/orders/get/' + id, {});
     }
 }
 

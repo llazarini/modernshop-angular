@@ -7,12 +7,12 @@
                 <i class="mdi mdi-cellphone-nfc"></i>
                 <div>Pagar com PIX</div>
             </div>
-            <div fxFlex fxLayout="column" (click)="option = 'creditcard'" [class.selected]="option === 'creditcard'">
+            <div fxFlex fxLayout="column" (click)="option = 'credit_card'" [class.selected]="option === 'credit_card'">
                 <i class="mdi mdi-credit-card-outline"></i>
                 <div>Pagar com Cartão de Crédito</div>
             </div>
         </div>
-        <ng-container *ngIf="option === 'creditcard'">
+        <ng-container *ngIf="option === 'credit_card'">
             <h2>Pagamento com Cartão de Crédito</h2>
             <div class="card">
                 <div class="number"></div>
@@ -71,7 +71,7 @@
                         <img [src]="product.files[0]?.url" class="product-image rounded">
                         <div class="margin-left">
                             <div>{{ product.name }}</div>
-                            <div class="muted">{{ product.selected_option?.name }}</div>
+                            <div class="muted" *ngFor="let option of product.selected_options">{{ option.name }}</div>
                         </div>
                     </div>
                     <div fxLayout="row" fxLayoutAlign="space-between center">
@@ -122,7 +122,7 @@
                 </div>
             </div>
         </div>
-        <button mat-flat-button color="primary" (click)="submit()" [disabled]="!option">
+        <button class="large-button" mat-flat-button color="primary" (click)="submit()" [disabled]="!option">
             <span *ngIf="option">Efetuar pagamento</span>
             <span *ngIf="!option">Escolha uma opção de pagamento</span>
         </button>

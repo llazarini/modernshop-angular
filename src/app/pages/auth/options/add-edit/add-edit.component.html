@@ -1,4 +1,4 @@
-<mat-progress-bar class="progress" *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+<mat-progress-bar class="progress" *ngIf="loading > 0" mode="indeterminate"></mat-progress-bar>
 
 <div fxLayout="row" fxLayoutAlign="space-between start">
     <h1>{{ id ? 'Editar' : 'Adicionar' }} Opção</h1>
@@ -15,10 +15,16 @@
             <input matInput required formControlName="name"/>
         </mat-form-field>
         <mat-form-field appearance="outline">
+            <mat-label>Atributo relacionado</mat-label>
+            <mat-select formControlName="attribute_id" required>
+                <mat-option *ngFor="let attribute of attributes" [value]="attribute.id">{{ attribute.name }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
             <mat-label>Tipo</mat-label>
             <mat-select formControlName="type">
-                <mat-option [value]="true">Adicional (+)</mat-option>
-                <mat-option [value]="false">Adicional (-)</mat-option>
+                <mat-option [value]="1">Adicional (+)</mat-option>
+                <mat-option [value]="0">Adicional (-)</mat-option>
             </mat-select>
         </mat-form-field>
         <mat-form-field appearance="outline">

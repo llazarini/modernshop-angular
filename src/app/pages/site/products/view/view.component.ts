@@ -17,7 +17,7 @@ export class ViewComponent implements OnInit {
     private id: number;
     public postalCode: string;
     public shipping: Array<any>;
-    public option: IOption;
+    public options: Array<IOption> = [];
 
     constructor(
         private productService: ProductService,
@@ -35,8 +35,12 @@ export class ViewComponent implements OnInit {
     }
 
     public get price() {
-        if (this.option) {
-            return this.product?.price + (this.option?.type ? this.option?.price : -this.option?.price);
+        if (this.options) {
+            let price = this.product?.price;
+            this.options.forEach(option => {
+                price += (option?.type ? option?.price : -option?.price);
+            })
+            return price;
         }
         return this.product?.price;
     }
@@ -52,21 +56,21 @@ export class ViewComponent implements OnInit {
     }
 
     public addChart() {
-        if (!this.option) {
-            this.alertService.alert('Selecione uma opção do produto', 'Escolha uma opção antes de adicionar');
+        if (!this.optionsNotSelected()) {
+            this.alertService.alert('Selecione todas as opções do produto antes de adicionar ao carrinho.', 'Escolha todas as opções');
             return;
         }
-        this.product.selected_option = this.option;
+        this.product.selected_options = this.selectedOptions();
         this.checkoutService.add(this.product);
         this.alertService.toast('Produto adicionado no carrinho');
     }
 
     public buyNow() {
-        if (!this.option) {
-            this.alertService.alert('Selecione uma opção do produto', 'Escolha uma opção antes de comprar');
+        if (!this.optionsNotSelected()) {
+            this.alertService.alert('Selecione todas as opções do produto antes de comprar o produto.', 'Escolha todas as opções');
             return;
         }
-        this.product.selected_option = this.option;
+        this.product.selected_options = this.selectedOptions();
         this.checkoutService.add(this.product);
         this.router.navigate(['checkout'])
 	}
@@ -79,11 +83,11 @@ export class ViewComponent implements OnInit {
         if (this.loading > 0 || this.postalCode.length < 8) {
             return;
         }
-        if (!this.option) {
-            this.alertService.alert('Selecione uma opção do produto', 'Escolha uma opção antes de calcular o frete.');
+        if (!this.optionsNotSelected()) {
+            this.alertService.alert('Escolha uma opção antes de calcular o frete.', 'Escolha todas as opções');
             return;
         }
-        this.product.selected_option = this.option;
+        this.product.selected_options = this.selectedOptions();
         this.loading += 1;
         this.checkoutService
             .shipment(this.postalCode, [this.product])
@@ -97,10 +101,53 @@ export class ViewComponent implements OnInit {
             .add(() => this.loading -= 1);
     }
 
+    public get bestShipping() {
+        let time = -1;
+        let price = -1;
+        this.shipping.forEach(shipping => {
+            if (shipping.delivery_time < time || time == -1) {
+                time = shipping.delivery_time;
+            }
+            if (+shipping.price < price || price == -1) {
+                price = +shipping.price;
+            }
+        })
+        return { time, price }
+    }
+
 	public optionValue(option: IOption) {
 		if (!this.product) {
 		    return 0;
         }
         return this.product.price + (option.type ? +option.price : -option.price);
 	}
+
+	public selectOption(attribute, option) {
+        attribute.options.forEach(item => item.selected = false);
+        option.selected = true;
+        this.options = this.selectedOptions();
+	}
+
+    private selectedOptions() {
+        const options = [];
+        this.product.attributes.forEach(attribute => {
+            attribute.options.forEach(option => {
+                if (option.selected) {
+                    options.push(option);
+                }
+            })
+        });
+        return options;
+    }
+
+    public optionsNotSelected() {
+        return !this.product?.attributes?.some(attribute => {
+            return !attribute.options?.some(option => option.selected);
+        });
+    }
+
+    public recalculate() {
+        this.shipping = null;
+        this.checkoutService.shipping = null;
+    }
 }

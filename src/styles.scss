@@ -1,4 +1,5 @@
 @import "theme";
+@import "src/variables";
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
@@ -47,27 +48,27 @@ hr {
   border-bottom: 1px solid #d2d2d2;
 }
 .padding {
-  padding: 10px;
+  padding: $margin;
 }
 .padding-left {
-  padding-left: 10px;
+  padding-left: $margin;
 }
 .padding-right {
-  padding-right: 10px;
+  padding-right: $margin;
 }
 .padding-top {
-  padding-top: 10px;
+  padding-top: $margin;
 }
 .padding-bottom {
-  padding-bottom: 10px;
+  padding-bottom: $margin
 }
 .padding-horizontal {
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: $margin;
+  padding-right: $margin;
 }
 .padding-vertical {
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding-top: $margin;
+  padding-bottom: $margin;
 }
 .no-margin {
   margin: 0 !important;
@@ -120,19 +121,19 @@ mat-icon.small {
   line-height: 32px;
 }
 .container {
-  height: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 1200px;
-  width: 100%;
-  padding: 0px 10px;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1200px;
+    width: 100%;
+    > h1, > div{
+        padding: 0 $margin;
+    }
 }
 .breadcrumb {
-    padding: 5px 0;
     background: #fff3d2;
     color: #ff652a;
     width: 100%;
-    margin-bottom: 25px;
     div {
         i {
             margin-right: 10px;
@@ -154,4 +155,13 @@ mat-icon.small {
 }
 .w100 {
   width: 100%;
+}
+.large-button {
+    height: 50px;
+    span {
+        font-size: 20px;
+    }
+}
+::ng-deep .mat-badge-active {
+    background: #ff5e00;
 }

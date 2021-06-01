@@ -22,7 +22,7 @@ export class OrdersComponent implements OnInit {
         this.loading += 1;
         this.id = this.activatedRoute.snapshot.params.id;
         this.orderService
-            .user()
+            .index()
             .subscribe((response) => {
                 this.orders = response.data;
             })

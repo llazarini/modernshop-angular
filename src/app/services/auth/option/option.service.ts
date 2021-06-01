@@ -3,8 +3,8 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable} from "rxjs";
 import {IResponse, IResponseData} from '../../../interfaces/IResponse';
 import {environment} from "../../../../environments/environment";
-import {IState} from '../../../interfaces/IState';
 import {IOption} from '../../../interfaces/IOption';
+import {IAttribute} from '../../../interfaces/IAttribute';
 
 @Injectable({
   providedIn: 'root'
@@ -43,5 +43,5 @@ export class OptionService {
 }
 
 interface IDataprovider {
-    states: Array<IState>;
+	attributes: Array<IAttribute>;
 }

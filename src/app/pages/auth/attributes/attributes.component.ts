@@ -1,21 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import {AlertService} from '../../../services/alert/alert.service';
 import {ICategory} from '../../../interfaces/ICategory';
-import {OptionService} from '../../../services/auth/option/option.service';
+import {IAttribute} from '../../../interfaces/IAttribute';
+import {AttributeService} from '../../../services/auth/attribute/attribute.service';
 
 @Component({
-  selector: 'app-options',
-  templateUrl: './options.component.html',
-  styleUrls: ['./options.component.scss']
+  selector: 'app-attributes',
+  templateUrl: './attributes.component.html',
+  styleUrls: ['./attributes.component.scss']
 })
-export class OptionsComponent implements OnInit {
-    public displayedColumns: Array<string> = ['id', 'name', 'attribute', 'price', 'weight', 'size', 'actions'];
+export class AttributesComponent implements OnInit {
+    public displayedColumns: Array<string> = ['id', 'name', 'description', 'actions'];
     public loading: boolean = true;
-    public dataSource: Array<ICategory>;
+    public dataSource: Array<IAttribute>;
     public page: number = 0;
     public total: number;
     constructor(
-        private optionService: OptionService,
+        private attributeService: AttributeService,
         private alertService: AlertService,
     ) { }
 
@@ -25,7 +26,7 @@ export class OptionsComponent implements OnInit {
 
     public getAll() {
         this.loading = true;
-        this.optionService
+        this.attributeService
             .getAll(this.page+1)
             .subscribe((response) => {
                 this.dataSource = response.data;
@@ -36,7 +37,7 @@ export class OptionsComponent implements OnInit {
 
     private delete(row) {
         this.loading = true;
-        this.optionService
+        this.attributeService
             .delete(row.id)
             .subscribe((response) => {
                 this.getAll();

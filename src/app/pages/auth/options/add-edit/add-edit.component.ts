@@ -6,6 +6,7 @@ import {ICategory} from '../../../../interfaces/ICategory';
 import {OptionService} from '../../../../services/auth/option/option.service';
 import {IFileClassType} from '../../../../interfaces/IFile';
 import {TokenHelper} from '../../../../helpers/TokenHelper';
+import {IAttribute} from '../../../../interfaces/IAttribute';
 
 @Component({
   selector: 'app-add-edit',
@@ -14,12 +15,13 @@ import {TokenHelper} from '../../../../helpers/TokenHelper';
 })
 export class AddEditComponent implements OnInit {
     public formGroup: FormGroup;
-    public loading: boolean;
+    public loading: number = 0;
     public error: string;
     public id: number = null;
     public categories: Array<ICategory>;
     public fileType = IFileClassType.option;
     public token: string = TokenHelper.generate();
+	public attributes: Array<IAttribute>;
 
     constructor(
         private formBuilder: FormBuilder = null,
@@ -30,6 +32,7 @@ export class AddEditComponent implements OnInit {
     ) {
         this.formGroup = this.formBuilder.group({
             id: [null],
+            attribute_id: [null, Validators.required],
             name: [null, [Validators.required, Validators.maxLength(255)]],
             price: [null, [Validators.required]],
             type: [null, [Validators.required]],
@@ -42,6 +45,7 @@ export class AddEditComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.dataprovider();
         this.id = this.activatedRoute.snapshot.params.id;
         if (this.id) {
             this.get();
@@ -60,7 +64,7 @@ export class AddEditComponent implements OnInit {
     }
 
     private store() {
-        this.loading = true;
+        this.loading += 1;
         this.optionService
             .store(this.formGroup.value)
             .subscribe((response) => {
@@ -69,10 +73,11 @@ export class AddEditComponent implements OnInit {
             }, error => {
                 this.alertService.treatError(error)
             })
-            .add(() => this.loading = false);
+            .add(() => this.loading -= 1);
     }
+
     private update() {
-        this.loading = true;
+        this.loading += 1;
         this.optionService
           .update(this.formGroup.value)
           .subscribe((response) => {
@@ -81,16 +86,26 @@ export class AddEditComponent implements OnInit {
           }, error => {
               this.alertService.treatError(error)
           })
-          .add(() => this.loading = false);
+          .add(() => this.loading -= 1);
     }
 
     private get() {
-        this.loading = true;
+        this.loading += 1;
         this.optionService
             .get(this.id)
             .subscribe((response) => {
                 this.formGroup.patchValue(response);
             })
-            .add(() => this.loading = false);
+            .add(() => this.loading -= 1);
+    }
+
+    private dataprovider() {
+        this.loading += 1;
+        this.optionService
+            .dataprovider()
+            .subscribe((response) => {
+                this.attributes = response.attributes;
+            })
+            .add(() => this.loading -= 1);
     }
 }

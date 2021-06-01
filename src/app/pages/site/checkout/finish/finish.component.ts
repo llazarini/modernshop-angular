@@ -95,6 +95,9 @@ export class FinishComponent implements OnInit {
             this.pix();
             return;
         }
+        if (!this.formGroup.valid) {
+            return;
+        }
         this.creditCard();
     }
 }

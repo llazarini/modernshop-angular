@@ -14,7 +14,7 @@
                 Caso queira agilizar o processo você pode enviar um comprovante de pagamento para nosso e-mail <b>contato@anaraquelilustracoes.com.br</b> ou Whatsapp <b>(11)9.7457-7357</b>
             </div>
         </ng-container>
-        <ng-container *ngIf="order?.payment_type?.slug === 'creditcard'">
+        <ng-container *ngIf="order?.payment_type?.slug === 'credit_card'">
             <h1>Pedido gerado com sucesso</h1>
             <div class="muted">O seu pedido está na etapa de <b>{{ order?.payment_status.name }}</b>, mas fique tranquilo(a),
                 iremos te avisar sempre que uma etapa mudar através do seu e-mail.</div>

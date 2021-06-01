@@ -1,19 +1,41 @@
+@import "src/variables";
+
 :host ::ng-deep .mat-form-field-wrapper{
     margin: 0 !important;
     padding: 0;
 }
 .page {
-    padding-top: 20px;
     .sub-title {
         font-weight: bold;
         margin-bottom: 5px;
         margin-top: 10px;
     }
+    .image {
+        background: #dcdfe6;
+    }
     .product-info {
-        padding-top: 20px;
+        padding-top: $margin;
+        padding-right: $margin;
+        margin-left: $margin;
+        display: flex;
+        flex-flow: column;
+        border-right: 1px solid #ededed;
+        width: 100%;
         &.large {
-            padding-top: 0px;
-            padding-left: 30px;
+            max-width: 350px;
+        }
+        .title-price {
+            margin-bottom: $margin * 2;
+        }
+        .options {
+            margin-bottom:  $margin * 2;
+        }
+        .attributes {
+            button.selected {
+                background: $base-accent;
+                border: $base-accent;
+                color: #fff;
+            }
         }
         .price {
             font-size: 30px;
@@ -23,28 +45,14 @@
             font-weight: bold;
         }
         .shipping {
-            border-radius: 10px;
-            color: #0ba8a8;
-            border: 1px solid #e0e0e0;
-            padding: 7px;
-            max-width: 300px;
-            > div {
+            margin-top: $margin * 2;
+            div {
+                color: #343434;
                 i {
-                    font-size: 22px;
-                    margin-right: 10px;
+                    color: $base-primary;
+                    margin-right: $margin;
                 }
-                font-size: 12px;
             }
         }
-    }
-    .shipping-details {
-        font-weight: bold;
-        font-size: 12px;
-        div:last-child {
-            margin-left: 10px;
-        }
-    }
-    .postal-code {
-        margin-top: 30px;
     }
 }

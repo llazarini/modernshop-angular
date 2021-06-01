@@ -1,12 +1,14 @@
 import {ICategory} from './ICategory';
 import {IFile} from './IFile';
 import {IOption} from './IOption';
+import {IAttribute} from './IAttribute';
 
 export interface IProduct {
+	attributes: Array<IAttribute>;
     id?: number;
 	name?: string;
 	description?: string;
-	selected_option?: IOption;
+	selected_options?: Array<IOption>;
 	options?: Array<IOption>;
 	categories?: Array<ICategory>;
 	files?: Array<IFile>;

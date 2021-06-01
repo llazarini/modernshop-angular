@@ -12,16 +12,25 @@ export class AlertService {
     constructor(private matSnackBar: MatSnackBar, private matDialog: MatDialog) { }
 
     public treatError(response: any) {
-        let messages = [];
-        Object.keys(response.error.errors).forEach((errorKey) =>
-          response.error.errors[errorKey].forEach((key) => messages.push(key))
-        );
-        this.matSnackBar.open(messages.join(','), "Fechar", {
-            duration: 2000,
-            verticalPosition: 'top',
-            horizontalPosition: 'end',
-        });
+        if (response.error?.errors) {
+            let messages = [];
+            Object.keys(response.error?.errors).forEach((errorKey) =>
+                response.error?.errors[errorKey].forEach((key) => messages.push(key))
+            );
+            this.matSnackBar.open(messages.join(','), "Fechar", {
+                duration: 2000,
+                verticalPosition: 'top',
+                horizontalPosition: 'end',
+            });
+            return;
+        }
+        if (response.error?.message?.title && response.error?.message?.message) {
+            this.alert(response.error?.message?.message, response.error?.message?.title);
+        } else if (response.error?.message) {
+            this.alert(response.error?.message, 'Atenção');
+        }
     }
+
 
     public toast(message: string) {
         this.matSnackBar.open(message, "Fechar", {

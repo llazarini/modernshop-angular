@@ -75,8 +75,11 @@ export class CartComponent implements OnInit {
             if (product.quantity <= 0) {
                 product.quantity = 1;
             }
-            product.total_price = (product.price + (product.selected_option.type ? product.selected_option?.price : -product.selected_option?.price))
-                * product.quantity
+            let totalPrice = product.price;
+            product.selected_options.forEach(option => {
+                totalPrice += option.type ? option?.price : -option?.price;
+            })
+            product.total_price = totalPrice * product.quantity;
             this.subTotal += product.total_price;
         });
         this.total = this.subTotal;
