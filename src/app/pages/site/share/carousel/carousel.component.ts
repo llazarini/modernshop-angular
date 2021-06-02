@@ -90,7 +90,7 @@ export class CarouselComponent implements AfterViewInit, OnInit {
     }
 
     public getUrl(slide: any) {
-        return slide.file?.url ? slide.file?.url : slide.url;
+        return slide.file?.url ? slide.file?.url + this.urlParams() : slide.url + this.urlParams();
     }
 
     public sliderWidth(): number {
@@ -99,5 +99,9 @@ export class CarouselComponent implements AfterViewInit, OnInit {
 
     public sliderHeight(): number {
         return (this.height * this.windowWidth) / this.width;
+    }
+
+    private urlParams() {
+        return '&width=' + this.width + '&height=' + this.height;
     }
 }

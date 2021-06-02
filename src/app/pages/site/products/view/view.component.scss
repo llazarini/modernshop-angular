@@ -33,6 +33,7 @@
         .attributes {
             button {
                 font-size: 12px;
+                padding: 0 10px;
                 &.selected {
                     background: $base-accent;
                     border: $base-accent;

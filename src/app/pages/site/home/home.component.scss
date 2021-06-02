@@ -1,3 +1,4 @@
+@import 'src/variables';
 section {
     padding: 30px 0px;
     .product {
@@ -6,9 +7,9 @@ section {
     .categories {
         overflow: auto;
         .category {
-            opacity: 0.7;
+            opacity: 1;
             &.selected {
-                opacity: 1;
+                border: 2px solid $base-accent;
             }
         }
     }
