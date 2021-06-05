@@ -72,22 +72,18 @@
             <h1>Escolha uma opção de frete</h1>
             <mat-radio-group class="width100" fxLayout="column" [(ngModel)]="shippingOption" (ngModelChange)="setShipping()">
                 <ng-container *ngFor="let ship of shipping">
-                    <div fxFill fxLayoutAlign="space-between center" class="margin-bottom">
+                    <div fxFill fxLayoutAlign.gt-xs="space-between center" class="margin-bottom" fxLayout="column" fxLayout.gt-xs="row">
                         <mat-radio-button [value]="ship">
-                            <div fxLayout="row wrap" fxLayoutAlign="space-between center">
-                                <div class="margin-right margin-left">
-                                    <div>
-                                        <img [src]="ship.image" width="50px" height="15px">
-                                        {{ ship.name }}
-                                    </div>
-                                    <div class="muted">Entrega em até {{ ship.delivery_time }} dias úteis</div>
+                            <div class="margin-left">
+                                <div>
+                                    <img [src]="ship.image" width="50px" height="15px">
+                                    {{ ship.name }}
                                 </div>
+                                <div class="muted">Entrega em até {{ ship.delivery_time }} dias úteis</div>
+                                <div>{{ ship.price | price }}</div>
                             </div>
                         </mat-radio-button>
-                        <div fxLayout="row wrap" fxLayoutAlign="space-between center">
-                            <div class="margin-right">{{ ship.price | price }}</div>
-                        </div>
-                        <mat-divider></mat-divider>
+                        <hr>
                     </div>
                 </ng-container>
             </mat-radio-group>

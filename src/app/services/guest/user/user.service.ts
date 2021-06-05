@@ -46,6 +46,13 @@ export class UserService {
         return this.httpClient.post<any>(environment.baseSiteUrl + '/password', data);
     }
 
+    public set email(email: string) {
+        sessionStorage.setItem('email', email);
+    }
+
+    public get email() {
+        return sessionStorage.getItem('email');
+    }
 }
 interface IPassword {
     code: string;

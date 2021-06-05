@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     )
     {
         this.formGroup = new FormGroup({
-            email: new FormControl(),
+            email: new FormControl(this.userService.email),
             password: new FormControl(),
         });
     }

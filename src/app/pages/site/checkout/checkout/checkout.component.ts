@@ -5,6 +5,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthService} from '../../../../services/auth/auth.service';
 import {AlertService} from '../../../../services/alert/alert.service';
+import {UserService} from '../../../../services/guest/user/user.service';
 
 @Component({
   selector: 'app-checkout',
@@ -22,6 +23,7 @@ export class CheckoutComponent implements OnInit {
         private router: Router,
         private authService: AuthService,
         private alertService: AlertService,
+        private userService: UserService,
     ) {
         this.formGroup = new FormGroup({
             email: new FormControl(),
@@ -42,6 +44,7 @@ export class CheckoutComponent implements OnInit {
         this.checkoutService
             .exists(this.formGroup.value.email)
             .subscribe(exists => {
+                this.userService.email = this.formGroup.value.email;
                 if (exists) {
                     this.router.navigate(['user', 'login']);
                 } else {

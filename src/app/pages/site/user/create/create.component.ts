@@ -26,7 +26,7 @@ export class CreateComponent implements OnInit {
     ) {
         this.formGroup = new FormGroup({
             name: new FormControl('', [Validators.minLength(3), Validators.maxLength(100)]),
-            email: new FormControl('', [Validators.required, Validators.email]),
+            email: new FormControl(this.userService.email, [Validators.required, Validators.email]),
             phone: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(11)]),
             password: new FormControl('', [Validators.minLength(6), Validators.maxLength(100)]),
             password_confirm: new FormControl('', [Validators.minLength(6), Validators.maxLength(100)]),
