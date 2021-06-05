@@ -2,18 +2,19 @@
 
 <app-carousel fxHide.lt-sm [height]="500" [width]="1920" [slides]="banners"></app-carousel>
 
-<section class="container">
-    <h1 class="margin-top">Categorias</h1>
-    <div fxLayout="row" fxLayoutGap="2%" class="categories">
-        <ng-container *ngFor="let category of categories">
-            <app-category [category]="category" (click)="filtering(category)" class="category"
-                          [class.selected]="category.id === this.filter?.category_id"></app-category>
-        </ng-container>
-    </div>
-    <div fxFlexFill fxLayoutAlign="center center">
-        <mat-progress-spinner mode="indeterminate" *ngIf="loadingCategories"></mat-progress-spinner>
-    </div>
-</section>
+<div class="container-categories">
+    <section class="container">
+        <div fxLayout="row" fxLayoutGap="2%" class="categories">
+            <ng-container *ngFor="let category of categories">
+                <app-category [category]="category" (click)="filtering(category)" class="category"
+                              [class.selected]="category.id === this.filter?.category_id"></app-category>
+            </ng-container>
+        </div>
+        <div fxFlexFill fxLayoutAlign="center center">
+            <mat-progress-spinner mode="indeterminate" *ngIf="loadingCategories"></mat-progress-spinner>
+        </div>
+    </section>
+</div>
 
 <section class="container">
     <h1 class="margin-top">{{ title() }}</h1>
