@@ -5,6 +5,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {CheckoutService} from '../../../../services/guest/checkout/checkout.service';
 import {AlertService} from '../../../../services/alert/alert.service';
 import {IOption} from '../../../../interfaces/IOption';
+import {Meta, Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-view',
@@ -25,6 +26,8 @@ export class ViewComponent implements OnInit {
         private checkoutService: CheckoutService,
         private router: Router,
         private alertService: AlertService,
+        private titleService: Title,
+        private metaService: Meta
     ) {}
 
     public ngOnInit(): void {
@@ -51,6 +54,11 @@ export class ViewComponent implements OnInit {
             .show(this.id)
             .subscribe(response => {
                 this.product = response;
+                this.metaService.addTags([
+                    { name: 'title', content: this.product?.meta_title ? this.product?.meta_title : this.product?.name },
+                    { name: 'description', content: this.product?.meta_description ? this.product?.meta_description : this.product?.description },
+                ]);
+                this.titleService.setTitle(this.product?.meta_title ? this.product?.meta_title : this.product?.name);
             })
             .add(() => this.loading -= 1);
     }

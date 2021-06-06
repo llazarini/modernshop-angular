@@ -84,7 +84,7 @@ export class CartComponent implements OnInit {
         });
         this.total = this.subTotal;
         this.checkoutService.products = this.products;
-        this.shipment();
+        //this.shipment();
     }
 
     public clearShipment() {

@@ -2,7 +2,6 @@ import {Component, Input, OnInit} from '@angular/core';
 import {IProduct} from '../../../../interfaces/IProduct';
 import {CheckoutService} from '../../../../services/guest/checkout/checkout.service';
 import {Router} from '@angular/router';
-import {AlertService} from '../../../../services/alert/alert.service';
 @Component({
   selector: "app-product",
   templateUrl: "./product.component.html",
@@ -19,6 +18,6 @@ export class ProductComponent implements OnInit {
     public ngOnInit() {}
 
 	buy() {
-		this.router.navigate(['/', 'product', 'view', this.product.id]);
+		this.router.navigate(['/', 'product', 'view', this.product.id, this.product.slug]);
 	}
 }

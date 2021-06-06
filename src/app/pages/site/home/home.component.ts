@@ -6,6 +6,7 @@ import {ProductService} from '../../../services/guest/product/product.service';
 import {ICategory} from '../../../interfaces/ICategory';
 import {CategoryService} from '../../../services/guest/category/category.service';
 import {ScrollPaginationService} from '../../../services/scroll-pagination/scroll-pagination.service';
+import {Meta, Title} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -30,7 +31,13 @@ export class HomeComponent implements OnInit {
         private productService: ProductService,
         private categoryService: CategoryService,
         private scrollPaginationService: ScrollPaginationService,
+        private metaService: Meta,
+        private titleService: Title,
     ) {
+        this.titleService.setTitle('Ana Raquel Ilustrações')
+        this.metaService.addTags([
+            { name: 'description', content: 'Ilustrações, molduras e quadros feitas por artista independente Ana Raquel. Compre desenhos feitos sobre bailarinas, animes, natureza e muito mais.' },
+        ]);
     }
 
     public ngOnInit(): void {

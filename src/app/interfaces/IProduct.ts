@@ -7,6 +7,7 @@ export interface IProduct {
 	attributes: Array<IAttribute>;
     id?: number;
 	name?: string;
+	slug?: string;
 	description?: string;
 	selected_options?: Array<IOption>;
 	options?: Array<IOption>;
@@ -17,4 +18,7 @@ export interface IProduct {
 	price_cost?: number;
 	total_price?: number;
 	quantity?: number;
+	meta_title?: string;
+	meta_description?: string;
+	meta_keys?: string;
 }

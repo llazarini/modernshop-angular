@@ -35,10 +35,10 @@
                 </div>
             </div>
             <div class="buy" fxLayout="column" fxLayoutGap="15px">
-                <button type="button" mat-stroked-button color="primary" (click)="addChart()">
+                <button type="button" class="large-button" mat-stroked-button color="primary" (click)="addChart()">
                     <i class="mdi mdi-cart"></i> Adicionar ao Carrinho
                 </button>
-                <button type="button" mat-flat-button color="accent" (click)="buyNow()">
+                <button type="button" class="large-button" mat-flat-button color="accent" (click)="buyNow()">
                     <i class="mdi mdi-cart-check"></i> Comprar agora
                 </button>
             </div>
@@ -69,5 +69,10 @@
     <div class="padding">
         <div class="sub-title">Descrição do Produto</div>
         <div [innerHTML]="product?.description"></div>
+
+        <ng-container *ngIf="product?.categories?.length > 0">
+            <div class="sub-title">Produtos Relacionados</div>
+            <app-product-carousel [category]="product.categories[0].slug"></app-product-carousel>
+        </ng-container>
     </div>
 </div>

@@ -16,6 +16,7 @@ import {FormsModule} from '@angular/forms';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatRadioModule} from '@angular/material/radio';
 import {PriceModule} from '../../../pipes/price.module';
+import {ProductCarouselModule} from '../share/product-carousel/product-carousel.module';
 
 @NgModule({
     declarations: [
@@ -39,6 +40,7 @@ import {PriceModule} from '../../../pipes/price.module';
 		MatRadioModule,
 		ExtendedModule,
 		PriceModule,
+		ProductCarouselModule,
 	]
 })
 export class ProductModule { }

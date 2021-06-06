@@ -1,12 +1,15 @@
 <div fxLayout="column">
-    <div class="container margin-top padding" fxFlex="none">
-        Fique tranquilo, todos os meios de pagamentos de nossa loja são super seguros, você pode efetuar o pagamento através do Stripe®, cartões Visa ou MasterCard®, ou até mesmo por PIX.
-    </div>
-
     <footer fxFlex="none">
-        <div class="container padding-horizontal" fxLayoutAlign="space-between start" fxLayout="column">
-            <div fxLayout="row">
-                <img width="150px" src="assets/images/logo-black.png">
+        <div class="container padding-horizontal" fxLayout="column">
+            <div fxLayout="row wrap" fxLayoutAlign="space-between space-between" fxLayoutGap="30px">
+                <div>
+                    <img width="150px" src="assets/images/logo-black.png">
+                </div>
+                <div fxFlex class="margin-left" fxLayout="column">
+                    <a [routerLink]="'home'">Home</a>
+                    <a [routerLink]="'checkout'">Checkout</a>
+                    <a [routerLink]="'privacy'">Termos e Privacidade</a>
+                </div>
             </div>
             <div class="made-by">
                 <div>

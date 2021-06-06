@@ -9,7 +9,7 @@ const routes: Routes = [
 		component: ListComponent,
 	},
 	{
-		path: 'view/:id',
+		path: 'view/:id/:name',
 		component: ViewComponent,
 	},
 ];
