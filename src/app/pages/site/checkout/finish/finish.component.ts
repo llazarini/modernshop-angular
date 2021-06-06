@@ -64,6 +64,7 @@ export class FinishComponent implements OnInit {
     }
 
     public creditCard() {
+        this.loading += 1;
         const form = this.formGroup.value;
         this.checkoutService
             .paymentCreditCard(form)
@@ -76,6 +77,7 @@ export class FinishComponent implements OnInit {
     }
 
 	public pix() {
+        this.loading += 1;
         this.checkoutService
             .paymentPix()
             .subscribe((response) => {
@@ -90,7 +92,6 @@ export class FinishComponent implements OnInit {
         if (this.loading > 0) {
             return;
         }
-        this.loading += 1;
         if (this.option === 'pix') {
             this.pix();
             return;

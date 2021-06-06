@@ -1,8 +1,9 @@
-<div fxLayout="column" fxFill>
+<div fxLayout="column" class="w100">
     <mat-progress-bar *ngIf="loading" class="progress" mode="indeterminate"></mat-progress-bar>
-    <div fxLayout="column" fxFill>
+    <div fxLayout="column">
         <small class="muted">Produtos</small>
-        <div *ngFor="let product of products; let i = index" fxFill fxLayoutAlign="space-between center" class="margin-bottom">
+        <div *ngFor="let product of products; let i = index" fxLayoutAlign.gt-xs="space-between center" class="margin-bottom"
+             fxLayout="column" fxLayout.gt-xs="row">
             <div fxFlex fxLayout="row">
                 <img [src]="product.files[0]?.url" class="product-image rounded">
                 <div class="margin-left">

@@ -10,13 +10,11 @@
                 <mat-label>E-mail</mat-label>
                 <input matInput required formControlName="email"/>
             </mat-form-field>
-            <div>
-                <button class="large-button" mat-flat-button color="primary" type="submit">Continuar para Pagamento</button>
-            </div>
+            <button class="large-button" mat-flat-button color="primary" type="submit">Continuar para Pagamento</button>
         </form>
     </div>
-    <div fxFlex.gt-sm="500px">
-        <h1>Finalizar Compra</h1>
+    <div fxFlex.gt-sm="500px" ngClass.lt-sm="margin-top" fxFill>
+        <h1>Carrinho de compras</h1>
         <app-cart></app-cart>
     </div>
 </div>

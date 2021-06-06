@@ -10,8 +10,8 @@
             <mat-error *ngIf="form.name?.errors?.required">Você deve preencher o seu nome.</mat-error>
             <mat-error *ngIf="form.name?.errors?.minLength">Digite seu nome completo.</mat-error>
         </mat-form-field>
-        <div fxLayout="row">
-            <mat-form-field fxFlex appearance="outline" class="margin-right">
+        <div fxLayout="column" fxLayout.gt-xs="row">
+            <mat-form-field fxFlex appearance="outline" ngClass.gt-xs="margin-right">
                 <mat-label>E-mail</mat-label>
                 <input matInput required formControlName="email"/>
                 <mat-error *ngIf="form.email?.errors?.required">Você deve preencher o e-mail.</mat-error>
@@ -22,8 +22,8 @@
                 <mat-error *ngIf="form.phone?.errors?.required || form.phone?.errors?.minLength || form.phone?.errors?.maxLength">O telefone é inválido.</mat-error>
             </mat-form-field>
         </div>
-        <div fxLayout="row">
-            <mat-form-field fxFlex appearance="outline" class="margin-right">
+        <div fxLayout="column" fxLayout.gt-xs="row">
+            <mat-form-field fxFlex appearance="outline" ngClass.gt-xs="margin-right">
                 <mat-label>Senha</mat-label>
                 <input matInput type="password" required formControlName="password"/>
                 <mat-error *ngIf="form.password?.errors?.required">Você deve preencher a senha.</mat-error>
