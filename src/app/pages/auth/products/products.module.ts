@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {ProductsComponent} from "./products.component";
 import {ProductsRoutingModule} from "./products-routing.module";
-import {FlexModule} from "@angular/flex-layout";
+import {ExtendedModule, FlexModule} from '@angular/flex-layout';
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatBadgeModule} from "@angular/material/badge";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
@@ -28,6 +28,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {NgxMatSelectSearchModule} from 'ngx-mat-select-search';
 import {FileUploadComponent} from '../share/file-upload/file-upload.component';
+import {NgxCurrencyModule} from 'ngx-currency';
 
 @NgModule({
 	declarations: [
@@ -66,6 +67,8 @@ import {FileUploadComponent} from '../share/file-upload/file-upload.component';
 		MatAutocompleteModule,
 		NgxMatSelectSearchModule,
 		FormsModule,
+		ExtendedModule,
+		NgxCurrencyModule,
 	]
 })
 export class ProductsModule { }

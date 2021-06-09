@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Router} from '@angular/router';
 import {AlertService} from '../../../../services/alert/alert.service';
 import {ProductService} from '../../../../services/auth/product/product.service';
@@ -15,7 +15,7 @@ import {IOption} from '../../../../interfaces/IOption';
 })
 export class AddEditComponent implements OnInit {
     public formGroup: FormGroup;
-    public loading: boolean;
+    public loading: number = 0;
     public error: string;
     public id: number = null;
     public fileType = IFileClassType.product;
@@ -24,51 +24,44 @@ export class AddEditComponent implements OnInit {
 	public options: Array<IOption> = [];
 
     constructor(
-      private formBuilder: FormBuilder = null,
-      private router: Router,
-      private activatedRoute: ActivatedRoute,
-      private alertService: AlertService,
-      private productService: ProductService
+        private router: Router,
+        private activatedRoute: ActivatedRoute,
+        private alertService: AlertService,
+        private productService: ProductService
     ) {
-        this.formGroup = this.formBuilder.group({
-            request_token: [this.token],
-            id: [null],
-            sku: [null],
-            name: [null, [Validators.required, Validators.maxLength(255)]],
-            description: [null],
-            price: [null],
-            price_cost: [null],
-            meta_name: [null],
-            meta_description: [null],
-            meta_keys: [null],
-            categories: formBuilder.array([]),
-            options: formBuilder.array([])
+        this.formGroup = new FormGroup({
+            request_token: new FormControl([this.token]),
+            id: new FormControl([null]),
+            sku: new FormControl([null]),
+            name: new FormControl([null, [Validators.required, Validators.maxLength(255)]]),
+            description: new FormControl([null]),
+            price: new FormControl([null]),
+            price_cost: new FormControl([null]),
+            meta_name: new FormControl([null]),
+            meta_description: new FormControl([null]),
+            meta_keys: new FormControl([null]),
+            categories: new FormControl([]),
+            options:  new FormControl([])
         });
     }
 
     ngOnInit(): void {
         this.id = this.activatedRoute.snapshot.params.id;
+        this.dataprovider();
         if (this.id) {
             this.get();
-        } else {
-            this.dataprovider();
         }
     }
 
     private dataprovider() {
-        this.loading = true;
+        this.loading += 1;
         this.productService
             .dataprovider()
             .subscribe((response) => {
-                this.categories.forEach(category => category.selected = true);
-                this.formGroup.value.categories = this.categories.map(category => category.id);
-                this.categories = this.categories.concat(response.categories.filter(item => !this.categories.some(category => category.id === item.id)));
-
-                this.options.forEach(option => option.selected = true);
-                this.formGroup.value.options = this.options.map(option => option.id);
-                this.options = this.options.concat(response.options.filter(item => !this.options.some(option => option.id === item.id)));
+                this.categories = response.categories;
+                this.options = response.options;
             })
-            .add(() => this.loading = false);
+            .add(() => this.loading -= 1);
     }
 
     public submit() {
@@ -83,7 +76,7 @@ export class AddEditComponent implements OnInit {
     }
 
     private store() {
-        this.loading = true;
+        this.loading += 1;
         this.productService
             .store(this.formGroup.value)
             .subscribe((response) => {
@@ -92,11 +85,11 @@ export class AddEditComponent implements OnInit {
             }, error => {
                 this.alertService.treatError(error)
             })
-            .add(() => this.loading = false);
+            .add(() => this.loading -= 1);
     }
 
     private update() {
-        this.loading = true;
+        this.loading += 1;
         this.productService
           .update(this.formGroup.value)
           .subscribe((response) => {
@@ -105,49 +98,19 @@ export class AddEditComponent implements OnInit {
           }, error => {
               this.alertService.treatError(error)
           })
-          .add(() => this.loading = false);
+          .add(() => this.loading -= 1);
     }
 
     private get() {
-        this.loading = true;
+        this.loading += 1;
         this.productService
             .get(this.id)
             .subscribe((response) => {
-                this.formGroup.patchValue(response);
-                this.options = response.options;
-                this.categories = response.categories;
-                this.dataprovider();
+                const product: any = response;
+                product.options = response.options?.map(item => item.id);
+                product.categories = response.categories?.map(item => item.id);
+                this.formGroup.patchValue(product);
             })
-            .add(() => this.loading = false);
-    }
-
-	public selectCategory(category: ICategory) {
-        category.selected = !category.selected;
-        this.formGroup.value.categories = this.categories
-            .filter(category => category.selected)
-            .map(category => category.id);
-	}
-
-    public nonSelectedCategories() {
-        return this.categories?.filter(category => !category.selected)
-    }
-
-    public selectedCategories() {
-        return this.categories?.filter(category => category.selected)
-    }
-
-    public selectOption(option: IOption) {
-        option.selected = !option.selected;
-        this.formGroup.value.options = this.options
-            .filter(option => option.selected)
-            .map(option => option.id);
-    }
-
-    public nonSelectedOptions() {
-        return this.options?.filter(option => !option.selected)
-    }
-
-    public selectedOptions() {
-        return this.options?.filter(option => option.selected)
+            .add(() => this.loading -= 1);
     }
 }

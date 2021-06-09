@@ -3,6 +3,9 @@ import {AlertService} from '../../../services/alert/alert.service';
 import {ICategory} from '../../../interfaces/ICategory';
 import {OrderService} from '../../../services/auth/order/order.service';
 import {IPaymentStatus} from '../../../interfaces/IOrder';
+import {ConfirmComponent} from '../share/alert/confirm.component';
+import {StatusUpdateComponent} from './status-update/status-update.component';
+import {MatDialog} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-orders',
@@ -21,6 +24,7 @@ export class OrdersComponent implements OnInit {
     constructor(
         private orderService: OrderService,
         private alertService: AlertService,
+        private matDialog: MatDialog,
     ) { }
 
     ngOnInit(): void {
@@ -59,23 +63,33 @@ export class OrdersComponent implements OnInit {
     }
 
     public updateStatus(row, status: string) {
-        this.alertService.confirm("Deseja mesmo atualizar o status para " + status, "Atualizar status do pedido " + row.id)
-            .subscribe((response) => {
-                if(!response) {
+        const dialog = this.matDialog.open(StatusUpdateComponent, {
+            minWidth: '300px',
+            maxWidth: '700px',
+            data: { status },
+        });
+        return dialog
+            .afterClosed()
+            .subscribe(response => {
+                if(!response || !response.update) {
                     return;
                 }
-                this.changeStatus(row, status)
-            })
+                this.changeStatus(row, status, response.trackingCode)
+            });
     }
 
-    private changeStatus(row, status: string) {
+    private changeStatus(row, status: string, trackingCode?: string) {
         this.loading += 1;
         this.orderService
-            .changeStatus(row.id, status)
+            .changeStatus(row.id, status, trackingCode)
             .subscribe((response) => {
                 this.getAll(true);
                 this.alertService.toast(response.message);
             })
             .add(() => this.loading -= 1);
+    }
+
+    public haveSomeStatus(slug: string) {
+        return slug === 'waiting_payment' || slug === 'paid';
     }
 }

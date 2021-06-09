@@ -27,10 +27,14 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {NgxMatSelectSearchModule} from 'ngx-mat-select-search';
 import {PriceModule} from '../../../pipes/price.module';
+import {StatusUpdateComponent} from './status-update/status-update.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
 	declarations: [
 		OrdersComponent,
+		StatusUpdateComponent
 	],
 	imports: [
 		CommonModule,
@@ -61,6 +65,8 @@ import {PriceModule} from '../../../pipes/price.module';
 		NgxMatSelectSearchModule,
 		PriceModule,
 		FormsModule,
+		MatDialogModule,
+		MatMenuModule,
 	]
 })
 export class OrdersModule { }

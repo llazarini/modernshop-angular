@@ -38,10 +38,11 @@ export class OrderService {
         return this.httpClient.get<IDataprovider>(environment.baseAuthUrl + '/orders/dataprovider');
 	}
 
-    public changeStatus(id, status: string) {
+    public changeStatus(id, status: string, trackingCode?: string) {
         return this.httpClient.put<IResponse<IProduct>>(environment.baseAuthUrl + '/orders/status/', {
             id,
-            status
+            status,
+            tracking_code: trackingCode
         });
     }
 }

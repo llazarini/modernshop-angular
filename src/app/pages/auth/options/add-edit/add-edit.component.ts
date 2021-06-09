@@ -31,6 +31,7 @@ export class AddEditComponent implements OnInit {
         private optionService: OptionService
     ) {
         this.formGroup = this.formBuilder.group({
+            request_token: [this.token],
             id: [null],
             attribute_id: [null, Validators.required],
             name: [null, [Validators.required, Validators.maxLength(255)]],

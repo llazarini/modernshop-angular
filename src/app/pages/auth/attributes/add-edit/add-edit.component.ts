@@ -30,10 +30,10 @@ export class AddEditComponent implements OnInit {
       private attributeService: AttributeService
     ) {
         this.formGroup = this.formBuilder.group({
+            request_token: [this.token],
             id: [null],
             name: [null, [Validators.required, Validators.maxLength(255)]],
             description: [null],
-            slug: [null],
         });
     }
 
@@ -67,6 +67,7 @@ export class AddEditComponent implements OnInit {
             })
             .add(() => this.loading = false);
     }
+
     private update() {
         this.loading = true;
         this.attributeService

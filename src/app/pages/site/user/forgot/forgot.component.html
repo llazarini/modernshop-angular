@@ -1,6 +1,6 @@
 <mat-progress-bar *ngIf="loading > 0" class="progress" mode="indeterminate"></mat-progress-bar>
 
-<div class="container inner-page">
+<div class="container inner-page" fxLayout="column">
     <ng-container *ngIf="!sent">
         <h1>Esqueci a senha</h1>
         <p>Iremos enviar um código para seu e-mail. Ou <a [routerLink]="['/','user', 'create']">clique aqui</a> para fazer login.</p>
@@ -13,9 +13,9 @@
         </form>
     </ng-container>
     <ng-container *ngIf="sent">
-        <div class="container inner-page" fxLayout="row" fxLayoutAlign="start center">
+        <div fxLayout="column" fxLayoutAlign="start center" fxLayout.gt-xs="row">
             <div>
-                <img src="assets/images/empty-cart.png">
+                <img class="image" src="assets/images/empty-cart.png">
             </div>
             <div>
                 <h1>Sucesso ao enviar o código para seu e-mail!</h1>

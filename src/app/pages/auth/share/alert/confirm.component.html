@@ -1,15 +1,20 @@
-<div class="container">
-    <h1>{{ data?.title }}</h1>
-    <div class="message" [innerHtml]="data?.message"></div>
-    <div fxLayout="row" fxLayoutAlign="end center">
-        <ng-container *ngIf="data.yes || data.no; else close">
-            <button mat-stroked-button class="margin-horizontal" color="primary" *ngIf="data.no"
-                (click)="confirm(false)">{{data.no}}</button>
-            <button mat-raised-button color="primary" (click)="confirm(true)"
-                    *ngIf="data.yes">{{data.yes}}</button>
-        </ng-container>
-        <ng-template #close>
-            <button class="margin-top" mat-stroked-button color="primary" (click)="confirm(true)">Fechar</button>
-        </ng-template>
-    </div>
+<div mat-dialog-title fxLayoutAlign="space-between center">
+    <strong>{{ data?.title }}</strong>
+    <button mat-icon-button mat-dialog-close>
+        <i class="mdi mdi-close"></i>
+    </button>
 </div>
+<mat-dialog-content fxLayout="column">
+    <div class="message" [innerHtml]="data?.message"></div>
+</mat-dialog-content>
+<mat-dialog-actions fxLayoutAlign="end center" class="margin-top">
+    <ng-container *ngIf="data.yes || data.no; else close">
+        <button mat-stroked-button class="margin-horizontal" color="primary" *ngIf="data.no"
+                (click)="confirm(false)">{{data.no}}</button>
+        <button mat-raised-button color="primary" (click)="confirm(true)"
+                *ngIf="data.yes">{{data.yes}}</button>
+    </ng-container>
+    <ng-template #close>
+        <button class="margin-top" mat-stroked-button color="primary" (click)="confirm(true)">Fechar</button>
+    </ng-template>
+</mat-dialog-actions>

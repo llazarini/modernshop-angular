@@ -29,6 +29,7 @@ export class AddEditComponent implements OnInit {
       private categoryService: CategoryService
     ) {
         this.formGroup = this.formBuilder.group({
+            request_token: [this.token],
             id: [null],
             name: [null, [Validators.required, Validators.maxLength(255)]],
             description: [null],

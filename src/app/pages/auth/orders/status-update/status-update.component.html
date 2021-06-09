@@ -1,0 +1,17 @@
+<div mat-dialog-title fxLayoutAlign="space-between center">
+    <strong>Atualizar status para {{ data.status }}</strong>
+    <button mat-icon-button mat-dialog-close>
+        <i class="mdi mdi-close"></i>
+    </button>
+</div>
+<mat-dialog-content fxLayout="column">
+    <div>Deseja mesmo atualizar para o status de {{ data.status }}</div>
+    <mat-form-field *ngIf="data.status == 'sent'">
+        <mat-label>Código de rastreio</mat-label>
+        <input matInput [(ngModel)]="trackingCode">
+    </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions fxLayoutAlign="end center" class="margin-top">
+    <button mat-stroked-button color="primary" mat-dialog-close>Cancelar</button>
+    <button mat-raised-button color="primary" (click)="confirm()">Atualizar Status</button>
+</mat-dialog-actions>

@@ -3,8 +3,8 @@
 <div class="container inner-page" fxLayout="column" fxLayoutAlign="start start">
     <mat-card *ngFor="let order of orders" class="margin-bottom" fxFill fxLayout="column">
         <h1>Pedido #{{ order.id }}</h1>
-        <div mat-card-content>
-            <div fxFlex="400px">
+        <div mat-card-content fxLayout="column" fxLayout.gt-xs="row">
+            <div fxFlex.gt-xs="400px">
                 <div><b fxFlex="120px">Status do pagamento:</b> {{ order.payment_status?.name }}</div>
                 <div><b fxFlex="120px">Status do envio:</b> {{ order.payment_type?.name }}</div>
 

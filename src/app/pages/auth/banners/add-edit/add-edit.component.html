@@ -22,21 +22,20 @@
         <button mat-button type="button" (click)="addBanner()">Adicionar Banner</button>
 
         <div fxFlex>
-            <div *ngFor="let banner of banners.controls; let i = index" [formGroup]="banners.controls[i]" fxLayout="row" fxLayoutAlign="start center">
+            <div class="padding" *ngFor="let banner of banners.controls; let i = index" [formGroup]="banners.controls[i]" fxLayout="column">
+                <mat-form-field appearance="outline">
+                    <mat-label>Nome</mat-label>
+                    <input matInput required formControlName="name"/>
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Conteúdo</mat-label>
+                    <textarea matInput required formControlName="content"></textarea>
+                </mat-form-field>
                 <app-file-upload type="App\Models\Banner" [id]="banner.value.id" [token]="this.token" [multiple]="false"
                                  (uploaded)="fileUploaded(i, $event)">
                 </app-file-upload>
-                <div fxLayout="column" class="margin-left" fxFlex>
-                    <mat-form-field appearance="outline">
-                        <mat-label>Nome</mat-label>
-                        <input matInput required formControlName="name"/>
-                    </mat-form-field>
-                    <mat-form-field appearance="outline">
-                        <mat-label>Conteúdo</mat-label>
-                        <textarea matInput required formControlName="content"></textarea>
-                    </mat-form-field>
-                </div>
-                <button mat-icon-button type="button" (click)="removeBanner(i)"><i class="mdi mdi-trash-can"></i></button>
+                <button mat-icon-button type="button" (click)="removeBanner(i)"><i class="mdi mdi-trash-can"></i> Remover banner</button>
+                <mat-divider></mat-divider>
             </div>
         </div>
     </div>

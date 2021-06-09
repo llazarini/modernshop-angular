@@ -1,7 +1,12 @@
-<div class="container">
-	<h1>{{ data?.title }}</h1>
+<div mat-dialog-title fxLayoutAlign="space-between center">
+	<strong>{{ data?.title }}</strong>
+	<button mat-icon-button mat-dialog-close>
+		<i class="mdi mdi-close"></i>
+	</button>
+</div>
+<div mat-dialog-content fxLayout="column">
 	<div class="message" [innerHtml]="data?.message | sanitize"></div>
-	<div fxLayout="row" fxLayoutAlign="center center">
-		<button mat-raised-button color="primary" (click)="done()">OK</button>
-	</div>
+</div>
+<div mat-dialog-actions fxLayoutAlign="end center" class="margin-top">
+	<button mat-raised-button color="primary" (click)="done()">OK</button>
 </div>

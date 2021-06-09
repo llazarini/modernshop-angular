@@ -19,14 +19,13 @@
         <ng-container matColumnDef="details">
             <th mat-header-cell *matHeaderCellDef>Detalhes</th>
             <td mat-cell *matCellDef="let row">
-                <div *ngFor="let orderProduct of row.order_products" class="product" fxLayout="column" fxLayoutAlign="start start">
-                    <div class="title">{{ orderProduct.product?.name }}</div>
-                    <div class="title">{{ orderProduct.option?.name }}</div>
-                    <div fxLayout="row">
-                        <div><b>Preço Unitário:</b> {{ orderProduct.price | price }}</div>
-                        <div class="margin-left">{{ orderProduct.quantity}} x</div>
-                        <div class="margin-left"><b>Total: </b>{{ orderProduct.amount | price }}</div>
-                    </div>
+                <div fxLayout="column" *ngFor="let orderProduct of row.order_products; let i = index">
+                    <div>{{ orderProduct.product?.name }}</div>
+                    <small *ngFor="let orderOption of orderProduct?.order_product_options" class="muted">{{ orderOption?.option?.name }}</small>
+                    <small fxLayout="row">
+                        <div>{{ orderProduct.price | price }}</div>
+                        <div class="margin-left">{{ orderProduct.quantity}} x itens</div>
+                    </small>
                 </div>
             </td>
         </ng-container>
@@ -49,14 +48,30 @@
         <ng-container matColumnDef="actions" stickyEnd>
             <th mat-header-cell *matHeaderCellDef class="actions">Ações</th>
             <td mat-cell *matCellDef="let row">
-                <button mat-button color="primary" *ngIf="row.payment_status?.slug === 'waiting_payment'" (click)="updateStatus(row, 'paid')">
-                    <i class="mdi mdi-check"></i>
-                    Informar Pagamento
-                </button>
-                <button mat-button color="primary" *ngIf="row.payment_status?.slug === 'paid'" (click)="updateStatus(row, 'sent')">
-                    <i class="mdi mdi-truck"></i>
-                    Informar envio
-                </button>
+                <ng-container *ngIf="haveSomeStatus(row.payment_status?.slug)">
+                    <button mat-stroked-button color="primary" [matMenuTriggerFor]="menu">
+                        <i class="mdi mdi-arrow-split-vertical"></i>
+                        Atualizar Status
+                    </button>
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item *ngIf="row.payment_status?.slug === 'waiting_payment'" (click)="updateStatus(row, 'paid')">
+                            <i class="mdi mdi-check"></i>
+                            Informar Pagamento
+                        </button>
+                        <button mat-menu-item *ngIf="row.payment_status?.slug === 'waiting_payment'" (click)="updateStatus(row, 'cancel')">
+                            <i class="mdi mdi-close"></i>
+                            Cancelar Pedido
+                        </button>
+                        <button mat-menu-item *ngIf="row.payment_status?.slug === 'paid'" (click)="updateStatus(row, 'refunded')">
+                            <i class="mdi mdi-arrow-left"></i>
+                            Estornar
+                        </button>
+                        <button mat-menu-item  *ngIf="row.payment_status?.slug === 'paid'" (click)="updateStatus(row, 'sent')">
+                            <i class="mdi mdi-truck"></i>
+                            Informar envio
+                        </button>
+                    </mat-menu>
+                </ng-container>
             </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
