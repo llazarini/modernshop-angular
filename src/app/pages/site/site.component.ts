@@ -6,7 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./site.component.scss'],
 })
 export class SiteComponent implements OnInit {
-  public loading: boolean;
-  public ngOnInit(): void {
-  }
+	public loading: boolean;
+
+	public ngOnInit(): void {
+	}
+
+	public whatsapp() {
+
+	}
 }

@@ -1,3 +1,13 @@
+@import "src/variables";
+
 .main-section {
     margin-top: 60px;
+}
+.whatsapp {
+    position: fixed;
+    bottom: $margin;
+    right: $margin;
+    font-size: 30px;
+    background: $base-primary;
+    color: #ffffff;
 }

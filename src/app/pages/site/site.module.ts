@@ -16,6 +16,7 @@ import {ProductModule} from './share/product/product.module';
 import {CategoryModule} from './share/category/category.module';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {PrivacyComponent} from './privacy/privacy.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
 @NgModule({
 	declarations: [
 		SiteComponent,
@@ -38,6 +39,7 @@ import {PrivacyComponent} from './privacy/privacy.component';
 		ExtendedModule,
 		CategoryModule,
 		MatProgressSpinnerModule,
+		MatTooltipModule,
 	]
 })
 export class SiteModule { }
