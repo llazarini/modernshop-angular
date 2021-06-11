@@ -21,7 +21,7 @@ import {NgxMaskModule} from 'ngx-mask';
   ],
   imports: [
     NgxMaskModule.forRoot(),
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     BrowserAnimationsModule,
     FlexLayoutModule,

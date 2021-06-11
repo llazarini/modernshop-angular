@@ -147,4 +147,9 @@ export class CheckoutService {
             shipping_option_id
         });
 	}
+
+    public discountCode(discountCode: string) {
+        return this.httpClient.post<any>(environment.baseSiteUrl + '/checkout/discount_code', { discount_code: discountCode });
+    }
+
 }

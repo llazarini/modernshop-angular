@@ -20,6 +20,7 @@ export class CartComponent implements OnInit {
     public user: IUser;
     public postalCode: string;
     public shippingOption: any;
+    public discountCode: string;
 
     constructor(
         private checkoutService: CheckoutService,
@@ -59,6 +60,20 @@ export class CartComponent implements OnInit {
             .add(() => this.loading -= 1);
     }
 
+    public get bestShipping() {
+        let time = -1;
+        let price = -1;
+        this.shipping?.forEach(shipping => {
+            if (shipping.delivery_time < time || time == -1) {
+                time = shipping.delivery_time;
+            }
+            if (+shipping.price < price || price == -1) {
+                price = +shipping.price;
+            }
+        })
+        return { time, price }
+    }
+
     public remove(i: any) {
         this.products.splice(i, 1);
         this.checkoutService.products = this.products;
@@ -84,12 +99,7 @@ export class CartComponent implements OnInit {
         });
         this.total = this.subTotal;
         this.checkoutService.products = this.products;
-        //this.shipment();
-    }
-
-    public clearShipment() {
-        this.postalCode = '';
-        this.shipping = null;
+        this.shipment();
     }
 
     public plus(i: number) {
@@ -103,5 +113,16 @@ export class CartComponent implements OnInit {
             this.remove(i);
         }
         this.change();
+    }
+
+    public applyDiscountCode() {
+        this.loading += 1;
+        this.checkoutService
+            .discountCode(this.discountCode)
+            .subscribe((response) => {
+
+            },
+            error => this.alertService.treatError(error))
+            .add(() => this.loading -= 1);
     }
 }

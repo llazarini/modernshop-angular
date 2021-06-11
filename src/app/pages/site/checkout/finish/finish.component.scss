@@ -37,7 +37,7 @@ table {
     margin-bottom: 30px;
     > div {
         cursor: pointer;
-        padding: 30px;
+        padding: $margin * 2;
         color: $base-accent;
         border: 2px solid $base-accent;
         border-radius: 10px;
@@ -48,10 +48,11 @@ table {
             color: #fff;
         }
         > div {
-            margin-top: 20px;
+            margin-left: $margin;
+            font-weight: bold;
+            font-size: 20px;
         }
         i {
-            margin-top: 10px;
             font-size: 50px;
         }
     }

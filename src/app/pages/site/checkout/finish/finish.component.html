@@ -2,63 +2,63 @@
 <div class="container inner-page" fxLayout="column" fxLayoutAlign="space-between start" fxLayout.gt-sm="row">
     <div fxLayout="column" fxFlex class="margin-right common-form-max">
         <h1>Escolha sua opção de pagamento</h1>
-        <div fxLayout="row" class="payment-options margin-bottom" fxLayoutGap="10px">
-            <div fxFlex fxLayout="column" (click)="option = 'pix'" [class.selected]="option === 'pix'">
+        <div fxLayout="column" class="payment-options margin-bottom" fxLayoutGap="10px">
+            <div fxFlex fxLayout="row" fxLayoutAlign="start center" (click)="option = 'pix'" [class.selected]="option === 'pix'">
                 <i class="mdi mdi-cellphone-nfc"></i>
                 <div>Pagar com PIX</div>
             </div>
-            <div fxFlex fxLayout="column" (click)="option = 'credit_card'" [class.selected]="option === 'credit_card'">
+            <div fxFlex fxLayout="row" fxLayoutAlign="start center" (click)="option = 'credit_card'" [class.selected]="option === 'credit_card'">
                 <i class="mdi mdi-credit-card-outline"></i>
                 <div>Pagar com Cartão de Crédito</div>
             </div>
         </div>
         <ng-container *ngIf="option === 'credit_card'">
-            <h2>Pagamento com Cartão de Crédito</h2>
+            <h2 class="margin-top">Pagamento com Cartão de Crédito</h2>
             <div class="card">
                 <div class="number"></div>
             </div>
             <form [formGroup]="formGroup" fxLayout="column" (submit)="creditCard()">
-            <mat-form-field appearance="outline">
-                <mat-label>Número do Cartão</mat-label>
-                <input matInput mask="0000 0000 0000 0000" required formControlName="number"/>
-                <mat-error *ngIf="form?.number?.errors?.required">
-                    O número do cartão é requerido.
-                </mat-error>
-                <mat-error *ngIf="form?.number?.errors?.minLength">
-                    O cartão precisa ter ao menos 16 números
-                </mat-error>
-            </mat-form-field>
-            <mat-form-field  appearance="outline">
-                <mat-label>Nome no Cartão</mat-label>
-                <input matInput required formControlName="name"/>
-                <mat-error *ngIf="form?.name?.errors?.required">
-                    O nome é requerido.
-                </mat-error>
-            </mat-form-field>
-            <div fxLayout="row wrap">
-                <mat-form-field fxFlex appearance="outline" ngClass.gt-sm="margin-right">
-                    <mat-label>Expira em</mat-label>
-                    <input matInput required mask="00/00" formControlName="date"/>
-                    <mat-error *ngIf="form?.date?.errors?.required">
-                        A data é requerida.
+                <mat-form-field appearance="outline">
+                    <mat-label>Número do Cartão</mat-label>
+                    <input matInput mask="0000 0000 0000 0000" required formControlName="number"/>
+                    <mat-error *ngIf="form?.number?.errors?.required">
+                        O número do cartão é requerido.
+                    </mat-error>
+                    <mat-error *ngIf="form?.number?.errors?.minLength">
+                        O cartão precisa ter ao menos 16 números
                     </mat-error>
                 </mat-form-field>
-                <mat-form-field fxFlex appearance="outline">
-                    <mat-label>CVC</mat-label>
-                    <input matInput required mask="0009" formControlName="cvc"/>
-                    <mat-error *ngIf="form.cvc.errors?.required">
-                        O código do cartão é requerido.
+                <mat-form-field  appearance="outline">
+                    <mat-label>Nome no Cartão</mat-label>
+                    <input matInput required formControlName="name"/>
+                    <mat-error *ngIf="form?.name?.errors?.required">
+                        O nome é requerido.
                     </mat-error>
                 </mat-form-field>
-            </div>
-            <mat-form-field  appearance="outline">
-                <mat-label>Número do CPF</mat-label>
-                <input matInput required [mask]="'000.000.000-00'" formControlName="cpf"/>
-                <mat-error *ngIf="form?.cpf?.errors?.required">
-                    O CPF é requerido.
-                </mat-error>
-            </mat-form-field>
-        </form>
+                <div fxLayout="row wrap">
+                    <mat-form-field fxFlex appearance="outline" ngClass.gt-sm="margin-right">
+                        <mat-label>Expira em</mat-label>
+                        <input matInput required mask="00/00" formControlName="date"/>
+                        <mat-error *ngIf="form?.date?.errors?.required">
+                            A data é requerida.
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field fxFlex appearance="outline">
+                        <mat-label>CVC</mat-label>
+                        <input matInput required mask="0009" formControlName="cvc"/>
+                        <mat-error *ngIf="form.cvc.errors?.required">
+                            O código do cartão é requerido.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <mat-form-field  appearance="outline">
+                    <mat-label>Número do CPF</mat-label>
+                    <input matInput required [mask]="'000.000.000-00'" formControlName="cpf"/>
+                    <mat-error *ngIf="form?.cpf?.errors?.required">
+                        O CPF é requerido.
+                    </mat-error>
+                </mat-form-field>
+            </form>
         </ng-container>
     </div>
     <div fxFlex.gt-sm="500px" fxLayout="column" ngClass.lt-sm="margin-top">

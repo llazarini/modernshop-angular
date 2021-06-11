@@ -25,7 +25,24 @@
         <mat-divider></mat-divider>
         <div fxLayoutAlign="end center" class="padding-vertical">
             <div class="margin-right">Sub-total:</div>
-            <div fxFlex="115px">{{ subTotal | price }}</div>
+            <div fxFlex="110px">{{ subTotal | price }}</div>
+        </div>
+        <ng-container *ngIf="bestShipping && bestShipping?.price > 0">
+            <div fxLayoutAlign="end center" class="padding-vertical">
+                <div class="margin-right">Frete:</div>
+                <div fxFlex="110px">
+                    <small class="muted">A partir de</small>
+                    <div>{{ bestShipping.price | price }}</div>
+                </div>
+            </div>
+        </ng-container>
+        <mat-divider></mat-divider>
+        <div fxLayoutAlign="end center" class="padding-vertical" fxLayoutGap="20px">
+            <mat-form-field appearance="outline">
+                <mat-label>Cupom de Desconto</mat-label>
+                <input matInput placeholder="Informe o Cupom" [(ngModel)]="discountCode">
+            </mat-form-field>
+            <button color="primary" (click)="applyDiscountCode()" mat-stroked-button>Aplicar</button>
         </div>
     </div>
 </div>
