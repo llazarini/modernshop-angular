@@ -5,6 +5,7 @@ import {IProduct} from '../../../../interfaces/IProduct';
 import {AlertService} from '../../../../services/alert/alert.service';
 import {IUser} from '../../../../interfaces/IUser';
 import {Router} from '@angular/router';
+import {IDiscount} from '../../../../interfaces/IDiscount';
 
 @Component({
   selector: 'app-cart',
@@ -14,8 +15,6 @@ import {Router} from '@angular/router';
 export class CartComponent implements OnInit {
     public loading: number = 0;
     public products: Array<IProduct>;
-    public total: number = 0;
-    public subTotal: number = 0;
     public shipping: any;
     public user: IUser;
     public postalCode: string;
@@ -54,7 +53,6 @@ export class CartComponent implements OnInit {
                 this.shipping = shippings;
                 this.checkoutService.shipping = shippings;
                 this.checkoutService.postalCode = postal;
-                this.total = this.subTotal;
             },
                 error => this.alertService.treatError(error))
             .add(() => this.loading -= 1);
@@ -85,19 +83,6 @@ export class CartComponent implements OnInit {
     }
 
     public change() {
-        this.subTotal = 0;
-        this.products.forEach(product => {
-            if (product.quantity <= 0) {
-                product.quantity = 1;
-            }
-            let totalPrice = product.price;
-            product.selected_options.forEach(option => {
-                totalPrice += option.type ? option?.price : -option?.price;
-            })
-            product.total_price = totalPrice * product.quantity;
-            this.subTotal += product.total_price;
-        });
-        this.total = this.subTotal;
         this.checkoutService.products = this.products;
         this.shipment();
     }
@@ -119,10 +104,26 @@ export class CartComponent implements OnInit {
         this.loading += 1;
         this.checkoutService
             .discountCode(this.discountCode)
-            .subscribe((response) => {
-
+            .subscribe((discount) => {
+                this.checkoutService.applyDiscount(discount);
             },
             error => this.alertService.treatError(error))
             .add(() => this.loading -= 1);
+    }
+
+    public get total(): number {
+        return this.checkoutService.total;
+    }
+
+    public get subTotal(): number {
+        return this.checkoutService.subTotal;
+    }
+
+    public get subTotalWithDiscount(): number {
+        return this.checkoutService.subTotalWithDiscount;
+    }
+
+    public get discount(): IDiscount {
+        return this.checkoutService.discount;
     }
 }

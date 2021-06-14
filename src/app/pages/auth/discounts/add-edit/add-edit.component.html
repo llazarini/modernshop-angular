@@ -1,0 +1,38 @@
+<mat-progress-bar class="progress" *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+
+<div fxLayout="row" fxLayoutAlign="space-between start">
+    <h1>{{ id ? 'Editar' : 'Adicionar' }} Desconto</h1>
+    <button (click)="submit()" color="primary" mat-flat-button>
+        <i class="mdi mdi-plus"></i>
+        {{ id ? 'Salvar edição' : 'Adicionar' }}
+    </button>
+</div>
+
+<form class="common-form padding" [formGroup]="formGroup" (submit)="submit()">
+    <div class="common-form-max" fxLayout="column">
+        <mat-form-field appearance="outline">
+            <mat-label>Nome do Desconto</mat-label>
+            <input matInput required formControlName="name"/>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Código</mat-label>
+            <input matInput required formControlName="code"/>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Tipo</mat-label>
+            <mat-select formControlName="type">
+                <mat-option value="percentage">Porcentagem</mat-option>
+                <mat-option value="value">Valor</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field fxFlex appearance="outline">
+            <mat-label>Desconto</mat-label>
+            <ng-container *ngIf="formGroup.value.type === 'value'">
+                <input currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" matInput required formControlName="value">
+            </ng-container>
+            <ng-container *ngIf="formGroup.value.type === 'percentage'">
+                <input type="number" matInput required formControlName="value">
+            </ng-container>
+        </mat-form-field>
+    </div>
+</form>

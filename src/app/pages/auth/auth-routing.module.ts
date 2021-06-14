@@ -70,6 +70,13 @@ const routes: Routes = [
 						(m) => m.OrdersModule
 					),
 			},
+			{
+				path: 'discounts',
+				loadChildren: () =>
+					import('./discounts/discounts.module').then(
+						(m) => m.DiscountsModule
+					),
+			},
 	    ],
 	}
 ];

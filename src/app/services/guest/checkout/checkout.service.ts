@@ -3,6 +3,7 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable, Subject} from 'rxjs';
 import {environment} from "../../../../environments/environment";
 import {IProduct} from '../../../interfaces/IProduct';
+import {IDiscount} from '../../../interfaces/IDiscount';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,7 @@ export class CheckoutService {
     public set products(products: Array<IProduct>) {
         sessionStorage.removeItem('shipping');
         sessionStorage.setItem('chart_products', JSON.stringify(products));
+        this.shippingOption = null;
         this.updateProductsQuantity();
     }
 
@@ -40,11 +42,20 @@ export class CheckoutService {
         return sessionStorage.getItem('postal_code');
     }
 
+    public set discount(discount: IDiscount) {
+        sessionStorage.setItem('discount', JSON.stringify(discount));
+    }
+
+    public get discount(): IDiscount {
+        return JSON.parse(sessionStorage.getItem('discount'));
+    }
+
     public set shippingOption(shippingOption: any) {
         sessionStorage.setItem('shipping_option', JSON.stringify(shippingOption));
     }
 
     public get shippingOption() {
+        console.log(JSON.parse(sessionStorage.getItem('shipping_option')));
         return JSON.parse(sessionStorage.getItem('shipping_option'));
     }
 
@@ -72,6 +83,14 @@ export class CheckoutService {
         return total;
     }
 
+    public get subTotalWithDiscount(): number {
+        let total = this.subTotal;
+        if (this.discount) {
+            total = this.discount.type === 'percentage' ? total * (1 - (this.discount.value / 100)) : total - this.discount.value;
+        }
+        return total;
+    }
+
     public add(product: IProduct): void {
         const productFound = this.products.findIndex(findProduct =>
             findProduct.id === product.id &&
@@ -89,11 +108,13 @@ export class CheckoutService {
         products.push(product);
         this.products = products;
         this.updateProductsQuantity();
+        this.shippingOption = null;
     }
 
     public remove(product: IProduct): void {
         this.products.push(product);
         this.updateProductsQuantity();
+        this.shippingOption = null;
     }
 
     public get quantity(): number {
@@ -152,4 +173,7 @@ export class CheckoutService {
         return this.httpClient.post<any>(environment.baseSiteUrl + '/checkout/discount_code', { discount_code: discountCode });
     }
 
+    public applyDiscount(discount: IDiscount) {
+        this.discount = discount;
+    }
 }

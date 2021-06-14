@@ -25,24 +25,49 @@
         <mat-divider></mat-divider>
         <div fxLayoutAlign="end center" class="padding-vertical">
             <div class="margin-right">Sub-total:</div>
-            <div fxFlex="110px">{{ subTotal | price }}</div>
-        </div>
-        <ng-container *ngIf="bestShipping && bestShipping?.price > 0">
-            <div fxLayoutAlign="end center" class="padding-vertical">
-                <div class="margin-right">Frete:</div>
-                <div fxFlex="110px">
-                    <small class="muted">A partir de</small>
-                    <div>{{ bestShipping.price | price }}</div>
-                </div>
+            <div fxFlex="200px" fxLayout="column" fxLayoutAlign="center end" fxLayoutGap="10px">
+                <ng-container *ngIf="discount">
+                    <div fxLayout="column" fxLayoutAlign="center end">
+                        <div class="total-without-discount">De {{ subTotal | price }}</div>
+                        <div class="total-discount">por {{ subTotalWithDiscount | price }}</div>
+                    </div>
+                    <small class="muted">
+                        Desconto de
+                        <span *ngIf="discount.type === 'percentage'">{{ discount.value / 100 | percent }}</span>
+                        <span *ngIf="discount.type === 'value'"> {{ discount.value | price }}</span>
+                        aplicado
+                    </small>
+                </ng-container>
+                <ng-container *ngIf="!discount">
+                    <div>{{ subTotal | price }}</div>
+                </ng-container>
             </div>
-        </ng-container>
-        <mat-divider></mat-divider>
-        <div fxLayoutAlign="end center" class="padding-vertical" fxLayoutGap="20px">
+        </div>
+        <div fxLayoutAlign="end center" class="padding-vertical" fxLayoutGap="20px" *ngIf="!discount">
             <mat-form-field appearance="outline">
                 <mat-label>Cupom de Desconto</mat-label>
                 <input matInput placeholder="Informe o Cupom" [(ngModel)]="discountCode">
             </mat-form-field>
             <button color="primary" (click)="applyDiscountCode()" mat-stroked-button>Aplicar</button>
         </div>
+        <mat-divider></mat-divider>
+        <ng-container *ngIf="bestShipping && bestShipping?.price > 0">
+            <div fxLayoutAlign="end center" class="padding-vertical">
+                <div class="margin-right">Frete:</div>
+                <div fxFlex="200px">
+                    <small class="muted">Opções a partir de:</small>
+                    <div>{{ bestShipping.price | price }}</div>
+                </div>
+            </div>
+        </ng-container>
+        <mat-divider></mat-divider>
+        <ng-container *ngIf="bestShipping && bestShipping?.price > 0">
+            <div fxLayoutAlign="end center" class="padding-vertical">
+                <div class="margin-right">Total:</div>
+                <div fxFlex="200px">
+                    <div>{{ subTotal + bestShipping.price | price }}</div>
+                </div>
+            </div>
+        </ng-container>
     </div>
 </div>

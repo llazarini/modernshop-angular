@@ -21,6 +21,10 @@
   color: #343434;
   padding: 10px 0;
 }
+.total-without-discount {
+  text-decoration: line-through;
+  color: #a4a4a4;
+}
 .total {
   font-weight: bold;
 }
