@@ -7,6 +7,7 @@ import {Router} from '@angular/router';
 import {IUser} from '../../../../interfaces/IUser';
 import {AuthService} from '../../../../services/auth/auth.service';
 import {UserService} from '../../../../services/guest/user/user.service';
+import {IDiscount} from '../../../../interfaces/IDiscount';
 
 @Component({
     selector: 'app-finish',
@@ -16,12 +17,14 @@ import {UserService} from '../../../../services/guest/user/user.service';
 export class FinishComponent implements OnInit {
     public loading: number = 0;
     public products: Array<IProduct>;
-    public total: number = 0;
     public formGroup: FormGroup;
-	public subTotal: number;
     public shippingOption: any;
 	public user: IUser;
 	public option: string = '';
+    public total: number = 0;
+    public subTotal: number = 0;
+    public subTotalWithDiscount: number = 0;
+    public discount: IDiscount;
 
     constructor(
         private checkoutService: CheckoutService,
@@ -58,6 +61,8 @@ export class FinishComponent implements OnInit {
         this.shippingOption = this.checkoutService.shippingOption;
         this.total = this.checkoutService.total;
         this.subTotal = this.checkoutService.subTotal;
+        this.subTotalWithDiscount = this.checkoutService.subTotalWithDiscount;
+        this.discount = this.checkoutService.discount;
         if (!this.shippingOption) {
             this.router.navigate(['user', 'address']);
         }

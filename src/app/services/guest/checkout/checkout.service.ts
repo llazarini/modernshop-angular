@@ -65,10 +65,11 @@ export class CheckoutService {
         this.postalCode = '';
         this.shipping = null;
         this.updateProductsQuantity();
+        this.discount = null;
     }
 
     public get total(): number {
-        let total = this.subTotal;
+        let total = this.subTotalWithDiscount;
         total += +this.shippingOption?.price;
         return total;
     }
@@ -97,13 +98,17 @@ export class CheckoutService {
             findProduct.selected_options.map(option => option.id).toString() === product.selected_options.map(option => option.id).toString());
         if (productFound >= 0) {
             const products = this.products;
+            let price = products[productFound].price;
+            products[productFound].selected_options.forEach(option => price += (option.type ? option.price : -option.price))
             products[productFound].quantity += 1;
-            products[productFound].total_price = product.price * this.products[productFound].quantity;
+            products[productFound].total_price = price * this.products[productFound].quantity;
             this.products = products;
             return;
         }
         product.quantity = 1;
-        product.total_price = product.price;
+        let price = product.price;
+        product.selected_options.forEach(option => price += (option.type ? option.price : -option.price))
+        product.total_price = price;
         const products = this.products;
         products.push(product);
         this.products = products;
@@ -151,10 +156,12 @@ export class CheckoutService {
             return { id: product.id, quantity: product.quantity, options: product.selected_options.map(option => option.id) }
         });
         const shipping_option_id = this.shippingOption.id;
+        const discount = this.discount?.code;
         return this.httpClient.post<any>(environment.baseSiteUrl + '/checkout/payment', {
             card,
             products,
-            shipping_option_id
+            shipping_option_id,
+            discount
         });
     }
 
@@ -163,9 +170,11 @@ export class CheckoutService {
             return { id: product.id, quantity: product.quantity, options: product.selected_options.map(option => option.id) }
         });
         const shipping_option_id = this.shippingOption.id;
+        const discount = this.discount?.code;
         return this.httpClient.post<any>(environment.baseSiteUrl + '/checkout/pix', {
             products,
-            shipping_option_id
+            shipping_option_id,
+            discount
         });
 	}
 

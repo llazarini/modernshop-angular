@@ -8,7 +8,7 @@
         <ng-container *ngIf="order?.payment_type?.slug === 'pix'">
             <h1>Pedido gerado com pagamento via PIX</h1>
             <div class="margin-bottom">
-                Faça um pagamento Pix utilizendo o QR code abaixo no valor de <b>{{ order.amount | price }}.</b>
+                Faça um pagamento Pix utilizando o QR code abaixo no valor de <b>{{ order.amount | price }}.</b>
                 <img class="image" src="assets/images/pix.jpeg">
                 <div class="margin-top">Ou se preferir, utilize a chave PIX <b>contato@anaraquelilustracoes.com.br</b>.</div>
             </div>

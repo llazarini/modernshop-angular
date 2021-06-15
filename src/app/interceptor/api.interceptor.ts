@@ -46,6 +46,7 @@ export class ApiInterceptor implements HttpInterceptor {
               (error: any) => {
                     if(error.status === 401) {
                         this.alertService.toast(error.error.message);
+                        this.authService.logout();
                         this.router.navigate(['/'])
                     }
             }

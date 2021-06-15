@@ -1,7 +1,7 @@
 export interface IDiscount {
 	id?: number;
 	name?: string;
-	slug?: string;
+	code?: string;
 	value?: number;
 	type?: string;
 }

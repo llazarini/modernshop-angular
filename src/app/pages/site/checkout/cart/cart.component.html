@@ -54,7 +54,7 @@
         <ng-container *ngIf="bestShipping && bestShipping?.price > 0">
             <div fxLayoutAlign="end center" class="padding-vertical">
                 <div class="margin-right">Frete:</div>
-                <div fxFlex="200px">
+                <div fxFlex="200px" class="text-right">
                     <small class="muted">Opções a partir de:</small>
                     <div>{{ bestShipping.price | price }}</div>
                 </div>
@@ -63,8 +63,8 @@
         <mat-divider></mat-divider>
         <ng-container *ngIf="bestShipping && bestShipping?.price > 0">
             <div fxLayoutAlign="end center" class="padding-vertical">
-                <div class="margin-right">Total:</div>
-                <div fxFlex="200px">
+                <div class="margin-right bold">Total:</div>
+                <div fxFlex="200px" class="text-right">
                     <div>{{ subTotal + bestShipping.price | price }}</div>
                 </div>
             </div>

@@ -76,7 +76,7 @@
                     </div>
                     <div fxLayout="row" fxLayoutAlign="space-between center">
                         <div class="margin-right" fxFlex="80px">{{ product.quantity }} unidades</div>
-                        <div class="margin-left" fxFlex="80px">{{ product.total_price | price }}</div>
+                        <div fxFlex="140px" class="text-right">{{ product.total_price | price }}</div>
                     </div>
                 </div>
                 <mat-divider></mat-divider>
@@ -85,40 +85,53 @@
                 <div fxLayout="row" class="text-right bold margin-right">
                     Sub-total:
                 </div>
-                <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex="80px">
-                    {{ subTotal | currency: 'R$' }}
+                <div fxLayout="column" fxLayoutAlign="center end" fxFlex="140px">
+                    <ng-container *ngIf="discount">
+                        <div class="total-without-discount">De {{ subTotal | price }}</div>
+                        <div>por {{ subTotalWithDiscount | price }}</div>
+                        <small class="muted">
+                            <span *ngIf="discount.type === 'percentage'">{{ discount.value / 100 | percent }}</span>
+                            <span *ngIf="discount.type === 'value'"> {{ discount.value | price }}</span>
+                            de desconto
+                        </small>
+                    </ng-container>
+                    <ng-container *ngIf="!discount">
+                        <div>{{ subTotal | price }}</div>
+                    </ng-container>
                 </div>
             </div>
-
+            <mat-divider></mat-divider>
             <small class="margin-top muted">Frete</small>
             <div fxFill>
-                <div fxFill fxLayoutAlign="space-between center" class="margin-horizontal">
+                <div fxFill fxLayoutAlign="center end" class="margin-horizontal">
                     <div fxLayout="row" fxLayoutAlign="start center">
-                        <img height="12px" width="50px" [src]="shippingOption.image">
                         <div class="margin-left" fxLayout="column">
-                            <div>{{ shippingOption?.name }}</div>
+                            <div fxLayout="row" fxLayoutAlign="start center">
+                                <img height="12px" width="50px" [src]="shippingOption.image">
+                                <div class="margin-left">{{ shippingOption?.name }}</div>
+                            </div>
                             <small class="muted">
                                 {{ user.main_address?.street_name }}, {{ user.main_address?.street_number }} {{ user.main_address?.complement }},
                                 {{ user.main_address?.city?.name }}
                                 - {{ user.main_address?.city?.state?.code }}
                                 - {{ user.main_address?.zip_code }}
+                                <a [routerLink]="['/','user', 'address']">Trocar o endereço</a>
                             </small>
-                            <small><a [routerLink]="['/','user', 'address']">Trocar o endereço</a></small>
                         </div>
                     </div>
-                    <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex="80px">
+                    <div class="text-right" fxFlex="140px">
                         {{ shippingOption?.price | price }}
                     </div>
                 </div>
             </div>
             <mat-divider></mat-divider>
 
-            <div fxFill fxLayoutAlign="end center" class="margin-bottom padding-vertical">
+            <div fxFill fxLayoutAlign="end start" class="margin-bottom padding-vertical">
                 <div fxLayout="row" class="text-right bold margin-right">
                     Total:
                 </div>
-                <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex="80px" class="text-right">
-                    {{ total | currency: 'R$' }}
+                <div fxFlex="140px" class="text-right">
+                    {{ total | price }}
                 </div>
             </div>
         </div>

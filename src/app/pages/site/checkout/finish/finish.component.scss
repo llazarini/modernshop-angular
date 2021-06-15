@@ -16,6 +16,10 @@ table {
         border-bottom: 1px solid #d6d6d6;
     }
 }
+.total-without-discount {
+    text-decoration: line-through;
+    color: #a4a4a4;
+}
 .or {
     padding-top: 30px;
     padding-bottom: 30px;
