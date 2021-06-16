@@ -29,7 +29,6 @@
     "@angular/platform-server": "^10.1.6",
     "@angular/router": "^10.1.6",
     "@mdi/font": "^5.9.55",
-    "@nguniversal/express-engine": "^10.1.0",
     "angular-vertical-tabs": "github:SamuelMarks/angular-vertical-material-tabs",
     "component": "^1.1.0",
     "express": "^4.15.2",
