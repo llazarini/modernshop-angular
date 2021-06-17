@@ -2,13 +2,21 @@
     <footer fxFlex="none">
         <div class="container padding-horizontal" fxLayout="column">
             <div fxLayout="row wrap" fxLayoutAlign="space-between space-between" fxLayoutGap="30px">
-                <div>
+                <div fxFlex>
                     <img width="150px" src="assets/images/logo-black.png">
                 </div>
                 <div fxFlex class="margin-left" fxLayout="column">
                     <a [routerLink]="'home'">Home</a>
                     <a [routerLink]="'checkout'">Checkout</a>
                     <a [routerLink]="'privacy'">Termos e Privacidade</a>
+                </div>
+                <div fxFlex class="margin-left" fxLayout="column">
+                    <a href="https://www.instagram.com/anaraquelilustracoes/" target="_blank">
+                        <i class="mdi mdi-instagram"></i> Instagram
+                    </a>
+                    <a href="https://www.facebook.com/AnaRaquelIlustracoes/" target="_blank">
+                        <i class="mdi mdi-facebook"></i> Facebook
+                    </a>
                 </div>
             </div>
             <div class="made-by">

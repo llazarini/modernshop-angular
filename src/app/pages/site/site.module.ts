@@ -17,6 +17,7 @@ import {CategoryModule} from './share/category/category.module';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {PrivacyComponent} from './privacy/privacy.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {RouterModule} from '@angular/router';
 @NgModule({
 	declarations: [
 		SiteComponent,
@@ -40,6 +41,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 		CategoryModule,
 		MatProgressSpinnerModule,
 		MatTooltipModule,
+		FlexModule,
+		RouterModule,
 	]
 })
 export class SiteModule { }
