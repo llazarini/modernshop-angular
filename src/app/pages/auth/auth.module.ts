@@ -24,21 +24,23 @@ import { NgxMaskModule } from 'ngx-mask'
         AlertComponent,
         ConfirmComponent,
     ],
-    imports: [
-        NgxMaskModule.forRoot(),
-        BrowserModule,
-        CommonModule,
-        MatListModule,
-        MatIconModule,
-        AuthRoutingModule,
-        MatSidenavModule,
-        MatListModule,
-        MatButtonModule,
-        MatIconModule,
-        FlexModule,
-        MatToolbarModule,
-        MatMenuModule,
-        MatDialogModule
-    ]
+	imports: [
+		NgxMaskModule.forRoot(),
+		BrowserModule,
+		CommonModule,
+		MatListModule,
+		MatIconModule,
+		AuthRoutingModule,
+		MatSidenavModule,
+		MatListModule,
+		MatButtonModule,
+		MatIconModule,
+		FlexModule,
+		MatToolbarModule,
+		MatMenuModule,
+		MatDialogModule,
+		MatDialogModule,
+		FlexModule
+	]
 })
 export class AuthModule { }
