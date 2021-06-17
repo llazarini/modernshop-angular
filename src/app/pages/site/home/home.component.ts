@@ -106,7 +106,7 @@ export class HomeComponent implements OnInit {
 
     public title() {
         if (!this.selectedCategory) {
-            return "Todas as Ilustrações"
+            return "Todas as Ilustrações:"
         }
         return "Ilustrações: " + this.selectedCategory?.name
     }
