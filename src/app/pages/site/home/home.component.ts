@@ -36,7 +36,7 @@ export class HomeComponent implements OnInit {
     ) {
         this.titleService.setTitle('Ana Raquel Ilustrações')
         this.metaService.addTags([
-            { name: 'description', content: 'Ilustrações, molduras e quadros feitas por artista independente Ana Raquel. Compre desenhos feitos sobre bailarinas, animes, natureza e muito mais.' },
+            { name: 'description', content: 'Quadros, ilustrações e molduras feitas por artista independente Ana Raquel. Com desenhos feitos sobre bailarinas, animes, natureza e muito mais.' },
         ]);
     }
 
