@@ -8,11 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ngcc",
-    "dev:ssr": "ng run mordern-app:serve-ssr",
-    "serve:ssr": "node dist/mordern-app/server/main.js",
-    "build:ssr": "ng build && ng run mordern-app:server",
-    "prerender": "ng run mordern-app:prerender"
+    "postinstall": "ngcc"
   },
   "private": true,
   "dependencies": {
@@ -29,7 +25,6 @@
     "@angular/platform-server": "^12.0.5",
     "@angular/router": "^12.0.5",
     "@mdi/font": "^5.9.55",
-    "@nguniversal/express-engine": "^12.0.2",
     "angular-vertical-tabs": "github:SamuelMarks/angular-vertical-material-tabs",
     "component": "^1.1.0",
     "express": "^4.15.2",
