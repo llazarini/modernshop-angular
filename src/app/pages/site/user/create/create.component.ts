@@ -36,11 +36,11 @@ export class CreateComponent implements OnInit {
     }
 
     public get form() {
-        this.analyticsService.event('checkout_progress', 'user_create');
         return this.formGroup.controls;
     }
 
     public ngOnInit(): void {
+        this.analyticsService.event('checkout_progress', 'user_create');
         if (this.authService.logged) {
             this.router.navigate(['checkout', 'finish']);
         }

@@ -9,6 +9,7 @@
     </div>
 </div>
 <div class="container page">
+    <ngx-json-ld [json]="seoSchema"></ngx-json-ld>
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start start">
         <div class="image" fxFlex="none" ngClass.lt-sm="w100" fxFlex.gt-sm="70%" fxLayoutAlign="center start">
             <app-carousel [slides]="product?.files" fxFlex.gt-sm="500px" ngClass.lt-sm="w100" [width]="500" [height]="700"></app-carousel>

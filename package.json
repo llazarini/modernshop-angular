@@ -30,6 +30,7 @@
     "express": "^4.15.2",
     "ngx-currency": "^2.5.2",
     "ngx-google-analytics": "^11.2.1",
+    "ngx-json-ld": "^0.3.1",
     "ngx-mask": "^10.0.4",
     "ngx-mat-select-search": "^3.2.0",
     "rxjs": "^6.6.7",

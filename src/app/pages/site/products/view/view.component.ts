@@ -20,6 +20,7 @@ export class ViewComponent implements OnInit {
     public postalCode: string;
     public shipping: Array<any>;
     public options: Array<IOption> = [];
+    public seoSchema: any = {};
 
     constructor(
         private productService: ProductService,
@@ -57,11 +58,35 @@ export class ViewComponent implements OnInit {
             .show(this.id)
             .subscribe(response => {
                 this.product = response;
-                this.metaService.addTags([
-                    { name: 'title', content: this.product?.meta_title ? this.product?.meta_title : this.product?.name },
-                    { name: 'description', content: this.product?.meta_description ? this.product?.meta_description : this.product?.description },
-                ]);
                 this.titleService.setTitle(this.product?.meta_title ? this.product?.meta_title : this.product?.name);
+                this.metaService.addTags([
+                    { name: 'description', content: this.product?.meta_description ? this.product?.meta_description : this.product?.description },
+                    { name: 'keywords', content: this.product?.meta_description ? this.product?.meta_description : this.product?.description },
+                    { name: 'image', content: this.product?.files?.length > 0 ? this.product?.files[0].url : '' },
+                ]);
+                this.seoSchema = {
+                    "@context": "https://schema.org/",
+                    "@type": "Product",
+                    "name": this.product?.meta_title ? this.product?.meta_title : this.product?.name,
+                    "image": [
+                        this.product?.files[0].url,
+                    ],
+                    "description": this.product?.meta_description ? this.product?.meta_description : this.product?.description ,
+                    "sku": this.product?.sku ,
+                    "brand": {
+                        "@type": "Brand",
+                        "name": "Ana Raquel Ilustrações",
+                    },
+                    "offers": {
+                        "@type": "Offer",
+                        "url": "https://example.com/anvil",
+                        "priceCurrency": "BRL",
+                        "price": this.product?.price,
+                        "priceValidUntil": "2022-11-20",
+                        "itemCondition": "https://schema.org/NewCondition",
+                        "availability": "https://schema.org/InStock"
+                    }
+                }
             })
             .add(() => this.loading -= 1);
     }

@@ -4,6 +4,7 @@ import {IOption} from './IOption';
 import {IAttribute} from './IAttribute';
 
 export interface IProduct {
+	sku: string;
 	attributes: Array<IAttribute>;
     id?: number;
 	name?: string;
