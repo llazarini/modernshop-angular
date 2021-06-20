@@ -8,6 +8,7 @@ import {IUser} from '../../../../interfaces/IUser';
 import {AuthService} from '../../../../services/auth/auth.service';
 import {UserService} from '../../../../services/guest/user/user.service';
 import {IDiscount} from '../../../../interfaces/IDiscount';
+import {GoogleAnalyticsService} from 'ngx-google-analytics';
 
 @Component({
     selector: 'app-finish',
@@ -32,6 +33,7 @@ export class FinishComponent implements OnInit {
         private router: Router,
         private authService: AuthService,
         private userService: UserService,
+        private analyticsService: GoogleAnalyticsService
     ) {
         this.formGroup = new FormGroup({
             name: new FormControl([], [Validators.required]),
@@ -49,6 +51,7 @@ export class FinishComponent implements OnInit {
     }
 
     public ngOnInit(): void {
+        this.analyticsService.event('add_payment_info', 'checkout');
         this.index();
         this.userService.me().subscribe(user => {
             this.user = user;
@@ -74,6 +77,7 @@ export class FinishComponent implements OnInit {
         this.checkoutService
             .paymentCreditCard(form)
             .subscribe((response) => {
+                this.analyticsService.event('purchase', 'checkout');
                 this.router.navigate(['checkout', 'success', response.data.id])
                 this.checkoutService.clear();
             },
@@ -86,6 +90,7 @@ export class FinishComponent implements OnInit {
         this.checkoutService
             .paymentPix()
             .subscribe((response) => {
+                this.analyticsService.event('purchase', 'checkout');
                 this.router.navigate(['checkout', 'success', response.data.id])
                 this.checkoutService.clear();
             },

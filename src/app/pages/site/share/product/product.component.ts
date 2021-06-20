@@ -2,10 +2,11 @@ import {Component, Input, OnInit} from '@angular/core';
 import {IProduct} from '../../../../interfaces/IProduct';
 import {CheckoutService} from '../../../../services/guest/checkout/checkout.service';
 import {Router} from '@angular/router';
+import {GoogleAnalyticsService} from 'ngx-google-analytics';
 @Component({
-  selector: "app-product",
-  templateUrl: "./product.component.html",
-  styleUrls: ["./product.component.scss"],
+	selector: "app-product",
+	templateUrl: "./product.component.html",
+	styleUrls: ["./product.component.scss"],
 })
 export class ProductComponent implements OnInit {
     @Input()
@@ -13,11 +14,13 @@ export class ProductComponent implements OnInit {
 
     constructor(
     	private checkoutService: CheckoutService,
-	    private router: Router,) {}
+	    private router: Router,
+	    private analyticsService: GoogleAnalyticsService) {}
 
     public ngOnInit() {}
 
-	buy() {
+	public buy() {
+    	this.analyticsService.event('select_item', 'product');
 		this.router.navigate(['/', 'product', 'view', this.product.id, this.product.slug]);
 	}
 }

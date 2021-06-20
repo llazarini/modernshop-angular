@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 import {AuthService} from '../../../../services/auth/auth.service';
 import {AlertService} from '../../../../services/alert/alert.service';
 import {UserService} from '../../../../services/guest/user/user.service';
+import {GoogleAnalyticsService} from 'ngx-google-analytics';
 
 @Component({
   selector: 'app-checkout',
@@ -24,6 +25,7 @@ export class CheckoutComponent implements OnInit {
         private authService: AuthService,
         private alertService: AlertService,
         private userService: UserService,
+        private analyticsService: GoogleAnalyticsService,
     ) {
         this.formGroup = new FormGroup({
             email: new FormControl(),
@@ -34,6 +36,7 @@ export class CheckoutComponent implements OnInit {
         if (this.authService.logged) {
             this.router.navigate(['checkout', 'logged'])
         }
+        this.analyticsService.event('begin_checkout', 'checkout');
     }
 
     public submit() {
