@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   baseAuthUrl: 'http://localhost:8081/api/auth',
   baseSiteUrl: 'http://localhost:8081/api/guest',
+  googleAnalytics: '',
 };
 
 /*

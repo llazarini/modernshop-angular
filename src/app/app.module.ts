@@ -13,31 +13,35 @@ import {ApiInterceptor} from "./interceptor/api.interceptor";
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {SiteModule} from './pages/site/site.module';
 import {NgxMaskModule} from 'ngx-mask';
+import {NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule} from 'ngx-google-analytics';
+import {environment} from '../environments/environment';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NotFoundComponent,
-  ],
-  imports: [
-    NgxMaskModule.forRoot(),
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    FlexLayoutModule,
-    AuthModule,
-    GuestModule,
-    SiteModule,
-    HttpClientModule,
-    MatSnackBarModule,
-  ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: ApiInterceptor,
-      multi: true,
-    },
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        NotFoundComponent,
+    ],
+    imports: [
+        NgxMaskModule.forRoot(),
+        BrowserModule.withServerTransition({ appId: 'serverApp' }),
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        FlexLayoutModule,
+        AuthModule,
+        GuestModule,
+        SiteModule,
+        HttpClientModule,
+        MatSnackBarModule,
+        NgxGoogleAnalyticsModule.forRoot(environment.googleAnalytics),
+        NgxGoogleAnalyticsRouterModule
+    ],
+    providers: [
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: ApiInterceptor,
+            multi: true,
+        },
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }
