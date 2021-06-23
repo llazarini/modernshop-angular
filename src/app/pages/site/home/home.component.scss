@@ -22,3 +22,19 @@ section {
         }
     }
 }
+.footer {
+    border-top: 2px solid $base-primary;
+    padding-top: $margin * 3;
+    div {
+        i {
+            font-size: 40px;
+            color: $base-accent;
+        }
+        div {
+            line-height: 30px;
+            color: #343434;
+            margin-left: $margin;
+            font-size: 18px;
+        }
+    }
+}
