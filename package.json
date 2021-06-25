@@ -12,6 +12,7 @@
     "dev:ssr": "ng run mordern-app:serve-ssr",
     "serve:ssr": "node dist/mordern-app/server/main.js",
     "build:ssr": "ng build && ng run mordern-app:server",
+    "build:all": "ng build --configuration production",
     "prerender": "ng run mordern-app:prerender"
   },
   "private": true,
