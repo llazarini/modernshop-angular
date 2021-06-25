@@ -58,6 +58,17 @@
                         O CPF é requerido.
                     </mat-error>
                 </mat-form-field>
+                <mat-form-field  appearance="outline">
+                    <mat-label>Parcelas</mat-label>
+                    <mat-select required formControlName="installments">
+                        <mat-option *ngFor="let installment of installments" [value]="installment.installment">
+                            Pagamento em {{ installment.installment }}x de {{ installment.price | price }}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="form?.installments?.errors?.required">
+                        As parcelas são requeridas.
+                    </mat-error>
+                </mat-form-field>
             </form>
         </ng-container>
     </div>

@@ -6,7 +6,6 @@ import {CheckoutService} from '../../../../services/guest/checkout/checkout.serv
 import {AlertService} from '../../../../services/alert/alert.service';
 import {IOption} from '../../../../interfaces/IOption';
 import {Meta, Title} from '@angular/platform-browser';
-import {GoogleAnalyticsService} from 'ngx-google-analytics';
 
 @Component({
   selector: 'app-view',
@@ -30,7 +29,6 @@ export class ViewComponent implements OnInit {
         private alertService: AlertService,
         private titleService: Title,
         private metaService: Meta,
-        private analyticsService: GoogleAnalyticsService,
     ) {}
 
     public ngOnInit(): void {
@@ -38,7 +36,6 @@ export class ViewComponent implements OnInit {
         this.shipping = this.checkoutService.shipping;
         this.postalCode = this.checkoutService.postalCode;
         this.show();
-        this.analyticsService.event('view_item', 'product_view');
     }
 
     public get price() {
@@ -92,7 +89,6 @@ export class ViewComponent implements OnInit {
     }
 
     public addChart() {
-        this.analyticsService.event('add_to_cart', 'product_view');
         if (!this.optionsNotSelected()) {
             this.alertService.alert('Selecione todas as opções do produto antes de adicionar ao carrinho.', 'Escolha todas as opções');
             return;
@@ -103,8 +99,6 @@ export class ViewComponent implements OnInit {
     }
 
     public buyNow() {
-        this.analyticsService.event('add_to_cart', 'product_view');
-        this.analyticsService.event('add_to_buy', 'product_view');
         if (!this.optionsNotSelected()) {
             this.alertService.alert('Selecione todas as opções do produto antes de comprar o produto.', 'Escolha todas as opções');
             return;
@@ -119,7 +113,6 @@ export class ViewComponent implements OnInit {
     }
 
     public shipment() {
-        this.analyticsService.event('shipping', 'product_view');
         if (this.loading > 0 || this.postalCode.length < 8) {
             return;
         }
@@ -163,7 +156,6 @@ export class ViewComponent implements OnInit {
 	}
 
 	public selectOption(attribute, option) {
-        this.analyticsService.event('select_option', 'product_view');
         attribute.options.forEach(item => item.selected = false);
         option.selected = true;
         this.options = this.selectedOptions();

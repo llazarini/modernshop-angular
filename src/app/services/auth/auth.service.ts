@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {IUser} from "../../interfaces/IUser";
 import {Observable, Subject} from 'rxjs';
+import {LocalStorage} from '../../interfaces/IStorage';
+import {AppComponent} from '../../app.component';
 
 
 
@@ -9,18 +11,31 @@ import {Observable, Subject} from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
+    private storage: LocalStorage;
     private loggedSubject = new Subject<boolean>();
+    private browser: boolean;
 
-    constructor(private httpClient: HttpClient) { }
+    constructor(private httpClient: HttpClient) {
+        this.storage = new LocalStorage();
+        AppComponent.isBrowser.subscribe(isBrowser => {
+            this.browser = isBrowser;
+            if (isBrowser) {
+                this.storage = localStorage;
+            }
+        });
+    }
 
     public login(response: ILoginResponse) {
-        localStorage.setItem('token', response.token);
-        localStorage.setItem('user', JSON.stringify(response.user));
+        if (!this.browser) {
+            return;
+        }
+        this.storage.setItem('token', response.token);
+        this.storage.setItem('user', JSON.stringify(response.user));
         this.loggedSubject.next(true);
     }
 
     public get token() {
-        return localStorage.getItem('token');
+        return this.storage.getItem('token');
     }
 
     public get logged() {
@@ -28,7 +43,10 @@ export class AuthService {
     }
 
     public get user() {
-        const user = localStorage.getItem('user');
+        if (!this.browser) {
+            return;
+        }
+        const user = this.storage.getItem('user');
         if (user) {
             return JSON.parse(user);
         }

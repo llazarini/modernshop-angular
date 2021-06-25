@@ -6,7 +6,6 @@ import {AlertService} from '../../../../services/alert/alert.service';
 import {IUser} from '../../../../interfaces/IUser';
 import {Router} from '@angular/router';
 import {IDiscount} from '../../../../interfaces/IDiscount';
-import {GoogleAnalyticsService} from 'ngx-google-analytics';
 
 @Component({
   selector: 'app-cart',
@@ -26,7 +25,6 @@ export class CartComponent implements OnInit {
         private authService: AuthService,
         private alertService: AlertService,
         private router: Router,
-        private analyticsService: GoogleAnalyticsService
     ) {}
 
     ngOnInit(): void {
@@ -74,7 +72,6 @@ export class CartComponent implements OnInit {
     }
 
     public remove(i: any) {
-        this.analyticsService.event('remove_from_cart', 'cart');
         this.products.splice(i, 1);
         this.checkoutService.products = this.products;
         this.shipment();
@@ -90,7 +87,6 @@ export class CartComponent implements OnInit {
     }
 
     public plus(i: number) {
-        this.analyticsService.event('add_to_cart', 'cart');
         this.products[i].quantity += 1;
         this.change();
     }

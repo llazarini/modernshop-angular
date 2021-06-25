@@ -10,11 +10,11 @@
     </ng-container>
 
     <!-- controls -->
-    <div class="container arrows" fxLayout="row" fxLayoutAlign="space-between center">
-        <button class="control prev" (click)="onPreviousClick()">
+    <div class="container arrows" fxLayout="row" fxLayoutAlign="space-between center" *ngIf="slides?.length > 1">
+        <button class="control prev" (click)="previus()">
             <span class="arrow left"></span>
         </button>
-        <button class="control next" (click)="onNextClick()">
+        <button class="control next" (click)="next()">
             <span class="arrow right"></span>
         </button>
     </div>

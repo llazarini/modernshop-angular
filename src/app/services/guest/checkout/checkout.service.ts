@@ -2,61 +2,96 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Observable, Subject} from 'rxjs';
 import {environment} from "../../../../environments/environment";
-import {IProduct} from '../../../interfaces/IProduct';
+import {IInstallment, IProduct} from '../../../interfaces/IProduct';
 import {IDiscount} from '../../../interfaces/IDiscount';
+import {LocalStorage} from '../../../interfaces/IStorage';
+import {AppComponent} from '../../../app.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CheckoutService {
     private productsQuantitySubject: Subject<number> = new Subject<number>();
+    private storage: LocalStorage;
+    private browser: boolean;
 
-    constructor(private httpClient: HttpClient) { }
+    constructor(private httpClient: HttpClient) {
+        this.storage = new LocalStorage();
+        AppComponent.isBrowser.subscribe(isBrowser => {
+            this.browser = isBrowser;
+            if (isBrowser) {
+                this.storage = localStorage;
+            }
+        });
+    }
 
     public get products(): Array<IProduct> {
-        const parsed = JSON.parse(sessionStorage.getItem('chart_products'));
+        if (!this.browser) {
+            return [];
+        }
+        const parsed = JSON.parse(this.storage.getItem('chart_products'));
         return parsed ? parsed : [];
     }
 
     public set products(products: Array<IProduct>) {
-        sessionStorage.removeItem('shipping');
-        sessionStorage.setItem('chart_products', JSON.stringify(products));
+        if (!this.browser) {
+            return;
+        }
+        this.storage.removeItem('shipping');
+        this.storage.setItem('chart_products', JSON.stringify(products));
         this.shippingOption = null;
         this.updateProductsQuantity();
     }
 
     public set shipping(shipping: any) {
-        sessionStorage.setItem('shipping', JSON.stringify(shipping));
+        if (!this.browser) {
+            return;
+        }
+        this.storage.setItem('shipping', JSON.stringify(shipping));
     }
 
     public get shipping() {
-        const parsed = JSON.parse(sessionStorage.getItem('shipping'));
+        if (!this.browser) {
+            return;
+        }
+        const parsed = JSON.parse(this.storage.getItem('shipping'));
         return parsed ? parsed : [];
     }
 
     public set postalCode(postalCode: string) {
-        sessionStorage.setItem('postal_code', postalCode);
+        this.storage.setItem('postal_code', postalCode);
     }
 
     public get postalCode() {
-        return sessionStorage.getItem('postal_code');
+        return this.storage.getItem('postal_code');
     }
 
     public set discount(discount: IDiscount) {
-        sessionStorage.setItem('discount', JSON.stringify(discount));
+        if (!this.browser) {
+            return;
+        }
+        this.storage.setItem('discount', JSON.stringify(discount));
     }
 
     public get discount(): IDiscount {
-        return JSON.parse(sessionStorage.getItem('discount'));
+        if (!this.browser) {
+            return;
+        }
+        return JSON.parse(this.storage.getItem('discount'));
     }
 
     public set shippingOption(shippingOption: any) {
-        sessionStorage.setItem('shipping_option', JSON.stringify(shippingOption));
+        if (!this.browser) {
+            return;
+        }
+        this.storage.setItem('shipping_option', JSON.stringify(shippingOption));
     }
 
     public get shippingOption() {
-        console.log(JSON.parse(sessionStorage.getItem('shipping_option')));
-        return JSON.parse(sessionStorage.getItem('shipping_option'));
+        if (!this.browser) {
+            return;
+        }
+        return JSON.parse(this.storage.getItem('shipping_option'));
     }
 
     public clear() {
@@ -184,5 +219,17 @@ export class CheckoutService {
 
     public applyDiscount(discount: IDiscount) {
         this.discount = discount;
+    }
+
+    public get installments(): Array<IInstallment> {
+        const installments = [];
+        for (let i = 1; i <= 12; i++) {
+            installments.push({
+                price: this.total / i,
+                total: this.total,
+                installment: i
+            })
+        }
+        return installments;
     }
 }

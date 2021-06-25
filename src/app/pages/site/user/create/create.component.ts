@@ -6,7 +6,6 @@ import {Router} from '@angular/router';
 import {AlertService} from '../../../../services/alert/alert.service';
 import {AuthService} from '../../../../services/auth/auth.service';
 import {UserService} from '../../../../services/guest/user/user.service';
-import {GoogleAnalyticsService} from 'ngx-google-analytics';
 
 @Component({
   selector: 'app-create',
@@ -24,7 +23,6 @@ export class CreateComponent implements OnInit {
         private alertService: AlertService,
         private authService: AuthService,
         private router: Router,
-        private analyticsService: GoogleAnalyticsService,
     ) {
         this.formGroup = new FormGroup({
             name: new FormControl('', [Validators.minLength(3), Validators.maxLength(100)]),
@@ -40,7 +38,6 @@ export class CreateComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.analyticsService.event('checkout_progress', 'user_create');
         if (this.authService.logged) {
             this.router.navigate(['checkout', 'finish']);
         }

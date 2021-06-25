@@ -3,44 +3,44 @@ import {transition, trigger, useAnimation} from '@angular/animations';
 import {AnimationType, fadeIn, fadeOut, flipIn, flipOut, jackIn, jackOut, scaleIn, scaleOut} from './carousel.animations';
 
 @Component({
-  selector: "app-carousel",
-  templateUrl: "./carousel.component.html",
-  styleUrls: ["./carousel.component.scss"],
-  animations: [
+    selector: "app-carousel",
+    templateUrl: "./carousel.component.html",
+    styleUrls: ["./carousel.component.scss"],
+    animations: [
     trigger("slideAnimation", [
-      /* scale */
-      transition("void => scale", [
-        useAnimation(scaleIn, { params: { time: "500ms" } })
-      ]),
-      transition("scale => void", [
-        useAnimation(scaleOut, { params: { time: "500ms" } })
-      ]),
+        /* scale */
+        transition("void => scale", [
+            useAnimation(scaleIn, { params: { time: "500ms" } })
+        ]),
+        transition("scale => void", [
+            useAnimation(scaleOut, { params: { time: "500ms" } })
+        ]),
 
-      /* fade */
-      transition("void => fade", [
-        useAnimation(fadeIn, { params: { time: "500ms" } })
-      ]),
-      transition("fade => void", [
-        useAnimation(fadeOut, { params: { time: "500ms" } })
-      ]),
+        /* fade */
+        transition("void => fade", [
+            useAnimation(fadeIn, { params: { time: "500ms" } })
+        ]),
+        transition("fade => void", [
+            useAnimation(fadeOut, { params: { time: "500ms" } })
+        ]),
 
-      /* flip */
-      transition("void => flip", [
-        useAnimation(flipIn, { params: { time: "500ms" } })
-      ]),
-      transition("flip => void", [
-        useAnimation(flipOut, { params: { time: "500ms" } })
-      ]),
+        /* flip */
+        transition("void => flip", [
+            useAnimation(flipIn, { params: { time: "500ms" } })
+        ]),
+        transition("flip => void", [
+            useAnimation(flipOut, { params: { time: "500ms" } })
+        ]),
 
-      /* JackInTheBox */
-      transition("void => jackInTheBox", [
-        useAnimation(jackIn, { params: { time: "700ms" } })
-      ]),
-      transition("jackInTheBox => void", [
-        useAnimation(jackOut, { params: { time: "700ms" } })
-      ])
+        /* JackInTheBox */
+        transition("void => jackInTheBox", [
+            useAnimation(jackIn, { params: { time: "700ms" } })
+        ]),
+        transition("jackInTheBox => void", [
+            useAnimation(jackOut, { params: { time: "700ms" } })
+        ])
     ])
-  ]
+    ]
 })
 export class CarouselComponent implements AfterViewInit, OnInit {
     @Input()
@@ -53,6 +53,8 @@ export class CarouselComponent implements AfterViewInit, OnInit {
     public height: any;
     @Input()
     public arrows: boolean = false;
+    @Input()
+    public time: number = 0;
     @ViewChild('carousel')
     public carousel;
     public currentSlide = 0;
@@ -61,18 +63,26 @@ export class CarouselComponent implements AfterViewInit, OnInit {
 
     constructor() {}
 
-    public onPreviousClick() {
+    public ngOnInit() {
+        this.changing();
+        this.detectScreenSize();
+    }
+
+    public changing() {
+        if (!this.time) {
+            return;
+        }
+        setInterval(() => this.next(), this.time);
+    }
+
+    public previus() {
         const previous = this.currentSlide - 1;
         this.currentSlide = previous < 0 ? this.slides.length - 1 : previous;
     }
 
-    public onNextClick() {
+    public next() {
         const next = this.currentSlide + 1;
         this.currentSlide = next === this.slides.length ? 0 : next;
-    }
-
-    public ngOnInit() {
-        this.detectScreenSize();
     }
 
     @HostListener("window:resize", [])
@@ -98,7 +108,7 @@ export class CarouselComponent implements AfterViewInit, OnInit {
     }
 
     public sliderHeight(): number {
-        return (this.height * this.windowWidth) / this.width;
+        return this.height;
     }
 
     private urlParams() {

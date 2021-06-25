@@ -12,7 +12,7 @@
     "dev:ssr": "ng run mordern-app:serve-ssr",
     "serve:ssr": "node dist/mordern-app/server/main.js",
     "build:ssr": "ng build && ng run mordern-app:server",
-    "build:all": "ng build --configuration production",
+    "build:all": "ng build --configuration production && ng run mordern-app:prerender",
     "prerender": "ng run mordern-app:prerender"
   },
   "private": true,
@@ -35,7 +35,6 @@
     "component": "^1.1.0",
     "express": "^4.15.2",
     "ngx-currency": "^2.5.2",
-    "ngx-google-analytics": "^11.2.1",
     "ngx-json-ld": "^0.3.1",
     "ngx-mask": "^10.0.4",
     "ngx-mat-select-search": "^3.2.0",

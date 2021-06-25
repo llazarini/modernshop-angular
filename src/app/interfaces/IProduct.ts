@@ -23,3 +23,9 @@ export interface IProduct {
 	meta_description?: string;
 	meta_keys?: string;
 }
+
+export interface IInstallment {
+	price?: number;
+	total?: number;
+	installment?: number;
+}

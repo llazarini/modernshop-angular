@@ -13,7 +13,6 @@ import {ApiInterceptor} from "./interceptor/api.interceptor";
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {SiteModule} from './pages/site/site.module';
 import {NgxMaskModule} from 'ngx-mask';
-import {NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule} from 'ngx-google-analytics';
 import {environment} from '../environments/environment';
 
 @NgModule({
@@ -32,8 +31,6 @@ import {environment} from '../environments/environment';
         SiteModule,
         HttpClientModule,
         MatSnackBarModule,
-        NgxGoogleAnalyticsModule.forRoot(environment.googleAnalytics),
-        NgxGoogleAnalyticsRouterModule
     ],
     providers: [
         {
