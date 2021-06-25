@@ -1,12 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import {AppComponent} from '../../app.component';
 
 @Injectable({
 	providedIn: 'root'
 })
 export class ScrollPaginationService {
+	private browser: boolean;
 
-	constructor() {}
+	constructor() {
+		AppComponent.isBrowser.subscribe(isBrowser => {
+			this.browser = isBrowser;
+		});
+	}
 
 	public listener(element: HTMLElement = null, invertScroll?: boolean): Observable<any> {
 		const subject = new Subject<any>();
@@ -20,7 +26,7 @@ export class ScrollPaginationService {
 					subject.next();
 				}
 			});
-		} else {
+		} else if (this.browser) {
 			window.addEventListener('scroll', () => {
 				const height = document.documentElement.scrollHeight - window.innerHeight;
 				if ((!invertScroll && window.scrollY > height * .7) || (invertScroll && window.scrollY > height * .3)) {
