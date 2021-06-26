@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,7 +12,7 @@ import {ApiInterceptor} from "./interceptor/api.interceptor";
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {SiteModule} from './pages/site/site.module';
 import {NgxMaskModule} from 'ngx-mask';
-import {environment} from '../environments/environment';
+import {TransferHttpCacheModule} from '@nguniversal/common';
 
 @NgModule({
     declarations: [
@@ -31,6 +30,7 @@ import {environment} from '../environments/environment';
         SiteModule,
         HttpClientModule,
         MatSnackBarModule,
+        TransferHttpCacheModule
     ],
     providers: [
         {
