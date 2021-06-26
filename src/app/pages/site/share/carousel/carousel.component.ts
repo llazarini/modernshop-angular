@@ -1,6 +1,7 @@
 import {AfterViewInit, Component, HostListener, Input, OnInit, ViewChild} from '@angular/core';
 import {transition, trigger, useAnimation} from '@angular/animations';
 import {AnimationType, fadeIn, fadeOut, flipIn, flipOut, jackIn, jackOut, scaleIn, scaleOut} from './carousel.animations';
+import {AppComponent} from '../../../../app.component';
 
 @Component({
     selector: "app-carousel",
@@ -46,7 +47,7 @@ export class CarouselComponent implements AfterViewInit, OnInit {
     @Input()
     public slides: Array<any> = [];
     @Input()
-    public animationType = AnimationType.Scale;
+    public animationType;
     @Input()
     public width: any;
     @Input()
@@ -60,8 +61,14 @@ export class CarouselComponent implements AfterViewInit, OnInit {
     public currentSlide = 0;
     public windowWidth: number = 0;
     public windowHeight: number = 0;
+    private browser: boolean;
 
-    constructor() {}
+    constructor() {
+        this.browser = AppComponent.isBrowser;
+        if (this.browser) {
+            this.animationType = AnimationType.Flip;
+        }
+    }
 
     public ngOnInit() {
         this.changing();
@@ -69,7 +76,7 @@ export class CarouselComponent implements AfterViewInit, OnInit {
     }
 
     public changing() {
-        if (!this.time) {
+        if (!this.time || !this.browser) {
             return;
         }
         // setInterval(() => this.next(), this.time);

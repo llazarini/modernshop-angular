@@ -4,12 +4,17 @@ import {Observable} from "rxjs";
 import {IUser} from "../../../interfaces/IUser";
 import {environment} from "../../../../environments/environment";
 import {IAddress} from '../../../interfaces/IAddress';
+import {AppComponent} from '../../../app.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-    constructor(private httpClient: HttpClient) { }
+    private browser: boolean;
+
+    constructor(private httpClient: HttpClient) {
+        this.browser = AppComponent.isBrowser;
+    }
 
     public login(email: string, password: string): Observable<ILoginResponse> {
         return this.httpClient.post<ILoginResponse>(environment.baseAuthUrl + '/login', {
@@ -47,10 +52,16 @@ export class UserService {
     }
 
     public set email(email: string) {
+        if (!this.browser) {
+            return;
+        }
         sessionStorage.setItem('email', email);
     }
 
     public get email() {
+        if (!this.browser) {
+            return null;
+        }
         return sessionStorage.getItem('email');
     }
 }

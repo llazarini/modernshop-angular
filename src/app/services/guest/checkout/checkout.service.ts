@@ -4,7 +4,6 @@ import {Observable, Subject} from 'rxjs';
 import {environment} from "../../../../environments/environment";
 import {IInstallment, IProduct} from '../../../interfaces/IProduct';
 import {IDiscount} from '../../../interfaces/IDiscount';
-import {LocalStorage} from '../../../interfaces/IStorage';
 import {AppComponent} from '../../../app.component';
 
 @Injectable({
@@ -12,24 +11,17 @@ import {AppComponent} from '../../../app.component';
 })
 export class CheckoutService {
     private productsQuantitySubject: Subject<number> = new Subject<number>();
-    private storage: LocalStorage;
     private browser: boolean;
 
     constructor(private httpClient: HttpClient) {
-        this.storage = new LocalStorage();
-        AppComponent.isBrowser.subscribe(isBrowser => {
-            this.browser = isBrowser;
-            if (isBrowser) {
-                this.storage = localStorage;
-            }
-        });
+        this.browser = AppComponent.isBrowser;
     }
 
     public get products(): Array<IProduct> {
         if (!this.browser) {
             return [];
         }
-        const parsed = JSON.parse(this.storage.getItem('chart_products'));
+        const parsed = JSON.parse(localStorage.getItem('chart_products'));
         return parsed ? parsed : [];
     }
 
@@ -37,8 +29,8 @@ export class CheckoutService {
         if (!this.browser) {
             return;
         }
-        this.storage.removeItem('shipping');
-        this.storage.setItem('chart_products', JSON.stringify(products));
+        localStorage.removeItem('shipping');
+        localStorage.setItem('chart_products', JSON.stringify(products));
         this.shippingOption = null;
         this.updateProductsQuantity();
     }
@@ -47,51 +39,54 @@ export class CheckoutService {
         if (!this.browser) {
             return;
         }
-        this.storage.setItem('shipping', JSON.stringify(shipping));
+        localStorage.setItem('shipping', JSON.stringify(shipping));
     }
 
     public get shipping() {
         if (!this.browser) {
             return;
         }
-        const parsed = JSON.parse(this.storage.getItem('shipping'));
+        const parsed = JSON.parse(localStorage.getItem('shipping'));
         return parsed ? parsed : [];
     }
 
     public set postalCode(postalCode: string) {
-        this.storage.setItem('postal_code', postalCode);
+        localStorage.setItem('postal_code', postalCode);
     }
 
-    public get postalCode() {
-        return this.storage.getItem('postal_code');
+    public get postalCode(): string {
+        if (!this.browser) {
+            return;
+        }
+        return localStorage.getItem('postal_code');
     }
 
     public set discount(discount: IDiscount) {
         if (!this.browser) {
             return;
         }
-        this.storage.setItem('discount', JSON.stringify(discount));
+        localStorage.setItem('discount', JSON.stringify(discount));
     }
 
     public get discount(): IDiscount {
         if (!this.browser) {
             return;
         }
-        return JSON.parse(this.storage.getItem('discount'));
+        return JSON.parse(localStorage.getItem('discount'));
     }
 
     public set shippingOption(shippingOption: any) {
         if (!this.browser) {
             return;
         }
-        this.storage.setItem('shipping_option', JSON.stringify(shippingOption));
+        localStorage.setItem('shipping_option', JSON.stringify(shippingOption));
     }
 
     public get shippingOption() {
         if (!this.browser) {
             return;
         }
-        return JSON.parse(this.storage.getItem('shipping_option'));
+        return JSON.parse(localStorage.getItem('shipping_option'));
     }
 
     public clear() {

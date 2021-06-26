@@ -9,9 +9,7 @@ export class ScrollPaginationService {
 	private browser: boolean;
 
 	constructor() {
-		AppComponent.isBrowser.subscribe(isBrowser => {
-			this.browser = isBrowser;
-		});
+		this.browser = AppComponent.isBrowser;
 	}
 
 	public listener(element: HTMLElement = null, invertScroll?: boolean): Observable<any> {
