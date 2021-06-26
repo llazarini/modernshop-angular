@@ -2,18 +2,19 @@
 @import 'variables';
 @include mat-core();
 
-$custom-typography: mat-typography-config(
-        $font-family: 'Nunito, monospace',
+$typography: mat-typography-config(
+        $font-family: Nunito,
         $headline: mat-typography-level(24px, 28px, 600),
         $body-1: mat-typography-level(16px, 24px, 400)
 );
 
+
 /* ======== Angular material custom themes ======== */
 $flecha-theme: mat-light-theme($primary, $accent, $warn);
 
-@include mat-base-typography($custom-typography);
+@include mat-base-typography($typography);
 @include angular-material-theme($flecha-theme);
-@include mat-core($custom-typography);
+@include mat-core($typography);
 /*
 .mat-raised-button, .mat-flat-button, .mat-stroked-button {
         border-radius: 20px !important;
