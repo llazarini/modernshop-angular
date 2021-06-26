@@ -79,7 +79,7 @@ export class CarouselComponent implements AfterViewInit, OnInit {
         if (!this.time || !this.browser) {
             return;
         }
-        // setInterval(() => this.next(), this.time);
+        setInterval(() => this.next(), this.time);
     }
 
     public previus() {
@@ -94,6 +94,7 @@ export class CarouselComponent implements AfterViewInit, OnInit {
 
     @HostListener("window:resize", [])
     public onResize() {
+        console.log('ress')
         this.detectScreenSize();
     }
 
