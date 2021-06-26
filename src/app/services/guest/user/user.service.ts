@@ -13,7 +13,9 @@ export class UserService {
     private browser: boolean;
 
     constructor(private httpClient: HttpClient) {
-        this.browser = AppComponent.isBrowser;
+        AppComponent.isBrowser.subscribe(isBrowser => {
+            this.browser = isBrowser;
+        });
     }
 
     public login(email: string, password: string): Observable<ILoginResponse> {

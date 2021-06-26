@@ -6,7 +6,7 @@
         Ou <a [routerLink]="['/','user', 'create']">clique aqui</a> para criar uma nova conta. <br>
     </p>
     <form class="common-form-max" [formGroup]="formGroup" fxLayout="column" (submit)="submit()">
-        <mat-form-field appearance="outline" class="margin-right">
+        <mat-form-field appearance="outline">
             <mat-label>E-mail</mat-label>
             <input matInput required formControlName="email"/>
         </mat-form-field>

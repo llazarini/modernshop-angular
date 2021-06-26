@@ -6,6 +6,7 @@ import {Router} from '@angular/router';
 import {AuthService} from '../../../../services/auth/auth.service';
 import {AlertService} from '../../../../services/alert/alert.service';
 import {UserService} from '../../../../services/guest/user/user.service';
+import {AppComponent} from '../../../../app.component';
 
 @Component({
   selector: 'app-checkout',
@@ -31,7 +32,7 @@ export class CheckoutComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        if (this.authService.logged) {
+        if (this.authService.logged && AppComponent.isBrowser) {
             this.router.navigate(['checkout', 'logged'])
         }
     }

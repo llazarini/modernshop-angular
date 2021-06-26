@@ -7,8 +7,10 @@
         <div fxLayout="row" class="menu">
             <a class="item" routerLink="home">Home</a>
             <div class="margin-left">
-                <a class="item" routerLink="checkout" [matBadge]="badge" [matBadgeHidden]="!badge">
-                    <i class="mdi mdi-cart"></i> <span fxHide.lt-sm class="margin-left">Meu carrinho</span>
+                <a class="item" routerLink="checkout">
+                    <i class="mdi mdi-cart"></i>
+                    <span fxHide.lt-sm class="margin-left">Meu carrinho</span>
+                    <i class="badge" *ngIf="badge">{{ badge }}</i>
                 </a>
                 <a class="item" [routerLink]="['user', 'login']" *ngIf="!logged">
                     <i class="mdi mdi-login"></i> <span fxHide.lt-sm class="margin-left">Fazer Login</span>

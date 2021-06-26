@@ -11,7 +11,9 @@ export class AuthService {
     private browser: boolean;
 
     constructor() {
-        this.browser = AppComponent.isBrowser;
+        AppComponent.isBrowser.subscribe(isBrowser => {
+            this.browser = isBrowser;
+        });
     }
 
     public login(response: ILoginResponse) {

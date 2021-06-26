@@ -14,7 +14,9 @@ export class CheckoutService {
     private browser: boolean;
 
     constructor(private httpClient: HttpClient) {
-        this.browser = AppComponent.isBrowser;
+        AppComponent.isBrowser.subscribe(isBrowser => {
+            this.browser = isBrowser;
+        });
     }
 
     public get products(): Array<IProduct> {

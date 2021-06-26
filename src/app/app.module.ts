@@ -12,7 +12,6 @@ import {ApiInterceptor} from "./interceptor/api.interceptor";
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {SiteModule} from './pages/site/site.module';
 import {NgxMaskModule} from 'ngx-mask';
-import {TransferHttpCacheModule} from '@nguniversal/common';
 
 @NgModule({
     declarations: [
@@ -29,8 +28,7 @@ import {TransferHttpCacheModule} from '@nguniversal/common';
         GuestModule,
         SiteModule,
         HttpClientModule,
-        MatSnackBarModule,
-        TransferHttpCacheModule
+        MatSnackBarModule
     ],
     providers: [
         {

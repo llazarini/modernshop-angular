@@ -8,9 +8,9 @@ import {isPlatformBrowser} from '@angular/common';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-    static isBrowser: boolean;
+    static isBrowser = new BehaviorSubject<boolean>(null);
 
     constructor(@Inject(PLATFORM_ID) private platformId: any) {
-        AppComponent.isBrowser = isPlatformBrowser(platformId);
+        AppComponent.isBrowser.next(isPlatformBrowser(platformId));
     }
 }

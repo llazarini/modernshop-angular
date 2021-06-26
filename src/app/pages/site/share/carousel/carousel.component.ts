@@ -64,10 +64,12 @@ export class CarouselComponent implements AfterViewInit, OnInit {
     private browser: boolean;
 
     constructor() {
-        this.browser = AppComponent.isBrowser;
-        if (this.browser) {
-            this.animationType = AnimationType.Flip;
-        }
+        AppComponent.isBrowser.subscribe(isBrowser => {
+            this.browser = isBrowser;
+            if (this.browser) {
+                this.animationType = AnimationType.Flip;
+            }
+        });
     }
 
     public ngOnInit() {
@@ -94,7 +96,6 @@ export class CarouselComponent implements AfterViewInit, OnInit {
 
     @HostListener("window:resize", [])
     public onResize() {
-        console.log('ress')
         this.detectScreenSize();
     }
 

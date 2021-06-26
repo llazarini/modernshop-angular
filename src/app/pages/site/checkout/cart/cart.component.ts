@@ -6,6 +6,7 @@ import {AlertService} from '../../../../services/alert/alert.service';
 import {IUser} from '../../../../interfaces/IUser';
 import {Router} from '@angular/router';
 import {IDiscount} from '../../../../interfaces/IDiscount';
+import {AppComponent} from '../../../../app.component';
 
 @Component({
   selector: 'app-cart',
@@ -28,6 +29,9 @@ export class CartComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
+        if (!AppComponent.isBrowser) {
+            return;
+        }
         this.products = this.checkoutService.products;
         this.user = this.authService.user;
         this.postalCode = this.checkoutService.postalCode;
