@@ -72,7 +72,7 @@ export class CarouselComponent implements AfterViewInit, OnInit {
         if (!this.time) {
             return;
         }
-        setInterval(() => this.next(), this.time);
+        // setInterval(() => this.next(), this.time);
     }
 
     public previus() {
