@@ -3,9 +3,9 @@ import {BehaviorSubject} from 'rxjs';
 import {isPlatformBrowser} from '@angular/common';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
     static isBrowser = new BehaviorSubject<boolean>(null);

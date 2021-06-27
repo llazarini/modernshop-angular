@@ -3,10 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  baseAuthUrl: 'http://localhost:8081/api/auth',
-  baseSiteUrl: 'http://localhost:8081/api/guest',
-  googleAnalytics: '',
+    site: 'localhost',
+    production: false,
+    baseAuthUrl: 'http://localhost:8081/api/auth',
+    baseSiteUrl: 'http://localhost:8081/api/guest',
+    googleAnalytics: '',
 };
 
 /*

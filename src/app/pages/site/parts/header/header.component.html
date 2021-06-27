@@ -1,7 +1,12 @@
 <header>
     <div class="container" fxLayoutAlign="space-between center">
-        <div class="logo" routerLink="/">
+        <div class="logo" routerLink="/" fxLayout="row" fxLayoutAlign="start center">
             <img src="assets/images/logo.png" width="70px" height="40px">
+            <!--div class="search">
+                <div fxHide.lt-sm>
+                    <input type="search" placeholder="Busque produtos" [(ngModel)]="search">
+                </div>
+            </div-->
         </div>
 
         <div fxLayout="row" class="menu">

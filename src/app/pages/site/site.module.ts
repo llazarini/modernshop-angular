@@ -20,6 +20,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatCardModule} from '@angular/material/card';
 import { GoogleAnalyticsComponent } from './share/google-analytics/google-analytics.component';
+import {MatInputModule} from '@angular/material/input';
+import {FormsModule} from '@angular/forms';
 @NgModule({
 	declarations: [
 		SiteComponent,
@@ -50,6 +52,8 @@ import { GoogleAnalyticsComponent } from './share/google-analytics/google-analyt
 		MatProgressBarModule,
 		MatCardModule,
 		MatCardModule,
+		MatInputModule,
+		FormsModule,
 	]
 })
 export class SiteModule { }

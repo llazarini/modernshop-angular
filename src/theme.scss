@@ -1,6 +1,6 @@
 @import '~@angular/material/theming';
 @import 'variables';
-@import '~@mdi/font/scss/materialdesignicons';
+// @import '~@mdi/font/scss/materialdesignicons';
 @include mat-core();
 
 $typography: mat-typography-config(

@@ -10,6 +10,7 @@ import {AuthService} from '../services/auth/auth.service';
 import {tap} from 'rxjs/operators';
 import {Router} from '@angular/router';
 import {AlertService} from '../services/alert/alert.service';
+import {environment} from '../../environments/environment';
 
 @Injectable()
 export class ApiInterceptor implements HttpInterceptor {
@@ -20,8 +21,8 @@ export class ApiInterceptor implements HttpInterceptor {
         private alertService: AlertService) {}
 
     intercept(
-      httpRequest: HttpRequest<any>,
-      httpHandler: HttpHandler
+          httpRequest: HttpRequest<any>,
+          httpHandler: HttpHandler
     ): Observable<HttpEvent<any>> {
         // If is not file upload
         if (httpRequest.url.indexOf('files/store') < 0) {
@@ -32,6 +33,9 @@ export class ApiInterceptor implements HttpInterceptor {
             });
         }
 
+        httpRequest = httpRequest.clone({
+            headers: httpRequest.headers.set('Site', environment.site)
+        });
         if (this.authService.token) {
             httpRequest = httpRequest.clone({
                 headers: httpRequest.headers
@@ -50,6 +54,6 @@ export class ApiInterceptor implements HttpInterceptor {
                         this.router.navigate(['/'])
                     }
             }
-            ));
+        ));
     }
 }

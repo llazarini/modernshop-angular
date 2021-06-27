@@ -10,9 +10,10 @@ import {Subscription} from 'rxjs';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+	private loggingSubscription: Subscription;
+	public search: string;
 	public badge: number;
 	public logged: boolean;
-	private loggingSubscription: Subscription;
 
 	constructor(
 		private authService: AuthService,
