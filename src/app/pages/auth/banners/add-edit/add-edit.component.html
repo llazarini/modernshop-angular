@@ -19,7 +19,9 @@
             <input matInput required formControlName="slug"/>
         </mat-form-field>
 
-        <button mat-button type="button" (click)="addBanner()">Adicionar Banner</button>
+        <button mat-button color="primary" type="button" (click)="addBanner()">
+            <i class="mdi mdi-plus"></i> Adicionar Banner
+        </button>
 
         <div fxFlex>
             <div class="padding" *ngFor="let banner of banners.controls; let i = index" [formGroup]="banners.controls[i]" fxLayout="column">
@@ -34,7 +36,9 @@
                 <app-file-upload type="App\Models\Banner" [id]="banner.value.id" [token]="this.token" [multiple]="false"
                                  (uploaded)="fileUploaded(i, $event)">
                 </app-file-upload>
-                <button mat-icon-button type="button" (click)="removeBanner(i)"><i class="mdi mdi-trash-can"></i> Remover banner</button>
+                <button mat-button color="warn" type="button" (click)="removeBanner(i)">
+                    <i class="mdi mdi-trash-can"></i> Remover banner
+                </button>
                 <mat-divider></mat-divider>
             </div>
         </div>

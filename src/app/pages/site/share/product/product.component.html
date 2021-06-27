@@ -1,5 +1,7 @@
 <mat-card class="product" fxLayout="column">
-    <app-carousel class="photo" [slides]="product.files" [height]="300" [width]="220"></app-carousel>
+    <a class="pointer" (click)="buy()">
+        <app-carousel class="photo" [slides]="product.files" [height]="300" [width]="220"></app-carousel>
+    </a>
     <div class="padding" fxLayout="column">
         <a class="title pointer" (click)="buy()">{{ product.name }}</a>
         <div fxLayout="column">

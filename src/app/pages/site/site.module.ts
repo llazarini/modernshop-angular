@@ -19,13 +19,15 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatCardModule} from '@angular/material/card';
+import { GoogleAnalyticsComponent } from './share/google-analytics/google-analytics.component';
 @NgModule({
 	declarations: [
 		SiteComponent,
 		HomeComponent,
 		HeaderComponent,
 		FooterComponent,
-		PrivacyComponent
+		PrivacyComponent,
+        GoogleAnalyticsComponent
 	],
 	imports: [
 		CommonModule,

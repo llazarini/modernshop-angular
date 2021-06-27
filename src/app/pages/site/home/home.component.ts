@@ -66,7 +66,7 @@ export class HomeComponent implements OnInit {
         this.categoryService
             .index()
             .subscribe(categories => {
-                this.categories = categories;
+                this.categories = categories.filter(category => category.slug !== 'spotlight');
             })
             .add(() => this.loadingCategories = false)
     }
@@ -106,8 +106,8 @@ export class HomeComponent implements OnInit {
 
     public title() {
         if (!this.selectedCategory) {
-            return "Todas as Ilustrações:"
+            return "Todos os Quadros"
         }
-        return "Ilustrações: " + this.selectedCategory?.name
+        return "Quadros: " + this.selectedCategory?.name
     }
 }

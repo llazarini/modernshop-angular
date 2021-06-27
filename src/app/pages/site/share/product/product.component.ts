@@ -18,6 +18,8 @@ export class ProductComponent implements OnInit {
     public ngOnInit() {}
 
 	public buy() {
-		this.router.navigate(['/', 'product', 'view', this.product.id, this.product.slug]);
+		this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+			this.router.navigate(['/', 'product', 'view', this.product.id, this.product.slug]);
+		});
 	}
 }

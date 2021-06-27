@@ -31,6 +31,11 @@ section {
     .info {
         font-size: 20px;
     }
+    h1 {
+        color: #f65b18;
+        border-bottom: 2px dashed #f9d9cc;
+        padding-bottom: 15px;
+    }
 }
 .container-categories {
     background: url("../../../../assets/images/background-categories.png");
@@ -49,6 +54,21 @@ section {
 .footer {
     border-top: 2px solid $base-primary;
     padding-top: $margin * 3;
+    div {
+        i {
+            font-size: 40px;
+            color: $base-accent;
+        }
+        div {
+            line-height: 30px;
+            color: #343434;
+            margin-left: $margin;
+            font-size: 18px;
+        }
+    }
+}
+.top {
+    padding: $margin * 3 0px;
     div {
         i {
             font-size: 40px;

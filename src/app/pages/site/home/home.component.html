@@ -16,7 +16,30 @@
 
 <app-carousel fxHide.lt-sm [height]="500" [width]="1920" [slides]="banners"></app-carousel>
 
-<div class="container-categories">
+<section class="container top" fxLayout="column" fxLayout.gt-xs="row" fxLayoutGap="15px">
+    <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+        <i class="mdi mdi-brush"></i>
+        <div>Quadros feitos pela artista Ana Raquel</div>
+    </div>
+    <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+        <i class="mdi mdi-hand-heart"></i>
+        <div>Caixas 100% artesanais feitas pelo Ateliê Dora Lazarini</div>
+    </div>
+    <div fxFlex fxLayout="row" fxLayoutAlign="start center">
+        <i class="mdi mdi-map-marker-check"></i>
+        <div>Entregamos em todo o Brasil</div>
+    </div>
+</section>
+
+<section class="container">
+    <h1 class="title">
+        <i class="mdi mdi-lightbulb-on-outline"></i>
+        Quadros em destaque
+    </h1>
+    <app-product-carousel [category]="'spotlight'"></app-product-carousel>
+</section>
+
+<div class="container-categories margin-top">
     <section class="container">
         <div fxLayout="row" fxLayoutGap="2%" class="categories">
             <ng-container *ngFor="let category of categories">
@@ -30,8 +53,11 @@
     </section>
 </div>
 
-<section class="container">
-    <h1 class="margin-top">{{ title() }}</h1>
+<section class="container margin-top">
+    <h1 class="margin-top">
+        <i class="mdi mdi-palette"></i>
+        {{ title() }}
+    </h1>
     <div fxLayout="row wrap" fxLayoutGap.gt-sm="2%">
         <ng-container *ngFor="let product of products">
             <app-product fxFlex="100%" fxFlex.gt-sm="18%" class="product" [product]="product"></app-product>
@@ -45,7 +71,7 @@
     </div>
 </section>
 
-<section class="container footer margin-top" fxLayout="column" fxLayout.gt-xs="row" fxLayoutGap="15px">
+<section class="container footer" fxLayout="column" fxLayout.gt-xs="row" fxLayoutGap="15px">
     <div fxFlex fxLayout="row" fxLayoutAlign="start center">
         <i class="mdi mdi-phone-in-talk"></i>
         <div>Atendimento de Segunda a Sexta das 08:00 às 16:00hrs</div>

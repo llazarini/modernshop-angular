@@ -4,7 +4,7 @@
 
     <div class="file-upload margin-bottom" fxLayout="row" fxLayoutAlign="start center" (click)="fileUpload.click()">
         <button mat-mini-fab color="primary" class="upload-btn" type="button">
-            <mat-icon>attach_file</mat-icon>
+            <i class="mdi mdi-upload"></i>
         </button>
         <div class="margin-left pointer">Selecione o arquivo</div>
     </div>
@@ -13,7 +13,7 @@
         <ng-container *ngFor="let file of files">
             <div class="image margin-right margin-bottom" [style.background]="'url(' + file.url + ')'">
                 <button mat-icon-button color="warn" type="button" (click)="delete(file)">
-                    <mat-icon>remove_circle_outline</mat-icon>
+                    <i class="mdi mdi-close"></i>
                 </button>
             </div>
         </ng-container>
