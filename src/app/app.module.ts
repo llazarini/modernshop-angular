@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import {BrowserModule, BrowserTransferStateModule} from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -28,7 +28,8 @@ import {NgxMaskModule} from 'ngx-mask';
         GuestModule,
         SiteModule,
         HttpClientModule,
-        MatSnackBarModule
+        MatSnackBarModule,
+        BrowserTransferStateModule
     ],
     providers: [
         {
