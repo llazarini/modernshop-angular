@@ -7,6 +7,7 @@ import {ICategory} from '../../../interfaces/ICategory';
 import {CategoryService} from '../../../services/guest/category/category.service';
 import {ScrollPaginationService} from '../../../services/scroll-pagination/scroll-pagination.service';
 import {Meta, Title} from '@angular/platform-browser';
+import {environment} from '../../../../environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -34,9 +35,10 @@ export class HomeComponent implements OnInit {
         private metaService: Meta,
         private titleService: Title,
     ) {
-        this.titleService.setTitle('Ana Raquel Ilustrações')
+        this.titleService.setTitle(environment.title + ' - ' + environment.subtitle)
         this.metaService.addTags([
-            { name: 'description', content: 'Quadros, ilustrações e molduras feitas por artista independente Ana Raquel. Com desenhos feitos sobre bailarinas, animes, natureza e muito mais.' },
+            { name: 'description', content: environment.description },
+            { name: 'keywords', content: environment.keys },
         ]);
     }
 

@@ -8,6 +8,10 @@ export const environment = {
     baseAuthUrl: 'http://localhost:8081/api/auth',
     baseSiteUrl: 'http://localhost:8081/api/guest',
     googleAnalytics: '',
+    title: 'Ana Raquel Ilustrações',
+    subtitle: 'Quadros e Desenhos decorativos',
+    keys: 'quadros, decorativos, desenhos, ilustrações, molduras',
+    description: 'Compre Quadros Decorativos em até 12x Sem Juros. Decore seus Ambientes com Lindas Ilustrações feitas pela artista Ana Raquel',
 };
 
 /*
