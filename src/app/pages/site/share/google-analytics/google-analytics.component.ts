@@ -35,6 +35,10 @@ export class GoogleAnalyticsComponent {
               `);
             this.renderer.appendChild(script2, scriptBody);
             this.renderer.appendChild(this.el.nativeElement, script2);
+
+
+            const icons = this.renderer.createElement('link') as HTMLLinkElement;
+            icons.href = ''
         }
     }
 

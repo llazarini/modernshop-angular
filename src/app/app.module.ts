@@ -1,4 +1,4 @@
-import {BrowserModule, BrowserTransferStateModule} from '@angular/platform-browser';
+import {BrowserModule, BrowserTransferStateModule, DomSanitizer} from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -40,4 +40,4 @@ import {NgxMaskModule} from 'ngx-mask';
     ],
     bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

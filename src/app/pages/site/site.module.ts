@@ -22,6 +22,7 @@ import {MatCardModule} from '@angular/material/card';
 import { GoogleAnalyticsComponent } from './share/google-analytics/google-analytics.component';
 import {MatInputModule} from '@angular/material/input';
 import {FormsModule} from '@angular/forms';
+
 @NgModule({
 	declarations: [
 		SiteComponent,
@@ -29,7 +30,7 @@ import {FormsModule} from '@angular/forms';
 		HeaderComponent,
 		FooterComponent,
 		PrivacyComponent,
-        GoogleAnalyticsComponent
+        GoogleAnalyticsComponent,
 	],
 	imports: [
 		CommonModule,
