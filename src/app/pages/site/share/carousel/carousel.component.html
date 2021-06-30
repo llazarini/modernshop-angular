@@ -4,7 +4,7 @@
         <div class="slide" *ngIf="i === currentSlide" [style.background]="'url(' + getUrl(slide) + ')'"
              [@slideAnimation]="animationType">
             <div class="container" fxLayoutAlign="start center">
-                <div class="slide-content" [innerHTML]="slide.content"></div>
+                <div class="slide-content" ngClass.lt-sm="small" [innerHTML]="slide.content"></div>
             </div>
         </div>
     </ng-container>

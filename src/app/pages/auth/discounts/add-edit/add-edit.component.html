@@ -12,27 +12,66 @@
     <div class="common-form-max" fxLayout="column">
         <mat-form-field appearance="outline">
             <mat-label>Nome do Desconto</mat-label>
-            <input matInput required formControlName="name"/>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-            <mat-label>Código</mat-label>
-            <input matInput required formControlName="code"/>
+            <input matInput required formControlName="name" />
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>Tipo</mat-label>
             <mat-select formControlName="type">
                 <mat-option value="percentage">Porcentagem</mat-option>
                 <mat-option value="value">Valor</mat-option>
+                <mat-option value="programmatic">Programática</mat-option>
             </mat-select>
         </mat-form-field>
-        <mat-form-field fxFlex appearance="outline">
-            <mat-label>Desconto</mat-label>
-            <ng-container *ngIf="formGroup.value.type === 'value'">
+        <ng-container *ngIf="formGroup.value.type !== 'programmatic'">
+            <mat-form-field appearance="outline">
+                <mat-label>Código</mat-label>
+                <input matInput required formControlName="code"/>
+            </mat-form-field>
+        </ng-container>
+        <ng-container *ngIf="formGroup.value.type === 'value'">
+            <mat-form-field fxFlex appearance="outline">
+                <mat-label>Desconto</mat-label>
                 <input currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" matInput required formControlName="value">
-            </ng-container>
-            <ng-container *ngIf="formGroup.value.type === 'percentage'">
+            </mat-form-field>
+        </ng-container>
+        <ng-container *ngIf="formGroup.value.type === 'percentage'">
+            <mat-form-field fxFlex appearance="outline">
+                <mat-label>Desconto</mat-label>
                 <input type="number" matInput required formControlName="value">
-            </ng-container>
-        </mat-form-field>
+            </mat-form-field>
+        </ng-container>
+
+        <ng-container *ngIf="formGroup.value.type === 'programmatic'">
+            <div formArrayName="discount_options" fxLayout="column">
+                <button mat-button color="primary" type="button" (click)="addDiscount()">
+                    <i class="mdi mdi-plus"></i> Adicionar Desconto
+                </button>
+                <ng-container *ngFor="let discountOption of discountOptions.controls; let i = index" [formGroup]="discountOptions.controls[i]">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Opção</mat-label>
+                        <mat-select formControlName="option_id">
+                            <mat-option *ngFor="let option of options" [value]="option.id">{{ option.name }}</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <div fxLayout="row" fxLayoutGap="15px">
+                        <mat-form-field fxFlex appearance="outline">
+                            <mat-label>Produtos mínimos</mat-label>
+                            <input type="number" matInput required formControlName="min_products">
+                        </mat-form-field>
+                        <mat-form-field fxFlex appearance="outline">
+                            <mat-label>Produtos máximos</mat-label>
+                            <input type="number" matInput required formControlName="max_products">
+                        </mat-form-field>
+                    </div>
+                    <mat-form-field fxFlex appearance="outline">
+                        <mat-label>Porcentagem de desconto</mat-label>
+                        <input type="number" matInput required formControlName="value">
+                    </mat-form-field>
+                    <button mat-button color="warn" type="button" (click)="removeDiscount(i)">
+                        <i class="mdi mdi-trash-can"></i> Remover desconto
+                    </button>
+                </ng-container>
+            </div>
+        </ng-container>
     </div>
 </form>

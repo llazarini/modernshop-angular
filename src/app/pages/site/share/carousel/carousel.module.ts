@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {CarouselComponent} from './carousel.component';
-import {FlexModule} from '@angular/flex-layout';
+import {ExtendedModule, FlexModule} from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -10,9 +10,10 @@ import {FlexModule} from '@angular/flex-layout';
   exports: [
     CarouselComponent
   ],
-  imports: [
-    CommonModule,
-    FlexModule
-  ]
+	imports: [
+		CommonModule,
+		FlexModule,
+		ExtendedModule
+	]
 })
 export class CarouselModule { }

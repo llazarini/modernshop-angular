@@ -75,6 +75,7 @@ export class CarouselComponent implements AfterViewInit, OnInit {
     public ngOnInit() {
         this.changing();
         this.detectScreenSize();
+        this.preloadImages();
     }
 
     public changing() {
@@ -122,5 +123,11 @@ export class CarouselComponent implements AfterViewInit, OnInit {
 
     private urlParams() {
         return '&width=' + this.width + '&height=' + this.height;
+    }
+
+    public preloadImages() {
+        for (const slide of this.slides) {
+            new Image().src = slide.url;
+        }
     }
 }
