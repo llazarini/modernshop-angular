@@ -1,5 +1,5 @@
 import {BrowserModule, BrowserTransferStateModule, DomSanitizer} from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {Inject, NgModule, PLATFORM_ID} from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,6 +13,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {SiteModule} from './pages/site/site.module';
 import {NgxMaskModule} from 'ngx-mask';
 import {MatIconRegistry} from '@angular/material/icon';
+import {isPlatformServer} from '@angular/common';
 
 @NgModule({
     declarations: [
@@ -42,9 +43,55 @@ import {MatIconRegistry} from '@angular/material/icon';
     bootstrap: [AppComponent]
 })
 export class AppModule {
-    constructor(iconRegistry: MatIconRegistry, domSanitizer: DomSanitizer) {
-        iconRegistry.addSvgIconSet(
-            domSanitizer.bypassSecurityTrustResourceUrl('./assets/mdi.svg')
-        );
+
+    private icons = [
+        'account',
+        'cart',
+        'credit-card-outline',
+        'facebook',
+        'instagram',
+        'login',
+        'logout',
+        'sale',
+        'truck',
+        'truck-fast',
+        'phone-in-talk',
+        'palette',
+        'lightbulb-on-outline',
+        'map-marker-check',
+        'hand-heart',
+        'heart',
+        'brush',
+        'email',
+        'whatsapp',
+        'chevron-right',
+        'cart-check',
+        'store',
+        'trash-can',
+        'plus-circle',
+        'minus-circle',
+        'cellphone-nfc',
+        'list-status',
+        'card-search'
+    ]
+
+    constructor(
+        private iconRegistry: MatIconRegistry,
+        private domSanitizer: DomSanitizer,
+        @Inject(PLATFORM_ID) private platformId: string) {
+        this.registerIcons();
+    }
+
+    private registerIcons() {
+        this.icons.forEach(icon => this.registerIcon(icon, icon));
+    }
+
+    private registerIcon(name: string, filename: string) {
+        if (isPlatformServer(this.platformId)) {
+            /* Register empty icons for server-side-rendering to prevent errors */
+            this.iconRegistry.addSvgIconLiteral(name, this.domSanitizer.bypassSecurityTrustHtml('<svg></svg>'));
+        } else {
+            this.iconRegistry.addSvgIcon(name, this.domSanitizer.bypassSecurityTrustResourceUrl(`assets/icons/${filename}.svg`));
+        }
     }
 }

@@ -2,9 +2,9 @@
 <div class="breadcrumb">
     <div class="container" fxLayout="row">
         <div>Home</div>
-        <mat-icon svgIcon="arrow-right"></mat-icon>
+        <mat-icon svgIcon="chevron-right"></mat-icon>
         <div>Produtos</div>
-        <mat-icon svgIcon="arrow-right"></mat-icon>
+        <mat-icon svgIcon="chevron-right"></mat-icon>
         <div>{{ product?.name }}</div>
     </div>
 </div>
@@ -60,9 +60,15 @@
 
             <div class="shipping" *ngIf="shipping?.length > 0">
                 <div class="sub-title">Calculo do Frete</div>
-                <div fxLayoutAlign="start center"><mat-icon svgIcon="printer"></mat-icon> Frete a partir de {{ bestShipping.price | price }}.</div>
-                <div fxLayoutAlign="start center"><mat-icon svgIcon="truck"></mat-icon> Entrega em até {{ bestShipping.time }} dias úteis para sua região.</div>
-                <div fxLayoutAlign="start center"><mat-icon svgIcon="store"></mat-icon> Ou retire grátis a partir de amanhã em Santo André.</div>
+                <div fxLayoutAlign="start center">
+                    <mat-icon color="accent" svgIcon="truck" class="margin-right"></mat-icon>
+                    Frete a partir de {{ bestShipping.price | price }}.</div>
+                <div fxLayoutAlign="start center">
+                    <mat-icon color="accent" svgIcon="truck-fast" class="margin-right"></mat-icon>
+                    Entrega em até {{ bestShipping.time }} dias úteis para sua região.</div>
+                <div fxLayoutAlign="start center">
+                    <mat-icon color="accent" svgIcon="store" class="margin-right"></mat-icon>
+                    Ou retire grátis a partir de amanhã em Santo André.</div>
                 <button class="margin-top" fxFill mat-stroked-button color="accent" (click)="recalculate()">Recalcular frete</button>
             </div>
         </div>
