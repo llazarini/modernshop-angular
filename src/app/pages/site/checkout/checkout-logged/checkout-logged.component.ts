@@ -14,7 +14,6 @@ export class CheckoutLoggedComponent implements OnInit {
     public loading: number = 0;
     public formGroup: FormGroup;
     public products: Array<IProduct>;
-    public total: number = 0;
 
     constructor(
         private router: Router,

@@ -51,28 +51,19 @@ export class CartComponent implements OnInit {
         this.loading += 1;
         this.checkoutService
             .shipment(postal, products)
-            .subscribe((shippings) => {
-                shippings = shippings.filter(shipping => !shipping.error);
+            .subscribe((response) => {
+                const shippings = response.shippings.filter(shipping => !shipping.error);
                 this.shipping = shippings;
                 this.checkoutService.shipping = shippings;
                 this.checkoutService.postalCode = postal;
+                this.checkoutService.discounts = response.discounts;
             },
                 error => this.alertService.treatError(error))
             .add(() => this.loading -= 1);
     }
 
     public get bestShipping() {
-        let time = -1;
-        let price = -1;
-        this.shipping?.forEach(shipping => {
-            if (shipping.delivery_time < time || time == -1) {
-                time = shipping.delivery_time;
-            }
-            if (+shipping.price < price || price == -1) {
-                price = +shipping.price;
-            }
-        })
-        return { time, price }
+        return this.checkoutService.bestShipping;
     }
 
     public remove(i: any) {
@@ -92,11 +83,13 @@ export class CartComponent implements OnInit {
 
     public plus(i: number) {
         this.products[i].quantity += 1;
+        this.products[i].total_price = this.products[i].option_price * this.products[i].quantity;
         this.change();
     }
 
     public minus(i: number) {
         this.products[i].quantity -= 1;
+        this.products[i].total_price = this.products[i].option_price * this.products[i].quantity;
         if (this.products[i].quantity <= 0) {
             this.remove(i);
         }
@@ -128,5 +121,9 @@ export class CartComponent implements OnInit {
 
     public get discount(): IDiscount {
         return this.checkoutService.discount;
+    }
+
+    public get discounts(): Array<IDiscount> {
+        return this.checkoutService.discounts;
     }
 }

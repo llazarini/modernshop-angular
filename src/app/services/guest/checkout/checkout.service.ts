@@ -37,6 +37,22 @@ export class CheckoutService {
         this.updateProductsQuantity();
     }
 
+    public get discounts(): Array<IDiscount> {
+        if (!this.browser) {
+            return [];
+        }
+        const parsed = JSON.parse(localStorage.getItem('discounts'));
+        return parsed ? parsed : [];
+    }
+
+    public set discounts(products: Array<IDiscount>) {
+        if (!this.browser) {
+            return;
+        }
+        localStorage.removeItem('discounts');
+        localStorage.setItem('discounts', JSON.stringify(products));
+    }
+
     public set shipping(shipping: any) {
         if (!this.browser) {
             return;
@@ -102,7 +118,11 @@ export class CheckoutService {
 
     public get total(): number {
         let total = this.subTotalWithDiscount;
-        total += +this.shippingOption?.price;
+        if (this.shippingOption) {
+            total += +this.shippingOption?.price;
+        } else {
+            total += +this.bestShipping?.price;
+        }
         return total;
     }
 
@@ -121,6 +141,7 @@ export class CheckoutService {
         if (this.discount) {
             total = this.discount.type === 'percentage' ? total * (1 - (this.discount.value / 100)) : total - this.discount.value;
         }
+        this.discounts?.forEach(discount => total = total - discount.value)
         return total;
     }
 
@@ -131,15 +152,17 @@ export class CheckoutService {
         if (productFound >= 0) {
             const products = this.products;
             let price = products[productFound].price;
-            products[productFound].selected_options.forEach(option => price += (option.type ? option.price : -option.price))
+            products[productFound].selected_options.forEach(option => price += (option.type ? +option.price : -option.price))
             products[productFound].quantity += 1;
-            products[productFound].total_price = price * this.products[productFound].quantity;
+            products[productFound].option_price = price;
+            products[productFound].total_price = products[productFound].option_price * products[productFound].quantity;
             this.products = products;
             return;
         }
         product.quantity = 1;
         let price = product.price;
         product.selected_options.forEach(option => price += (option.type ? option.price : -option.price))
+        product.option_price = price;
         product.total_price = price;
         const products = this.products;
         products.push(product);
@@ -228,5 +251,16 @@ export class CheckoutService {
             })
         }
         return installments;
+    }
+
+    public get bestShipping(): any {
+        let bestShipping;
+        let price = -1;
+        this.shipping?.forEach(shipping => {
+            if (+shipping.price < price || price == -1) {
+                bestShipping = shipping;
+            }
+        })
+        return bestShipping;
     }
 }

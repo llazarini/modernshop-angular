@@ -72,7 +72,8 @@ export class AppModule {
         'minus-circle',
         'cellphone-nfc',
         'list-status',
-        'card-search'
+        'card-search',
+        'close'
     ]
 
     constructor(

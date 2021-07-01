@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ProductService} from '../../../../services/guest/product/product.service';
 import {IProduct} from '../../../../interfaces/IProduct';
 import {ActivatedRoute, Router} from '@angular/router';
@@ -76,7 +76,7 @@ export class ViewComponent implements OnInit {
                     },
                     "offers": {
                         "@type": "Offer",
-                        "url": "https://example.com/anvil",
+                        "url": this.product.url,
                         "priceCurrency": "BRL",
                         "price": this.product?.price,
                         "priceValidUntil": "2022-11-20",
@@ -124,11 +124,11 @@ export class ViewComponent implements OnInit {
         this.loading += 1;
         this.checkoutService
             .shipment(this.postalCode, [this.product])
-            .subscribe((shippings) => {
-                shippings = shippings.filter(shipping => !shipping.error);
-                this.shipping = shippings;
+            .subscribe((response) => {
+                this.shipping = response?.shippings.filter(shipping => !shipping.error);
                 this.checkoutService.postalCode = this.postalCode;
                 this.checkoutService.shipping = this.shipping;
+                this.checkoutService.discounts = response.discounts;
             },
             error => this.alertService.treatError(error))
             .add(() => this.loading -= 1);

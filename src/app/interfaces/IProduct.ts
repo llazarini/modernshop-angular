@@ -4,7 +4,8 @@ import {IOption} from './IOption';
 import {IAttribute} from './IAttribute';
 
 export interface IProduct {
-	sku: string;
+	url?: string;
+	sku?: string;
 	attributes: Array<IAttribute>;
     id?: number;
 	name?: string;
@@ -16,6 +17,7 @@ export interface IProduct {
 	files?: Array<IFile>;
 	file?: IFile;
 	price?: number;
+	option_price?: number;
 	price_cost?: number;
 	total_price?: number;
 	quantity?: number;

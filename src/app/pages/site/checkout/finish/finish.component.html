@@ -97,16 +97,16 @@
                     Sub-total:
                 </div>
                 <div fxLayout="column" fxLayoutAlign="center end" fxFlex="140px">
-                    <ng-container *ngIf="discount">
-                        <div class="total-without-discount">De {{ subTotal | price }}</div>
-                        <div>por {{ subTotalWithDiscount | price }}</div>
+                    <ng-container *ngIf="discount || discounts">
+                        <div fxLayout="column" fxLayoutAlign="center end">
+                            <div class="total-without-discount">De {{ subTotal | price }}</div>
+                            <div class="total-discount">por {{ subTotalWithDiscount | price }}</div>
+                        </div>
                         <small class="muted">
-                            <span *ngIf="discount.type === 'percentage'">{{ discount.value / 100 | percent }}</span>
-                            <span *ngIf="discount.type === 'value'"> {{ discount.value | price }}</span>
-                            de desconto
+                            Desconto de <span>{{ subTotal - subTotalWithDiscount | price }}</span> aplicado
                         </small>
                     </ng-container>
-                    <ng-container *ngIf="!discount">
+                    <ng-container *ngIf="!discount && !discounts">
                         <div>{{ subTotal | price }}</div>
                     </ng-container>
                 </div>

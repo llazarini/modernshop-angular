@@ -63,8 +63,8 @@ export class AddressComponent implements OnInit {
         this.loading += 1;
         this.checkoutService
             .shipment(postal, this.checkoutService.products)
-            .subscribe((shippings) => {
-                    shippings = shippings.filter(shipping => !shipping.error);
+            .subscribe((response) => {
+                    const shippings = response.shippings.filter(shipping => !shipping.error);
                     this.shipping = shippings;
                     this.checkoutService.shipping = shippings;
                     this.checkoutService.postalCode = postal;

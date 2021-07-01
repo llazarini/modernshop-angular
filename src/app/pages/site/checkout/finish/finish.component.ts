@@ -25,6 +25,7 @@ export class FinishComponent implements OnInit {
     public subTotal: number = 0;
     public subTotalWithDiscount: number = 0;
     public discount: IDiscount;
+    public discounts: Array<IDiscount>;
 	public installments: Array<IInstallment>;
 
     constructor(
@@ -66,6 +67,7 @@ export class FinishComponent implements OnInit {
         this.subTotal = this.checkoutService.subTotal;
         this.subTotalWithDiscount = this.checkoutService.subTotalWithDiscount;
         this.discount = this.checkoutService.discount;
+        this.discounts = this.checkoutService.discounts;
         if (!this.shippingOption) {
             this.router.navigate(['user', 'address']);
         }
