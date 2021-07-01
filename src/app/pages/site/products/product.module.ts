@@ -18,6 +18,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import {PriceModule} from '../../../pipes/price.module';
 import {ProductCarouselModule} from '../share/product-carousel/product-carousel.module';
 import {NgxJsonLdModule} from 'ngx-json-ld';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
     declarations: [
@@ -43,6 +44,7 @@ import {NgxJsonLdModule} from 'ngx-json-ld';
 		PriceModule,
 		ProductCarouselModule,
 		NgxJsonLdModule,
+		MatIconModule,
 	]
 })
 export class ProductModule { }

@@ -4,11 +4,11 @@
         <h1>Escolha sua opção de pagamento</h1>
         <div fxLayout="column" class="payment-options margin-bottom" fxLayoutGap="10px">
             <div fxFlex fxLayout="row" fxLayoutAlign="start center" (click)="option = 'pix'" [class.selected]="option === 'pix'">
-                <i class="mdi mdi-cellphone-nfc"></i>
+                <mat-icon svgIcon="cellphone-nfc"></mat-icon>
                 <div>Pagar com PIX</div>
             </div>
             <div fxFlex fxLayout="row" fxLayoutAlign="start center" (click)="option = 'credit_card'" [class.selected]="option === 'credit_card'">
-                <i class="mdi mdi-credit-card-outline"></i>
+                <mat-icon svgIcon="credit-card-outline"></mat-icon>
                 <div>Pagar com Cartão de Crédito</div>
             </div>
         </div>

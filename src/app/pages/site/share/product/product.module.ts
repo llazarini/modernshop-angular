@@ -7,6 +7,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {RouterModule} from '@angular/router';
 import {MatCardModule} from '@angular/material/card';
 import {PriceModule} from '../../../../pipes/price.module';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
 	declarations: [
@@ -22,7 +23,8 @@ import {PriceModule} from '../../../../pipes/price.module';
 		MatButtonModule,
 		RouterModule,
 		MatCardModule,
-		PriceModule
+		PriceModule,
+		MatIconModule
 	]
 })
 export class ProductModule { }

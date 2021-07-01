@@ -22,6 +22,7 @@ import {MatListModule} from '@angular/material/list';
 import {SuccessComponent} from './success/success.component';
 import {PriceModule} from '../../../pipes/price.module';
 import {CheckoutLoggedComponent} from './checkout-logged/checkout-logged.component';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
 	exports: [],
@@ -53,6 +54,7 @@ import {CheckoutLoggedComponent} from './checkout-logged/checkout-logged.compone
 		ExtendedModule,
 		MatListModule,
 		PriceModule,
+		MatIconModule,
 	]
 })
 export class CheckoutModule { }

@@ -24,6 +24,7 @@ import {PasswordComponent} from './password/password.component';
 import {MatCardModule} from '@angular/material/card';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {PriceModule} from '../../../pipes/price.module';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
 	exports: [
@@ -64,6 +65,7 @@ import {PriceModule} from '../../../pipes/price.module';
 		MatCardModule,
 		MatProgressSpinnerModule,
 		PriceModule,
+		MatIconModule,
 	]
 })
 export class UserModule { }

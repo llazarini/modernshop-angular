@@ -5,10 +5,10 @@
         <div fxLayout="row" fxLayoutGap="10px">
             <div>Atendimento</div>
             <a target="_blank" href="https://api.whatsapp.com/send?phone=5511974577357&text=Ol%C3%A1%2C%20vim%20pelo%20site!%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es!">
-                <i class="mdi mdi-whatsapp"></i>
+                <mat-icon svgIcon="whatsapp"></mat-icon>
             </a>
             <a target="_blank" href="mailto:contato@anaraquelilustracoes.com.br">
-                <i class="mdi mdi-email"></i>
+                <mat-icon svgIcon="email"></mat-icon>
             </a>
         </div>
     </div>
@@ -24,7 +24,7 @@
         <div class="description">
             <div fxLayout="row" fxLayoutAlign="start center">
                 <h1 class="no-margin">Quadros Ilustrativos feitos com amor!</h1>
-                <i class="red margin-left mdi mdi-heart"></i>
+                <mat-icon class="red margin-left" svgIcon="heart"></mat-icon>
             </div>
             <h2>Molduras e impressão de qualidade, vidro anti-reflexo <br> e embalagem feita em cartonagem artesanal.</h2>
         </div>
@@ -36,22 +36,22 @@
 
 <section class="container top" fxLayout="column" fxLayout.gt-xs="row" fxLayoutGap="15px">
     <div fxFlex fxLayout="row" fxLayoutAlign="start center">
-        <i class="mdi mdi-brush"></i>
+        <mat-icon svgIcon="brush"></mat-icon>
         <div>Quadros feitos pela artista Ana Raquel</div>
     </div>
     <div fxFlex fxLayout="row" fxLayoutAlign="start center">
-        <i class="mdi mdi-hand-heart"></i>
+        <mat-icon svgIcon="hand-heart"></mat-icon>
         <div>Caixas 100% artesanais feitas pelo Ateliê Dora Lazarini</div>
     </div>
     <div fxFlex fxLayout="row" fxLayoutAlign="start center">
-        <i class="mdi mdi-map-marker-check"></i>
+        <mat-icon svgIcon="map-marker-check"></mat-icon>
         <div>Entregamos em todo o Brasil</div>
     </div>
 </section>
 
 <section class="container">
     <h1 class="title">
-        <i class="mdi mdi-lightbulb-on-outline"></i>
+        <mat-icon svgIcon="lightbulb-on-outline"></mat-icon>
         Quadros em destaque
     </h1>
     <app-product-carousel [category]="'spotlight'"></app-product-carousel>
@@ -73,7 +73,7 @@
 
 <section class="container margin-top">
     <h1 class="margin-top">
-        <i class="mdi mdi-palette"></i>
+        <mat-icon svgIcon="palette"></mat-icon>
         {{ title() }}
     </h1>
     <div fxLayout="row wrap" fxLayoutGap.gt-sm="2%">
@@ -91,15 +91,15 @@
 
 <section class="container footer" fxLayout="column" fxLayout.gt-xs="row" fxLayoutGap="15px">
     <div fxFlex fxLayout="row" fxLayoutAlign="start center">
-        <i class="mdi mdi-phone-in-talk"></i>
+        <mat-icon svgIcon="phone-in-talk"></mat-icon>
         <div>Atendimento de Segunda a Sexta das 09:00 às 18:00hrs</div>
     </div>
     <div fxFlex fxLayout="row" fxLayoutAlign="start center">
-        <i class="mdi mdi-sale"></i>
+        <mat-icon svgIcon="sale"></mat-icon>
         <div>Parcele em até 12x sem juros</div>
     </div>
     <div fxFlex fxLayout="row" fxLayoutAlign="start center">
-        <i class="mdi mdi-credit-card-outline"></i>
+        <mat-icon svgIcon="credit-card-outline"></mat-icon>
         <div>Pague com PIX ou com um Cartão de crédito nas principais bandeiras</div>
     </div>
 </section>
