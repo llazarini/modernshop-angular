@@ -1,6 +1,11 @@
 @import 'src/variables';
 .video {
+    background: #1a140f;
     position: relative;
+    video {
+        max-width: 100%;
+        overflow: hidden;
+    }
     .content {
         position: absolute;
         top: 0;
