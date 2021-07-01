@@ -14,8 +14,25 @@
     </div>
 </div>
 
+<!--
 <app-carousel fxHide.lt-sm [height]="500" [width]="1920" [slides]="banners"></app-carousel>
 <app-carousel fxHide.gt-xs [height]="350" [width]="500" [slides]="banners"></app-carousel>
+-->
+
+<div class="video" fxLayoutAlign="center start">
+    <div class="content">
+        <div class="container description">
+            <div fxLayout="row" fxLayoutAlign="start center">
+                <h1 class="no-margin">Quadros Ilustrativos feitos com amor!</h1>
+                <i class="red margin-left mdi mdi-heart"></i>
+            </div>
+            <h2>Molduras e impressão de qualidade, vidro anti-reflexo <br> e embalagem feita em cartonagem artesanal.</h2>
+        </div>
+    </div>
+    <video #video width="1920" height="450" autoplay="autoplay" muted="muted" loop="loop" (canplay)="video.play()" (loadedmetadata)="video.muted = true">
+        <source src="assets/videos/header.mp4" type="video/mp4" />
+    </video>
+</div>
 
 <section class="container top" fxLayout="column" fxLayout.gt-xs="row" fxLayoutGap="15px">
     <div fxFlex fxLayout="row" fxLayoutAlign="start center">
