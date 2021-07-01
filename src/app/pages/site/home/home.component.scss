@@ -2,10 +2,8 @@
 .video {
     background: #1a140f;
     position: relative;
-    video {
-        max-width: 100%;
-        overflow: hidden;
-    }
+    overflow-x: hidden;
+    max-width: 100%;
     .content {
         position: absolute;
         top: 0;
