@@ -30,18 +30,18 @@ export class AddEditComponent implements OnInit {
         private productService: ProductService
     ) {
         this.formGroup = new FormGroup({
-            request_token: new FormControl([this.token]),
-            id: new FormControl([null]),
-            sku: new FormControl([null]),
-            name: new FormControl([null, [Validators.required, Validators.maxLength(255)]]),
-            description: new FormControl([null]),
-            price: new FormControl([null]),
-            price_cost: new FormControl([null]),
-            meta_name: new FormControl([null]),
-            meta_description: new FormControl([null]),
-            meta_keys: new FormControl([null]),
-            categories: new FormControl([]),
-            options:  new FormControl([])
+            request_token: new FormControl(this.token),
+            id: new FormControl(null),
+            sku: new FormControl(null),
+            name: new FormControl(null, [Validators.required, Validators.maxLength(255)]),
+            description: new FormControl(null),
+            price: new FormControl(null),
+            price_cost: new FormControl(null),
+            meta_name: new FormControl(null),
+            meta_description: new FormControl(null),
+            meta_keys: new FormControl(null),
+            categories: new FormControl(),
+            options:  new FormControl()
         });
     }
 
