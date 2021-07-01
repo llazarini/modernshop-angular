@@ -1,5 +1,17 @@
 
 .product {
+    .new {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        z-index: 1;
+        background: #f65b18;
+        color: #fff;
+        font-size: 12px;
+        padding: 0 10px;
+        border-radius: 20px;
+        font-weight: bold;
+    }
     padding: 0;
     .title {
         font-weight: bold;

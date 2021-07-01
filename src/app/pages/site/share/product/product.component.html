@@ -1,5 +1,6 @@
 <mat-card class="product" fxLayout="column">
     <a class="pointer" (click)="buy()">
+        <div class="new" *ngIf="product.id >= 22">NOVO</div>
         <app-carousel class="photo" [slides]="product.files" [height]="300" [width]="220"></app-carousel>
     </a>
     <div class="padding" fxLayout="column">

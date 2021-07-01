@@ -24,6 +24,7 @@ export interface IProduct {
 	meta_title?: string;
 	meta_description?: string;
 	meta_keys?: string;
+	created_at?: Date;
 }
 
 export interface IInstallment {

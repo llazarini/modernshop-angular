@@ -26,7 +26,7 @@
         <div fxLayoutAlign="end center" class="padding-vertical">
             <div class="margin-right">Sub-total:</div>
             <div fxFlex="200px" fxLayout="column" fxLayoutAlign="center end" fxLayoutGap="10px">
-                <ng-container *ngIf="discount || discounts">
+                <ng-container *ngIf="discount || discounts?.length > 0">
                     <div fxLayout="column" fxLayoutAlign="center end">
                         <div class="total-without-discount">De {{ subTotal | price }}</div>
                         <div class="total-discount">por {{ subTotalWithDiscount | price }}</div>
@@ -35,7 +35,7 @@
                         Desconto de <span>{{ subTotal - subTotalWithDiscount | price }}</span> aplicado
                     </small>
                 </ng-container>
-                <ng-container *ngIf="!discount && !discounts">
+                <ng-container *ngIf="!discount && discounts?.length <= 0">
                     <div>{{ subTotal | price }}</div>
                 </ng-container>
             </div>

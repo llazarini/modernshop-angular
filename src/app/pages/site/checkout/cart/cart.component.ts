@@ -45,7 +45,7 @@ export class CartComponent implements OnInit {
         }
         const postal = this.user?.main_address?.zip_code ? this.user?.main_address?.zip_code : this.postalCode;
         const products = this.checkoutService.products;
-        if (!postal || !products.length) {
+        if (!products.length) {
             return;
         }
         this.loading += 1;
