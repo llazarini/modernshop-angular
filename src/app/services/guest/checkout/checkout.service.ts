@@ -69,7 +69,13 @@ export class CheckoutService {
     }
 
     public set postalCode(postalCode: string) {
-        localStorage.setItem('postal_code', postalCode);
+        if (!this.browser) {
+            return;
+        }
+        localStorage.removeItem('postal_code');
+        if (postalCode) {
+            localStorage.setItem('postal_code', postalCode);
+        }
     }
 
     public get postalCode(): string {
@@ -97,7 +103,11 @@ export class CheckoutService {
         if (!this.browser) {
             return;
         }
-        localStorage.setItem('shipping_option', JSON.stringify(shippingOption));
+        if (shippingOption) {
+            localStorage.setItem('shipping_option', JSON.stringify(shippingOption));
+        } else {
+            localStorage.removeItem('shipping_option');
+        }
     }
 
     public get shippingOption() {
