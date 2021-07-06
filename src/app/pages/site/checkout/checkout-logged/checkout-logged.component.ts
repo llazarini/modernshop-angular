@@ -4,6 +4,7 @@ import {FormGroup} from '@angular/forms';
 import {Router} from '@angular/router';
 import {AuthService} from '../../../../services/auth/auth.service';
 import {AppComponent} from '../../../../app.component';
+import {GoogleAnalyticsService} from 'ngx-google-analytics';
 
 @Component({
   selector: 'app-checkout-logged',
@@ -18,11 +19,12 @@ export class CheckoutLoggedComponent implements OnInit {
     constructor(
         private router: Router,
         private authService: AuthService,
+        private analyticsService: GoogleAnalyticsService
     ) {
     }
 
     public ngOnInit(): void {
-
+        this.analyticsService?.event('begin_checkout', 'checkout_logged', 'Checkout Logado Iniciado');
         if (!this.authService.logged && AppComponent.isBrowser) {
             this.router.navigate(['checkout'])
         }

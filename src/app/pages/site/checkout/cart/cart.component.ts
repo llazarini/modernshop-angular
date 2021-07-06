@@ -7,6 +7,7 @@ import {IUser} from '../../../../interfaces/IUser';
 import {Router} from '@angular/router';
 import {IDiscount} from '../../../../interfaces/IDiscount';
 import {AppComponent} from '../../../../app.component';
+import {GoogleAnalyticsService} from 'ngx-google-analytics';
 
 @Component({
   selector: 'app-cart',
@@ -26,6 +27,7 @@ export class CartComponent implements OnInit {
         private authService: AuthService,
         private alertService: AlertService,
         private router: Router,
+        private analyticsService: GoogleAnalyticsService,
     ) {}
 
     ngOnInit(): void {
@@ -82,12 +84,14 @@ export class CartComponent implements OnInit {
     }
 
     public plus(i: number) {
+        this.analyticsService?.event('add_to_cart', 'cart', 'Adicionar item ao carrinho');
         this.products[i].quantity += 1;
         this.products[i].total_price = this.products[i].option_price * this.products[i].quantity;
         this.change();
     }
 
     public minus(i: number) {
+        this.analyticsService?.event('remove_from_cart', 'cart', 'Remover item do carrinho');
         this.products[i].quantity -= 1;
         this.products[i].total_price = this.products[i].option_price * this.products[i].quantity;
         if (this.products[i].quantity <= 0) {
