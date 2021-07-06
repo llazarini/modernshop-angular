@@ -14,6 +14,8 @@ import {SiteModule} from './pages/site/site.module';
 import {NgxMaskModule} from 'ngx-mask';
 import {MatIconRegistry} from '@angular/material/icon';
 import {isPlatformServer} from '@angular/common';
+import {NgxGoogleAnalyticsModule} from 'ngx-google-analytics';
+import {environment} from '../environments/environment';
 
 @NgModule({
     declarations: [
@@ -21,8 +23,9 @@ import {isPlatformServer} from '@angular/common';
         NotFoundComponent,
     ],
     imports: [
-        NgxMaskModule.forRoot(),
         BrowserModule.withServerTransition({ appId: 'serverApp' }),
+        NgxMaskModule.forRoot(),
+        NgxGoogleAnalyticsModule.forRoot(environment.googleAnalytics),
         AppRoutingModule,
         BrowserAnimationsModule,
         FlexLayoutModule,
