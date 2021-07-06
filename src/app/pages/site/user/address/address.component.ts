@@ -57,7 +57,7 @@ export class AddressComponent implements OnInit {
         if (this.authService.logged) {
             this.user();
         }
-        this.analyticsService?.event('add_shipping_info', 'address', 'Adicionando Endereço');
+        this.analyticsService.event('add_shipping_info', 'address', 'Adicionando Endereço');
         this.getStates();
     }
 

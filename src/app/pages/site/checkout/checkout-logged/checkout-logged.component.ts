@@ -24,7 +24,7 @@ export class CheckoutLoggedComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.analyticsService?.event('begin_checkout', 'checkout_logged', 'Checkout Logado Iniciado');
+        this.analyticsService.event('begin_checkout', 'checkout_logged', 'Checkout Logado Iniciado');
         if (!this.authService.logged && AppComponent.isBrowser) {
             this.router.navigate(['checkout'])
         }

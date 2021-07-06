@@ -54,7 +54,7 @@ export class FinishComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.analyticsService?.event('add_payment_info', 'checkout_finish', 'Página de Pagamento');
+        this.analyticsService.event('add_payment_info', 'checkout_finish', 'Página de Pagamento');
         this.installments = this.checkoutService.installments;
         this.index();
         this.userService.me().subscribe(user => {

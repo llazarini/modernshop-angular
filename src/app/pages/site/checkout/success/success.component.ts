@@ -22,7 +22,7 @@ export class SuccessComponent implements OnInit {
 
 
     public ngOnInit(): void {
-        this.analyticsService?.event('purchase', 'success', 'Compra efetuada!');
+        this.analyticsService.event('purchase', 'success', 'Compra efetuada!');
         this.loading += 1;
         this.id = this.activatedRoute.snapshot.params.id;
         this.orderService

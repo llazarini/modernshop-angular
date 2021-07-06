@@ -20,7 +20,7 @@ export class ProductComponent implements OnInit {
     public ngOnInit() {}
 
 	public buy() {
-    	this.analyticsService?.event('view_item', 'product_component', 'Ver produto');
+    	this.analyticsService.event('view_item', 'product_component', 'Ver produto');
 		this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
 			this.router.navigate(['/', 'product', 'view', this.product.id, this.product.slug]);
 		});
