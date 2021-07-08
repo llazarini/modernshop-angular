@@ -16,6 +16,7 @@ import {MatIconRegistry} from '@angular/material/icon';
 import {isPlatformServer} from '@angular/common';
 import {NgxGoogleAnalyticsModule} from 'ngx-google-analytics';
 import {environment} from '../environments/environment';
+import { PixelModule } from 'ngx-pixel';
 
 @NgModule({
     declarations: [
@@ -26,6 +27,7 @@ import {environment} from '../environments/environment';
         BrowserModule.withServerTransition({ appId: 'serverApp' }),
         NgxMaskModule.forRoot(),
         NgxGoogleAnalyticsModule.forRoot(environment.googleAnalytics),
+        PixelModule.forRoot({ enabled: true, pixelId: environment.facebookPixel }),
         AppRoutingModule,
         BrowserAnimationsModule,
         FlexLayoutModule,

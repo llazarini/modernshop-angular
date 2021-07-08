@@ -4,6 +4,7 @@ export const environment = {
     baseAuthUrl: 'https://server.anaraquelilustracoes.com.br/api/auth',
     baseSiteUrl: 'https://server.anaraquelilustracoes.com.br/api/guest',
     googleAnalytics: 'G-9137VC932N',
+    facebookPixel: '2988138414761294',
     title: 'Ana Raquel Ilustrações',
     subtitle: 'Quadros e Desenhos decorativos',
     keys: 'quadros, decorativos, desenhos, ilustrações, molduras',

@@ -5,6 +5,8 @@ import {Router} from '@angular/router';
 import {AuthService} from '../../../../services/auth/auth.service';
 import {AppComponent} from '../../../../app.component';
 import {GoogleAnalyticsService} from 'ngx-google-analytics';
+import {PixelService} from 'ngx-pixel';
+import {CheckoutService} from '../../../../services/guest/checkout/checkout.service';
 
 @Component({
   selector: 'app-checkout-logged',
@@ -19,14 +21,26 @@ export class CheckoutLoggedComponent implements OnInit {
     constructor(
         private router: Router,
         private authService: AuthService,
-        private analyticsService: GoogleAnalyticsService
+        private analyticsService: GoogleAnalyticsService,
+        private facebookPixelService: PixelService,
+        private checkoutService: CheckoutService,
     ) {
     }
 
     public ngOnInit(): void {
-        this.analyticsService.event('begin_checkout', 'checkout_logged', 'Checkout Logado Iniciado');
+        AppComponent.isBrowser.subscribe(browser => this.init(browser));
+    }
+
+    private init(browser: boolean) {
+        if (!browser) {
+            return;
+        }
         if (!this.authService.logged && AppComponent.isBrowser) {
             this.router.navigate(['checkout'])
         }
+        this.facebookPixelService.track('InitiateCheckout', {
+            content_ids: this.checkoutService.products?.map(product => product.sku)
+        });
+        this.analyticsService.event('begin_checkout', 'checkout_logged', 'Checkout Logado Iniciado');
     }
 }

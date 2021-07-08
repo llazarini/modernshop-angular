@@ -10,6 +10,7 @@ import {Router} from '@angular/router';
 import {AuthService} from '../../../../services/auth/auth.service';
 import {UserService} from '../../../../services/guest/user/user.service';
 import {GoogleAnalyticsService} from 'ngx-google-analytics';
+import {PixelService} from 'ngx-pixel';
 
 @Component({
   selector: 'app-address',
@@ -36,6 +37,7 @@ export class AddressComponent implements OnInit {
         private userService: UserService,
         private authService: AuthService,
         private analyticsService: GoogleAnalyticsService,
+        private facebookPixelService: PixelService,
     ) {
         this.formGroup = new FormGroup({
             id: new FormControl(null),
@@ -57,6 +59,7 @@ export class AddressComponent implements OnInit {
         if (this.authService.logged) {
             this.user();
         }
+        this.facebookPixelService.track('CompleteRegistration');
         this.analyticsService.event('add_shipping_info', 'address', 'Adicionando Endereço');
         this.getStates();
     }
