@@ -14,7 +14,7 @@
           <mat-label>Senha</mat-label>
           <input formControlName="password" matInput [type]="hide ? 'password' : 'text'">
           <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Esconder senha'" [attr.aria-pressed]="hide">
-            <i [class]="hide ? 'mdi mdi-eye-off' : 'mdi mdi-eye'"></i>
+              <mat-icon svgIcon="eye"></mat-icon>
           </button>
         </mat-form-field>
         <div class="alert-error margin-bottom" *ngIf="error">{{ error }}</div>

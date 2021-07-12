@@ -2,17 +2,16 @@
     <div fxLayoutAlign="start center">
         <img src="assets/images/logo-black.png" height="40px">
         <button mat-icon-button (click)="toggleMenu()" class="margin-left">
-            <i class="mdi mdi-menu"></i>
+            <mat-icon svgIcon="menu"></mat-icon>
         </button>
     </div>
-
-    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
-        <i class="mdi mdi-account-circle"></i>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon svgIcon="account-circle"></mat-icon>
     </button>
 </mat-toolbar>
 <mat-menu #menu="matMenu">
     <button mat-menu-item (click)="logout()">
-        <i class="mdi mdi-login"></i>
+        <mat-icon svgIcon="login"></mat-icon>
         <span>Sair</span>
     </button>
 </mat-menu>

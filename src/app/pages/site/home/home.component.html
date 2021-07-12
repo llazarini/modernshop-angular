@@ -1,51 +1,20 @@
 <mat-progress-bar *ngIf="loading" class="progress" mode="indeterminate"></mat-progress-bar>
 
-<div class="contact-us">
-    <div class="container" fxLayout="row" fxLayoutAlign="end center">
-        <div fxLayout="row" fxLayoutGap="10px">
-            <div>Atendimento</div>
-            <a target="_blank" href="https://api.whatsapp.com/send?phone=5511974577357&text=Ol%C3%A1%2C%20vim%20pelo%20site!%20Gostaria%20de%20mais%20informa%C3%A7%C3%B5es!">
-                <mat-icon svgIcon="whatsapp"></mat-icon>
-            </a>
-            <a target="_blank" href="mailto:contato@anaraquelilustracoes.com.br">
-                <mat-icon svgIcon="email"></mat-icon>
-            </a>
-        </div>
-    </div>
-</div>
-
-<!--
 <app-carousel fxHide.lt-sm [height]="500" [width]="1920" [slides]="banners"></app-carousel>
 <app-carousel fxHide.gt-xs [height]="350" [width]="500" [slides]="banners"></app-carousel>
--->
-
-<div class="video" fxLayoutAlign="center start">
-    <div class="content" fxLayoutAlign="center center" fxLayout="column">
-        <div class="description">
-            <div fxLayout="row" fxLayoutAlign="start center">
-                <h1 class="no-margin">Quadros Ilustrativos feitos com amor!</h1>
-                <mat-icon class="red margin-left" svgIcon="heart"></mat-icon>
-            </div>
-            <h2>Molduras e impressão de qualidade, vidro anti-reflexo <br> e embalagem feita em cartonagem artesanal.</h2>
-        </div>
-    </div>
-    <video #video width="1920" height="450" autoplay="autoplay" muted="muted" loop="loop" (canplay)="video.play()" (loadedmetadata)="video.muted = true">
-        <source src="assets/videos/header.mp4" type="video/mp4" />
-    </video>
-</div>
 
 <section class="container top" fxLayout="column" fxLayout.gt-xs="row" fxLayoutGap="15px">
     <div fxFlex fxLayout="row" fxLayoutAlign="start center">
-        <mat-icon svgIcon="brush"></mat-icon>
-        <div>Quadros feitos pela artista Ana Raquel</div>
+        <mat-icon inline svgIcon="brush"></mat-icon>
+        <div>Quadros feitos através de ilustração digital</div>
     </div>
     <div fxFlex fxLayout="row" fxLayoutAlign="start center">
-        <mat-icon svgIcon="hand-heart"></mat-icon>
-        <div>Caixas 100% artesanais feitas pelo Ateliê Dora Lazarini</div>
+        <mat-icon inline svgIcon="hand-heart"></mat-icon>
+        <div>Caixas 100% artesanais feitas pelo Ateliê local da Dora Lazarini</div>
     </div>
     <div fxFlex fxLayout="row" fxLayoutAlign="start center">
-        <mat-icon svgIcon="map-marker-check"></mat-icon>
-        <div>Entregamos em todo o Brasil</div>
+        <mat-icon inline svgIcon="map-marker-check"></mat-icon>
+        <div>Entregamos em qualquer lugar do Brasil</div>
     </div>
 </section>
 
@@ -91,15 +60,15 @@
 
 <section class="container footer" fxLayout="column" fxLayout.gt-xs="row" fxLayoutGap="15px">
     <div fxFlex fxLayout="row" fxLayoutAlign="start center">
-        <mat-icon svgIcon="phone-in-talk"></mat-icon>
+        <mat-icon inline svgIcon="phone-in-talk"></mat-icon>
         <div>Atendimento de Segunda a Sexta das 09:00 às 18:00hrs</div>
     </div>
     <div fxFlex fxLayout="row" fxLayoutAlign="start center">
-        <mat-icon svgIcon="sale"></mat-icon>
+        <mat-icon inline svgIcon="sale"></mat-icon>
         <div>Parcele em até 12x sem juros</div>
     </div>
     <div fxFlex fxLayout="row" fxLayoutAlign="start center">
-        <mat-icon svgIcon="credit-card-outline"></mat-icon>
+        <mat-icon inline svgIcon="credit-card-outline"></mat-icon>
         <div>Pague com PIX ou com um Cartão de crédito nas principais bandeiras</div>
     </div>
 </section>

@@ -93,13 +93,13 @@ section {
     border-top: 2px solid $base-primary;
     padding-top: $margin * 3;
     div {
-        i {
-            font-size: 40px;
+        mat-icon {
+            width: 40px;
             color: $base-accent;
         }
         div {
             line-height: 30px;
-            color: #343434;
+            color: #767676;
             margin-left: $margin;
             font-size: 18px;
         }
@@ -108,13 +108,13 @@ section {
 .top {
     padding: $margin * 3 0px;
     div {
-        i {
-            font-size: 40px;
+        mat-icon {
+            width: 40px;
             color: $base-accent;
         }
         div {
             line-height: 30px;
-            color: #343434;
+            color: #767676;
             margin-left: $margin;
             font-size: 18px;
         }
