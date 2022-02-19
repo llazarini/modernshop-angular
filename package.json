@@ -5,15 +5,11 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build-prod": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "ngcc",
-    "dev:ssr": "ng run mordern-app:serve-ssr",
-    "serve:ssr": "node dist/mordern-app/server/main.js",
-    "build:ssr": "ng build && ng run mordern-app:server",
-    "build:all": "ng run mordern-app:build:production && ng run mordern-app:server:production",
-    "prerender": "ng run mordern-app:prerender"
+    "postinstall": "ngcc"
   },
   "private": true,
   "dependencies": {
