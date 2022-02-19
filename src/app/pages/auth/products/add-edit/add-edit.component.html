@@ -3,7 +3,7 @@
 <div fxLayout="row" fxLayoutAlign="space-between start">
     <h1>{{ id ? 'Editar' : 'Adicionar' }} Produto</h1>
     <button (click)="submit()" color="primary" mat-flat-button>
-        <i class="mdi mdi-plus"></i>
+        <mat-icon svgIcon="plus"></mat-icon>
         {{ id ? 'Salvar edição' : 'Adicionar' }}
     </button>
 </div>
@@ -12,7 +12,7 @@
     <mat-tab-group class="vertical">
         <mat-tab>
             <ng-template mat-tab-label>
-                <i class="mdi mdi-pencil margin-right"></i>Dados Básicos
+                <mat-icon svgIcon="pencil margin-right"></mat-icon>Dados Básicos
             </ng-template>
             <div class="common-form-max" fxLayout="column">
                 <mat-form-field appearance="outline">
@@ -41,7 +41,7 @@
         </mat-tab>
         <mat-tab>
             <ng-template mat-tab-label>
-                <i class="mdi mdi-image margin-right"></i>
+                <mat-icon svgIcon="image margin-right"></mat-icon>
                 Imagens
             </ng-template>
             <div class="common-form-max" fxLayout="row">
@@ -50,7 +50,7 @@
         </mat-tab>
         <mat-tab>
             <ng-template mat-tab-label>
-                <i class="mdi mdi-text margin-right"></i>
+                <mat-icon svgIcon="text margin-right"></mat-icon>
                 Meta tags
             </ng-template>
             <div class="common-form-max" fxLayout="column">
@@ -70,7 +70,7 @@
         </mat-tab>
         <mat-tab>
             <ng-template mat-tab-label>
-                <i class="mdi mdi-chart-bar margin-right"></i>
+                <mat-icon svgIcon="chart-bar margin-right"></mat-icon>
                 Opções
             </ng-template>
             <div class="common-form-max">
@@ -84,7 +84,7 @@
         </mat-tab>
         <mat-tab>
             <ng-template mat-tab-label>
-                <i class="mdi mdi-chart-bar margin-right"></i>
+                <mat-icon svgIcon="chart-bar margin-right"></mat-icon>
                 Categorias
             </ng-template>
             <div class="common-form-max">

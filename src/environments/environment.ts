@@ -5,8 +5,8 @@
 export const environment = {
     site: 'localhost',
     production: false,
-    baseAuthUrl: 'http://localhost:8081/api/auth',
-    baseSiteUrl: 'http://localhost:8081/api/guest',
+    baseAuthUrl: 'https://api.anaraquelilustracoes.com.br/api/auth',
+    baseSiteUrl: 'https://api.anaraquelilustracoes.com.br/api/guest',
     googleAnalytics: '',
     facebookPixel: '2988138414761294',
     title: 'Ana Raquel Ilustrações',

@@ -3,7 +3,7 @@
 <div fxLayout="row" fxLayoutAlign="space-between start">
     <h1>{{ id ? 'Editar' : 'Adicionar' }} Desconto</h1>
     <button (click)="submit()" color="primary" mat-flat-button>
-        <i class="mdi mdi-plus"></i>
+        <mat-icon svgIcon="plus"></mat-icon>
         {{ id ? 'Salvar edição' : 'Adicionar' }}
     </button>
 </div>
@@ -44,7 +44,7 @@
         <ng-container *ngIf="formGroup.value.type === 'programmatic'">
             <div formArrayName="discount_options" fxLayout="column">
                 <button mat-button color="primary" type="button" (click)="addDiscount()">
-                    <i class="mdi mdi-plus"></i> Adicionar Desconto
+                    <mat-icon svgIcon="plus"></mat-icon> Adicionar Desconto
                 </button>
                 <ng-container *ngFor="let discountOption of discountOptions.controls; let i = index" [formGroup]="discountOptions.controls[i]">
                     <mat-form-field appearance="outline">
@@ -68,7 +68,7 @@
                         <input type="number" matInput required formControlName="value">
                     </mat-form-field>
                     <button mat-button color="warn" type="button" (click)="removeDiscount(i)">
-                        <i class="mdi mdi-trash-can"></i> Remover desconto
+                        <mat-icon svgIcon="trash-can"></mat-icon> Remover desconto
                     </button>
                 </ng-container>
             </div>

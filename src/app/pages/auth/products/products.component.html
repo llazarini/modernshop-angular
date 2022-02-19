@@ -4,7 +4,7 @@
   <div fxLayoutAlign="space-between center">
     <h1 class="margin-right">Produtos</h1>
     <button color="primary" mat-flat-button routerLink="add">
-      <i class="mdi mdi-plus"></i> Adicionar
+      <mat-icon svgIcon="plus"></mat-icon> Adicionar
     </button>
   </div>
   <table fxFlex mat-table [dataSource]="dataSource"
@@ -41,11 +41,11 @@
       <th mat-header-cell *matHeaderCellDef class="actions">Ações</th>
       <td mat-cell *matCellDef="let row">
         <button mat-button color="primary" [routerLink]="'edit/' + row.id">
-          <i class="mdi mdi-pencil"></i>
+          <mat-icon svgIcon="pencil"></mat-icon>
           Editar
         </button>
         <button mat-button color="warn" (click)="deleteConfirm(row)">
-          <i class="mdi mdi-close"></i>
+          <mat-icon svgIcon="close"></mat-icon>
           Remover
         </button>
       </td>

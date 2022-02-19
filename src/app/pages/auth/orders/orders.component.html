@@ -50,24 +50,24 @@
             <td mat-cell *matCellDef="let row">
                 <ng-container *ngIf="haveSomeStatus(row.payment_status?.slug)">
                     <button mat-stroked-button color="primary" [matMenuTriggerFor]="menu">
-                        <i class="mdi mdi-arrow-split-vertical"></i>
+                        <mat-icon svgIcon="arrow-split-vertical"></mat-icon>
                         Atualizar Status
                     </button>
                     <mat-menu #menu="matMenu">
                         <button mat-menu-item *ngIf="row.payment_status?.slug === 'waiting_payment'" (click)="updateStatus(row, 'paid')">
-                            <i class="mdi mdi-check"></i>
+                            <mat-icon svgIcon="check"></mat-icon>
                             Informar Pagamento
                         </button>
                         <button mat-menu-item *ngIf="row.payment_status?.slug === 'waiting_payment'" (click)="updateStatus(row, 'cancel')">
-                            <i class="mdi mdi-close"></i>
+                            <mat-icon svgIcon="close"></mat-icon>
                             Cancelar Pedido
                         </button>
                         <button mat-menu-item *ngIf="row.payment_status?.slug === 'paid'" (click)="updateStatus(row, 'refunded')">
-                            <i class="mdi mdi-arrow-left"></i>
+                            <mat-icon svgIcon="arrow-left"></mat-icon>
                             Estornar
                         </button>
                         <button mat-menu-item  *ngIf="row.payment_status?.slug === 'paid'" (click)="updateStatus(row, 'sent')">
-                            <i class="mdi mdi-truck"></i>
+                            <mat-icon svgIcon="truck"></mat-icon>
                             Informar envio
                         </button>
                     </mat-menu>

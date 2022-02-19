@@ -3,7 +3,7 @@
 <div fxLayout="row" fxLayoutAlign="space-between start">
     <h1>{{ id ? 'Editar' : 'Adicionar' }} Banner</h1>
     <button (click)="submit()" color="primary" mat-flat-button>
-        <i class="mdi mdi-plus"></i>
+        <mat-icon svgIcon="plus"></mat-icon>
         {{ id ? 'Salvar edição' : 'Adicionar' }}
     </button>
 </div>
@@ -20,7 +20,7 @@
         </mat-form-field>
 
         <button mat-button color="primary" type="button" (click)="addBanner()">
-            <i class="mdi mdi-plus"></i> Adicionar Banner
+            <mat-icon svgIcon="plus"></mat-icon> Adicionar Banner
         </button>
 
         <div fxFlex>
@@ -37,7 +37,7 @@
                                  (uploaded)="fileUploaded(i, $event)">
                 </app-file-upload>
                 <button mat-button color="warn" type="button" (click)="removeBanner(i)">
-                    <i class="mdi mdi-trash-can"></i> Remover banner
+                    <mat-icon svgIcon="trash-can"></mat-icon> Remover banner
                 </button>
                 <mat-divider></mat-divider>
             </div>

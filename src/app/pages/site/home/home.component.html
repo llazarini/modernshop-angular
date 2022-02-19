@@ -1,11 +1,9 @@
 <mat-progress-bar *ngIf="loading" class="progress" mode="indeterminate"></mat-progress-bar>
 
-<!--
 <app-carousel fxHide.lt-sm [height]="500" [width]="1920" [slides]="banners"></app-carousel>
 <app-carousel fxHide.gt-xs [height]="350" [width]="500" [slides]="banners"></app-carousel>
--->
 
-<div class="video" fxLayoutAlign="center start">
+<!--div class="video" fxLayoutAlign="center start">
   <div class="content" fxLayoutAlign="center center" fxLayout="column">
     <div class="description">
       <div fxLayout="row" fxLayoutAlign="start center">
@@ -18,7 +16,7 @@
   <video #video width="1920" height="450" autoplay="autoplay" muted="muted" loop="loop" (canplay)="video.play()" (loadedmetadata)="video.muted = true">
     <source src="assets/videos/header.mp4" type="video/mp4" />
   </video>
-</div>
+</div-->
 
 <section class="container top" fxLayout="column" fxLayout.gt-xs="row" fxLayoutGap="15px">
     <div fxFlex fxLayout="row" fxLayoutAlign="start center">

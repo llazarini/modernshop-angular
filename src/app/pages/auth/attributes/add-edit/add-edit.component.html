@@ -3,7 +3,7 @@
 <div fxLayout="row" fxLayoutAlign="space-between start">
     <h1>{{ id ? 'Editar' : 'Adicionar' }} Atributo</h1>
     <button (click)="submit()" color="primary" mat-flat-button>
-        <i class="mdi mdi-plus"></i>
+        <mat-icon svgIcon="plus"></mat-icon>
         {{ id ? 'Salvar edição' : 'Adicionar' }}
     </button>
 </div>
