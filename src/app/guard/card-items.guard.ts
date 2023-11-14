@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router} from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import {CheckoutService} from '../services/guest/checkout/checkout.service';
 import {AppComponent} from '../app.component';
@@ -7,7 +7,7 @@ import {AppComponent} from '../app.component';
 @Injectable({
   providedIn: 'root'
 })
-export class CardItemsGuard implements CanActivate {
+export class CardItemsGuard  {
     private browser: boolean;
 
     constructor(private checkoutService: CheckoutService, private router: Router) {
