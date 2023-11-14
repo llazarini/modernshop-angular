@@ -3,14 +3,14 @@ import { CommonModule } from '@angular/common';
 import {GuestRoutingModule} from "./guest-routing.module";
 import {GuestComponent} from "./guest.component";
 import {LoginComponent} from "./login/login.component";
-import {MatInputModule} from "@angular/material/input";
+import {MatLegacyInputModule as MatInputModule} from "@angular/material/legacy-input";
 import {ReactiveFormsModule} from "@angular/forms";
-import {MatButtonModule} from "@angular/material/button";
+import {MatLegacyButtonModule as MatButtonModule} from "@angular/material/legacy-button";
 import {FlexModule} from "@angular/flex-layout";
-import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {MatLegacyProgressBarModule as MatProgressBarModule} from "@angular/material/legacy-progress-bar";
 import {MatIconModule} from "@angular/material/icon";
-import {MatCardModule} from "@angular/material/card";
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatLegacyCardModule as MatCardModule} from "@angular/material/legacy-card";
+import {MatLegacyProgressSpinnerModule as MatProgressSpinnerModule} from '@angular/material/legacy-progress-spinner';
 
 
 

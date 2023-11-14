@@ -5,7 +5,7 @@ import {OrderService} from '../../../services/auth/order/order.service';
 import {IPaymentStatus} from '../../../interfaces/IOrder';
 import {ConfirmComponent} from '../share/alert/confirm.component';
 import {StatusUpdateComponent} from './status-update/status-update.component';
-import {MatDialog} from '@angular/material/dialog';
+import {MatLegacyDialog as MatDialog} from '@angular/material/legacy-dialog';
 
 @Component({
   selector: 'app-orders',

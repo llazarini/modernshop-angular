@@ -9,7 +9,7 @@ import {GuestModule} from './pages/guest/guest.module';
 import {NotFoundComponent} from './pages/not-found/not-found.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {ApiInterceptor} from './interceptor/api.interceptor';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatLegacySnackBarModule as MatSnackBarModule} from '@angular/material/legacy-snack-bar';
 import {SiteModule} from './pages/site/site.module';
 import {NgxMaskModule} from 'ngx-mask';
 import {MatIconRegistry} from '@angular/material/icon';

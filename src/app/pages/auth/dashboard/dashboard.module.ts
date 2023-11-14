@@ -5,8 +5,8 @@ import {DashboardRoutingModule} from "./dashboard-routing.module";
 import {FlexModule} from "@angular/flex-layout";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatBadgeModule} from "@angular/material/badge";
-import {MatProgressBarModule} from "@angular/material/progress-bar";
-import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {MatLegacyProgressBarModule as MatProgressBarModule} from "@angular/material/legacy-progress-bar";
+import {MatLegacyProgressSpinnerModule as MatProgressSpinnerModule} from "@angular/material/legacy-progress-spinner";
 
 
 
