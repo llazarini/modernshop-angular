@@ -1,22 +1,22 @@
-@import '~@angular/material/theming';
+@use '~@angular/material' as mat;
 @import 'variables';
 
 // @import '~@mdi/font/scss/materialdesignicons';
-@include mat-core();
+@include mat.core();
 
-$typography: mat-typography-config(
+$typography: mat.define-typography-config(
         $font-family: Nunito,
-        $headline: mat-typography-level(24px, 28px, 600),
-        $body-1: mat-typography-level(16px, 24px, 400)
+        $headline: mat.define-typography-level(24px, 28px, 600),
+        $body-1: mat.define-typography-level(16px, 24px, 400)
 );
 
 
 /* ======== Angular material custom themes ======== */
-$flecha-theme: mat-light-theme($primary, $accent, $warn);
+$flecha-theme: mat.define-light-theme($primary, $accent, $warn);
 
-@include mat-base-typography($typography);
-@include angular-material-theme($flecha-theme);
-@include mat-core($typography);
+@include mat.typography-hierarchy($typography);
+@include mat.all-component-themes($flecha-theme);
+@include mat.core($typography);
 /*
 .mat-raised-button, .mat-flat-button, .mat-stroked-button {
         border-radius: 20px !important;
