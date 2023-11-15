@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {AddressComponent} from "./address.component";
-import {FlexModule} from "@angular/flex-layout";
 import {MatLegacyListModule as MatListModule} from "@angular/material/legacy-list";
 import {MatIconModule} from "@angular/material/icon";
 import {MatLegacyFormFieldModule as MatFormFieldModule} from "@angular/material/legacy-form-field";
@@ -11,7 +10,6 @@ import {MatLegacySelectModule as MatSelectModule} from "@angular/material/legacy
 import {MatLegacyButtonModule as MatButtonModule} from '@angular/material/legacy-button';
 import {MatLegacyProgressBarModule as MatProgressBarModule} from '@angular/material/legacy-progress-bar';
 import {MatLegacyAutocompleteModule as MatAutocompleteModule} from '@angular/material/legacy-autocomplete';
-import {NgxMatSelectSearchModule} from 'ngx-mat-select-search';
 
 
 
@@ -24,7 +22,6 @@ import {NgxMatSelectSearchModule} from 'ngx-mat-select-search';
   ],
 	imports: [
 		CommonModule,
-		FlexModule,
 		MatListModule,
 		MatIconModule,
 		MatFormFieldModule,
@@ -34,7 +31,6 @@ import {NgxMatSelectSearchModule} from 'ngx-mat-select-search';
 		MatButtonModule,
 		MatProgressBarModule,
 		MatAutocompleteModule,
-		NgxMatSelectSearchModule,
 		FormsModule
 	]
 })

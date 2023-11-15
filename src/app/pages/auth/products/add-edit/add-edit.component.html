@@ -30,11 +30,11 @@
                 <div fxLayout="column" fxLayout.gt-xs="row" fxLayoutGap.gt-xs="15px">
                     <mat-form-field fxFlex appearance="outline">
                         <mat-label>Preço de Custo</mat-label>
-                        <input currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" matInput required formControlName="price_cost">
+                        <input matInput required formControlName="price_cost">
                     </mat-form-field>
                     <mat-form-field fxFlex appearance="outline">
                         <mat-label>Preço de Venda</mat-label>
-                        <input currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" matInput required formControlName="price">
+                        <input matInput required formControlName="price">
                     </mat-form-field>
                 </div>
             </div>

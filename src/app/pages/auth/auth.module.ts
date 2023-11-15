@@ -8,13 +8,11 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatLegacyButtonModule as MatButtonModule} from "@angular/material/legacy-button";
 import {AuthComponent} from "./auth.component";
 import {BrowserModule} from "@angular/platform-browser";
-import {FlexModule} from "@angular/flex-layout";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatLegacyMenuModule as MatMenuModule} from "@angular/material/legacy-menu";
 import {ConfirmComponent} from './share/alert/confirm.component';
 import {AlertComponent} from './share/alert/alert.component';
 import {MatLegacyDialogModule as MatDialogModule} from '@angular/material/legacy-dialog';
-import { NgxMaskModule } from 'ngx-mask'
 
 @NgModule({
     exports: [],
@@ -25,7 +23,6 @@ import { NgxMaskModule } from 'ngx-mask'
         ConfirmComponent,
     ],
 	imports: [
-		NgxMaskModule.forRoot(),
 		BrowserModule,
 		CommonModule,
 		MatListModule,
@@ -35,12 +32,10 @@ import { NgxMaskModule } from 'ngx-mask'
 		MatListModule,
 		MatButtonModule,
 		MatIconModule,
-		FlexModule,
 		MatToolbarModule,
 		MatMenuModule,
 		MatDialogModule,
 		MatDialogModule,
-		FlexModule
 	]
 })
 export class AuthModule { }

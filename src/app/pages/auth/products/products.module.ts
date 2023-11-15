@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {ProductsComponent} from "./products.component";
 import {ProductsRoutingModule} from "./products-routing.module";
-import {ExtendedModule, FlexModule} from '@angular/flex-layout';
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatBadgeModule} from "@angular/material/badge";
 import {MatLegacyProgressBarModule as MatProgressBarModule} from "@angular/material/legacy-progress-bar";
@@ -23,12 +22,9 @@ import {MatSortModule} from "@angular/material/sort";
 import {AddressModule} from "../share/address/address.module";
 import {ContactModule} from "../share/contact/contact.module";
 import {MatLegacyPaginatorModule as MatPaginatorModule} from '@angular/material/legacy-paginator';
-import {NgxMaskModule} from 'ngx-mask';
 import {MatLegacyTooltipModule as MatTooltipModule} from '@angular/material/legacy-tooltip';
 import {MatLegacyAutocompleteModule as MatAutocompleteModule} from '@angular/material/legacy-autocomplete';
-import {NgxMatSelectSearchModule} from 'ngx-mat-select-search';
 import {FileUploadComponent} from '../share/file-upload/file-upload.component';
-import {NgxCurrencyModule} from 'ngx-currency';
 
 @NgModule({
 	declarations: [
@@ -42,7 +38,6 @@ import {NgxCurrencyModule} from 'ngx-currency';
 	imports: [
 		CommonModule,
 		ProductsRoutingModule,
-		FlexModule,
 		MatExpansionModule,
 		MatBadgeModule,
 		MatProgressBarModule,
@@ -62,13 +57,9 @@ import {NgxCurrencyModule} from 'ngx-currency';
 		AddressModule,
 		ContactModule,
 		MatPaginatorModule,
-		NgxMaskModule,
 		MatTooltipModule,
 		MatAutocompleteModule,
-		NgxMatSelectSearchModule,
 		FormsModule,
-		ExtendedModule,
-		NgxCurrencyModule,
 	]
 })
 export class ProductsModule { }

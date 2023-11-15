@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {MatLegacyProgressBarModule as MatProgressBarModule} from '@angular/material/legacy-progress-bar';
-import {ExtendedModule, FlexModule} from '@angular/flex-layout';
 import {CheckoutComponent} from './checkout/checkout.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatLegacyButtonModule as MatButtonModule} from '@angular/material/legacy-button';
@@ -12,8 +11,6 @@ import {CheckoutRoutingModule} from './checkout-routing.module';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatLegacyInputModule as MatInputModule} from '@angular/material/legacy-input';
 import {MatLegacyFormFieldModule as MatFormFieldModule} from '@angular/material/legacy-form-field';
-import {NgxMaskModule} from 'ngx-mask';
-import {NgxMatSelectSearchModule} from 'ngx-mat-select-search';
 import {FinishComponent} from './finish/finish.component';
 import {NoItemsComponent} from './no-items/no-items.component';
 import {CartComponent} from './cart/cart.component';
@@ -38,7 +35,6 @@ import {MatIconModule} from '@angular/material/icon';
 		CheckoutRoutingModule,
 		CommonModule,
 		MatProgressBarModule,
-		FlexModule,
 		MatSidenavModule,
 		MatButtonModule,
 		ProductShareModule,
@@ -48,10 +44,7 @@ import {MatIconModule} from '@angular/material/icon';
 		ReactiveFormsModule,
 		MatFormFieldModule,
 		FormsModule,
-		NgxMaskModule,
-		NgxMatSelectSearchModule,
 		MatRadioModule,
-		ExtendedModule,
 		MatListModule,
 		PriceModule,
 		MatIconModule,

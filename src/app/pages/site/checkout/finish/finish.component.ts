@@ -8,7 +8,6 @@ import {IUser} from '../../../../interfaces/IUser';
 import {AuthService} from '../../../../services/auth/auth.service';
 import {UserService} from '../../../../services/guest/user/user.service';
 import {IDiscount} from '../../../../interfaces/IDiscount';
-import {GoogleAnalyticsService} from 'ngx-google-analytics';
 
 @Component({
     selector: 'app-finish',
@@ -35,7 +34,6 @@ export class FinishComponent implements OnInit {
         private router: Router,
         private authService: AuthService,
         private userService: UserService,
-        private analyticsService: GoogleAnalyticsService,
     ) {
         this.formGroup = new FormGroup({
             name: new FormControl(null, [Validators.required]),
@@ -54,7 +52,7 @@ export class FinishComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.analyticsService.event('add_payment_info', 'checkout_finish', 'Página de Pagamento');
+        // this.analyticsService.event('add_payment_info', 'checkout_finish', 'Página de Pagamento');
         this.installments = this.checkoutService.installments;
         this.index();
         this.userService.me().subscribe(user => {

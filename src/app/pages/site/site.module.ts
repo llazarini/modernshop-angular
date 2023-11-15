@@ -12,7 +12,6 @@ import {RouterModule} from '@angular/router';
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {MatLegacyProgressBarModule as MatProgressBarModule} from '@angular/material/legacy-progress-bar';
-import {ExtendedModule, FlexModule} from '@angular/flex-layout';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatLegacyMenuModule as MatMenuModule} from '@angular/material/legacy-menu';
 import {MatLegacyButtonModule as MatButtonModule} from '@angular/material/legacy-button';
@@ -36,18 +35,14 @@ import {MatIconModule} from '@angular/material/icon';
 		MatProgressBarModule,
 		SiteRoutingModule,
 		CarouselModule,
-		FlexModule,
 		ProductCarouselModule,
 		MatBadgeModule,
 		MatMenuModule,
 		MatButtonModule,
 		ProductModule,
-		ExtendedModule,
 		CategoryModule,
 		MatProgressSpinnerModule,
 		MatTooltipModule,
-		FlexModule,
-		RouterModule,
 		RouterModule,
 		MatProgressBarModule,
 		MatCardModule,

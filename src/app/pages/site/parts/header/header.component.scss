@@ -1,13 +1,15 @@
 @import 'src/variables.scss';
 
 header {
-    width: 100%;
+    width: 100vw;
     height: 60px;
     background: #07A8A0;
     position: fixed;
     top: 0;
     z-index: 2;
     cursor: pointer;
+    display: flex;
+    flex-flow: row;
     .search {
         margin-left: $margin * 2;
         input {

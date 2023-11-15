@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {UserComponent} from "./user.component";
 import {UserRoutingModule} from "./user-routing.module";
-import {FlexModule} from "@angular/flex-layout";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatBadgeModule} from "@angular/material/badge";
 import {MatLegacyProgressBarModule as MatProgressBarModule} from "@angular/material/legacy-progress-bar";
@@ -23,7 +22,6 @@ import {MatLegacyTableModule as MatTableModule} from "@angular/material/legacy-t
 import {MatSortModule} from "@angular/material/sort";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatLegacyPaginatorModule as MatPaginatorModule} from '@angular/material/legacy-paginator';
-import {NgxCurrencyModule} from 'ngx-currency';
 
 
 @NgModule({
@@ -34,7 +32,6 @@ import {NgxCurrencyModule} from 'ngx-currency';
 	imports: [
 		CommonModule,
 		UserRoutingModule,
-		FlexModule,
 		MatExpansionModule,
 		MatBadgeModule,
 		MatProgressBarModule,
@@ -54,7 +51,6 @@ import {NgxCurrencyModule} from 'ngx-currency';
 		MatDatepickerModule,
 		MatNativeDateModule,
 		MatPaginatorModule,
-		NgxCurrencyModule
 	]
 })
 export class UserModule { }

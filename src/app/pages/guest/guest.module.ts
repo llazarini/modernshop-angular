@@ -6,12 +6,10 @@ import {LoginComponent} from "./login/login.component";
 import {MatLegacyInputModule as MatInputModule} from "@angular/material/legacy-input";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatLegacyButtonModule as MatButtonModule} from "@angular/material/legacy-button";
-import {FlexModule} from "@angular/flex-layout";
 import {MatLegacyProgressBarModule as MatProgressBarModule} from "@angular/material/legacy-progress-bar";
 import {MatIconModule} from "@angular/material/icon";
 import {MatLegacyCardModule as MatCardModule} from "@angular/material/legacy-card";
 import {MatLegacyProgressSpinnerModule as MatProgressSpinnerModule} from '@angular/material/legacy-progress-spinner';
-
 
 
 @NgModule({
@@ -25,7 +23,6 @@ import {MatLegacyProgressSpinnerModule as MatProgressSpinnerModule} from '@angul
 		MatInputModule,
 		ReactiveFormsModule,
 		MatButtonModule,
-		FlexModule,
 		MatProgressBarModule,
 		MatIconModule,
 		MatCardModule,

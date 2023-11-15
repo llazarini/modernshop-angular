@@ -7,7 +7,7 @@
             <div fxLayout="row wrap" fxLayoutAlign="start center">
                 <mat-form-field fxFlex appearance="outline" class="no-margin">
                     <mat-label>CEP</mat-label>
-                    <input matInput [mask]="'00000-000'" (ngModelChange)="searchPostalCode()" formControlName="zip_code">
+                    <input matInput (ngModelChange)="searchPostalCode()" formControlName="zip_code">
                     <mat-error *ngIf="form.zip_code?.errors?.required || form.zip_code?.errors?.minLength || form.zip_code?.errors?.maxLength">O CEP é inválido.</mat-error>
                 </mat-form-field>
                 <div fxFlex="300px" ngClass.gt-sm="margin-left margin-bottom" fxHide.lt-sm>

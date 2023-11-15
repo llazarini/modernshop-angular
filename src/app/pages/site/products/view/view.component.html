@@ -9,7 +9,6 @@
     </div>
 </div>
 <div class="container page">
-    <ngx-json-ld [json]="seoSchema"></ngx-json-ld>
     <div fxLayout="column" fxLayout.gt-sm="row" fxLayoutAlign="start start">
         <div class="image" fxFlex="none" ngClass.lt-sm="w100" fxFlex.gt-sm="70%" fxLayoutAlign="center start">
             <app-carousel [slides]="product?.files" fxFlex.gt-sm="500px" ngClass.lt-sm="w100" [width]="500" [height]="700"></app-carousel>
@@ -49,7 +48,7 @@
                     <div ngClass.gt-sm="margin-right" fxLayout="column">
                         <mat-form-field appearance="outline" class="no-padding no-margin">
                             <mat-label>Informe seu CEP</mat-label>
-                            <input class="no-margin no-padding" placeholder="00000-000" [mask]="'00000-000'" [(ngModel)]="postalCode" matInput>
+                            <input class="no-margin no-padding" placeholder="00000-000" [(ngModel)]="postalCode" matInput>
                         </mat-form-field>
                         <button class="margin-top" type="button" mat-stroked-button color="primary" (click)="shipment()">
                             <mat-icon svgIcon="truck"></mat-icon> Calcular Frete

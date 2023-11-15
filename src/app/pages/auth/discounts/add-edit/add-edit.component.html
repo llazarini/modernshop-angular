@@ -31,7 +31,7 @@
         <ng-container *ngIf="formGroup.value.type === 'value'">
             <mat-form-field fxFlex appearance="outline">
                 <mat-label>Desconto</mat-label>
-                <input currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }" matInput required formControlName="value">
+                <input matInput required formControlName="value">
             </mat-form-field>
         </ng-container>
         <ng-container *ngIf="formGroup.value.type === 'percentage'">

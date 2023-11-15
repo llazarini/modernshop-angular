@@ -7,8 +7,6 @@ import {AuthService} from '../../../../services/auth/auth.service';
 import {AlertService} from '../../../../services/alert/alert.service';
 import {UserService} from '../../../../services/guest/user/user.service';
 import {AppComponent} from '../../../../app.component';
-import {GoogleAnalyticsService} from 'ngx-google-analytics';
-import {PixelService} from 'ngx-pixel';
 
 @Component({
   selector: 'app-checkout',
@@ -27,8 +25,6 @@ export class CheckoutComponent implements OnInit {
         private authService: AuthService,
         private alertService: AlertService,
         private userService: UserService,
-        private analyticsService: GoogleAnalyticsService,
-        private facebookPixelService: PixelService,
         ) {
         this.formGroup = new FormGroup({
             email: new FormControl(),
@@ -36,8 +32,8 @@ export class CheckoutComponent implements OnInit {
     }
 
     public ngOnInit(): void {
-        this.facebookPixelService.track('InitiateCheckout');
-        this.analyticsService.event('begin_checkout', 'checkout', 'Checkout Deslogado Iniciado');
+        //this.facebookPixelService.track('InitiateCheckout');
+        //this.analyticsService.event('begin_checkout', 'checkout', 'Checkout Deslogado Iniciado');
         if (this.authService.logged && AppComponent.isBrowser) {
             this.router.navigate(['checkout', 'logged'])
         }

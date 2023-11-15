@@ -8,8 +8,7 @@
     "build-prod": "ng build --configuration production",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "postinstall": "ngcc"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
@@ -24,17 +23,7 @@
     "@angular/platform-browser-dynamic": "^16.2.12",
     "@angular/platform-server": "^16.2.12",
     "@angular/router": "^16.2.12",
-    "@mdi/angular-material": "^5.9.55",
-    "@mdi/font": "^5.9.55",
-    "@nguniversal/express-engine": "^17.0.2",
-    "angular-vertical-tabs": "github:SamuelMarks/angular-vertical-material-tabs",
-    "component": "^1.1.0",
-    "express": "^4.15.2",
-    "ngx-currency": "^2.5.2",
-    "ngx-google-analytics": "^11.2.1",
-    "ngx-json-ld": "^5.0.0",
-    "ngx-mask": "^10.0.4",
-    "ngx-pixel": "^1.1.0",
+    "component": "^0.19.9",
     "rxjs": "^6.6.7",
     "tslib": "^2.3.0",
     "zone.js": "~0.13.3"
@@ -43,7 +32,6 @@
     "@angular-devkit/build-angular": "^16.2.10",
     "@angular/cli": "^16.2.10",
     "@angular/compiler-cli": "^16.2.12",
-    "@nguniversal/builders": "^10.1.0",
     "@types/express": "^4.17.0",
     "@types/jasmine": "~3.6.0",
     "@types/jasminewd2": "~2.0.3",

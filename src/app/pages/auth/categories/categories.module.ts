@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {CategoriesComponent} from "./categories.component";
 import {CategoriesRoutingModule} from "./categories-routing.module";
-import {FlexModule} from "@angular/flex-layout";
 import {MatExpansionModule} from "@angular/material/expansion";
 import {MatBadgeModule} from "@angular/material/badge";
 import {MatLegacyProgressBarModule as MatProgressBarModule} from "@angular/material/legacy-progress-bar";
@@ -23,10 +22,8 @@ import {MatSortModule} from "@angular/material/sort";
 import {AddressModule} from "../share/address/address.module";
 import {ContactModule} from "../share/contact/contact.module";
 import {MatLegacyPaginatorModule as MatPaginatorModule} from '@angular/material/legacy-paginator';
-import {NgxMaskModule} from 'ngx-mask';
 import {MatLegacyTooltipModule as MatTooltipModule} from '@angular/material/legacy-tooltip';
 import {MatLegacyAutocompleteModule as MatAutocompleteModule} from '@angular/material/legacy-autocomplete';
-import {NgxMatSelectSearchModule} from 'ngx-mat-select-search';
 import {ProductsModule} from '../products/products.module';
 
 @NgModule({
@@ -37,7 +34,6 @@ import {ProductsModule} from '../products/products.module';
 	imports: [
 		CommonModule,
 		CategoriesRoutingModule,
-		FlexModule,
 		MatExpansionModule,
 		MatBadgeModule,
 		MatProgressBarModule,
@@ -57,10 +53,8 @@ import {ProductsModule} from '../products/products.module';
 		AddressModule,
 		ContactModule,
 		MatPaginatorModule,
-		NgxMaskModule,
 		MatTooltipModule,
 		MatAutocompleteModule,
-		NgxMatSelectSearchModule,
 		ProductsModule,
 	]
 })

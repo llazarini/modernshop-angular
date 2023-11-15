@@ -6,8 +6,6 @@ import {CheckoutService} from '../../../../services/guest/checkout/checkout.serv
 import {AlertService} from '../../../../services/alert/alert.service';
 import {IOption} from '../../../../interfaces/IOption';
 import {Meta, Title} from '@angular/platform-browser';
-import {GoogleAnalyticsService} from 'ngx-google-analytics';
-import {PixelService} from 'ngx-pixel';
 
 @Component({
   selector: 'app-view',
@@ -31,8 +29,6 @@ export class ViewComponent implements OnInit {
         private alertService: AlertService,
         private titleService: Title,
         private metaService: Meta,
-        private analyticsService: GoogleAnalyticsService,
-        private facebookPixelService: PixelService
     ) {}
 
     public ngOnInit(): void {
@@ -93,12 +89,13 @@ export class ViewComponent implements OnInit {
     }
 
     public addChart() {
-        this.facebookPixelService.track('AddToCart', {
+        /*this.facebookPixelService.track('AddToCart', {
             content_ids: [this.product?.sku],
             value: this.product.price,
             currency: 'BRL'
         });
         this.analyticsService.event('add_to_cart', 'product_view', 'Adicionar ao Carrinho');
+        */
         if (!this.optionsNotSelected()) {
             this.alertService.alert('Selecione todas as opções do produto antes de adicionar ao carrinho.', 'Escolha todas as opções');
             return;
@@ -109,7 +106,7 @@ export class ViewComponent implements OnInit {
     }
 
     public buyNow() {
-        this.analyticsService.event('purchase', 'product_view', 'Comprar produto');
+        // this.analyticsService.event('purchase', 'product_view', 'Comprar produto');
         if (!this.optionsNotSelected()) {
             this.alertService.alert('Selecione todas as opções do produto antes de comprar o produto.', 'Escolha todas as opções');
             return;
@@ -124,7 +121,7 @@ export class ViewComponent implements OnInit {
     }
 
     public shipment() {
-        this.analyticsService.event('shipment', 'product_view', 'Cálculo do Frete');
+        // this.analyticsService.event('shipment', 'product_view', 'Cálculo do Frete');
         if (this.loading > 0 || this.postalCode.length < 8) {
             return;
         }
@@ -168,7 +165,7 @@ export class ViewComponent implements OnInit {
 	}
 
 	public selectOption(attribute, option) {
-        this.analyticsService.event('select_option', 'product_view', 'Opção do Produto Selecionada');
+       // this.analyticsService.event('select_option', 'product_view', 'Opção do Produto Selecionada');
         attribute.options.forEach(item => item.selected = false);
         option.selected = true;
         this.options = this.selectedOptions();

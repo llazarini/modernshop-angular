@@ -1,27 +1,27 @@
 <header>
-    <div class="container" fxLayoutAlign="space-between center">
-        <div class="logo" routerLink="/" fxLayout="row" fxLayoutAlign="start center">
+    <div class="container">
+        <div class="logo" routerLink="/">
             <img src="assets/images/logo.png" width="70px" height="40px">
             <!--div class="search">
-                <div fxHide.lt-sm>
+                <di>
                     <input type="search" placeholder="Busque produtos" [(ngModel)]="search">
                 </div>
             </div-->
         </div>
 
-        <div fxLayout="row" class="menu" fxLayoutAlign="start center">
+        <div class="menu">
             <a class="item" routerLink="home">Home</a>
-            <div class="margin-left" fxLayout="row">
-                <a class="item" routerLink="checkout" fxLayoutAlign="start center">
+            <div class="margin-left">
+                <a class="item" routerLink="checkout">
                     <mat-icon svgIcon="cart"></mat-icon>
                     <span fxHide.lt-sm class="margin-left">Meu carrinho</span>
                     <i class="badge" *ngIf="badge">{{ badge }}</i>
                 </a>
-                <a class="item" [routerLink]="['user', 'login']" *ngIf="!logged" fxLayoutAlign="start center">
+                <a class="item" [routerLink]="['user', 'login']" *ngIf="!logged">
                     <mat-icon svgIcon="login"></mat-icon> <span fxHide.lt-sm class="margin-left">Fazer Login</span>
                 </a>
                 <ng-container *ngIf="logged">
-                    <a class="item" [matMenuTriggerFor]="menu" aria-label="Abrir o menu" fxLayoutAlign="start center">
+                    <a class="item" [matMenuTriggerFor]="menu" aria-label="Abrir o menu">
                         <mat-icon svgIcon="account"></mat-icon> <span fxHide.lt-sm class="margin-left">Minha conta</span>
                     </a>
                     <mat-menu #menu="matMenu">

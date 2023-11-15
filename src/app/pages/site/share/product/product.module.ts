@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {ProductComponent} from './product.component';
-import {FlexModule} from '@angular/flex-layout';
 import {CarouselModule} from '../carousel/carousel.module';
 import {MatLegacyButtonModule as MatButtonModule} from '@angular/material/legacy-button';
 import {RouterModule} from '@angular/router';
@@ -18,7 +17,6 @@ import {MatIconModule} from '@angular/material/icon';
 	],
 	imports: [
 		CommonModule,
-		FlexModule,
 		CarouselModule,
 		MatButtonModule,
 		RouterModule,

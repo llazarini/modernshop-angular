@@ -2,7 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {OrderService} from '../../../../services/auth/order/order.service';
 import {ActivatedRoute} from '@angular/router';
 import {IOrder} from '../../../../interfaces/IOrder';
-import {GoogleAnalyticsService} from 'ngx-google-analytics';
 
 @Component({
   selector: 'app-success',
@@ -17,12 +16,11 @@ export class SuccessComponent implements OnInit {
     constructor(
         private orderService: OrderService,
         private activatedRoute: ActivatedRoute,
-        private analyticsService: GoogleAnalyticsService
     ) {}
 
 
     public ngOnInit(): void {
-        this.analyticsService.event('purchase', 'success', 'Compra efetuada!');
+        // this.analyticsService.event('purchase', 'success', 'Compra efetuada!');
         this.loading += 1;
         this.id = this.activatedRoute.snapshot.params.id;
         this.orderService
